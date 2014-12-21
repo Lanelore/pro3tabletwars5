@@ -23,12 +23,13 @@ EntityBase {
         id: twoAxisController
     }
 
-    Image {
+    AnimatedImage {
         id: tankBody
         width: 40
         height: 40
         //rotation: 0
         anchors.centerIn: parent
+        playing: false
     }
 
     Rectangle {
@@ -42,7 +43,7 @@ EntityBase {
         //transformOriginPoint: Qt.point(13, 2)
 
         color: "transparent"
-
+/*
         Image {
             id: tankHead
             width: 40
@@ -51,6 +52,17 @@ EntityBase {
             //rotation: 0
             anchors.centerIn: tankCannon
             //x: -tankHead.width
+        }
+*/
+        AnimatedImage {
+            id: tankHead
+            width: 40
+            height: 40
+            //transformOrigin: Item.Right
+            //rotation: 0
+            anchors.centerIn: tankCannon
+            //x: -tankHead.width
+            playing: false
         }
 
     }
@@ -67,9 +79,9 @@ EntityBase {
         density: 0
         friction: 0.4
         restitution: 0.4
-        body.bullet: true
-        body.linearDamping: 0
-        body.angularDamping: 0
+        bullet: true
+        linearDamping: 100
+        //angularDamping: 0
 
         // this is applied every physics update tick
         linearVelocity: Qt.point(twoAxisController.xAxis * 100, twoAxisController.yAxis * (-100))

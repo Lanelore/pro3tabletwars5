@@ -14,6 +14,7 @@ Item {
     //lake
     property bool redOnLake: false
     property bool blueOnLake: false
+    property real damping: 10
 
     //power ups
     property int powerUpCount: 0

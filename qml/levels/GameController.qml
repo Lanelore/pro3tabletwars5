@@ -24,8 +24,8 @@ Common.LevelBase {
         z: 1
         entityId: "tank_0"
         rotation: 0
-        tankBody.source: "../../assets/img/redBody.png"
-        tankHead.source: "../../assets/img/redHead.png"
+        tankBody.source: "../../assets/img/walk.gif"
+        tankHead.source: "../../assets/img/shoot.gif"
     }
 
     Tank {
@@ -69,7 +69,12 @@ Common.LevelBase {
                 TouchPoint {id: pointCtrlRed}
             ]
 
+            onReleased: damping()
+            onEnabledChanged:  damping()
+
             onTouchUpdated: {
+                tankRed.circleCollider.linearDamping=0
+                tankRed.tankBody.playing=true
                 newPosX = (pointCtrlRed.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlRed.y / (parent.height / 2) - 1)
 
@@ -79,6 +84,7 @@ Common.LevelBase {
                 if (newPosY > 1) newPosY = 1
                 if (newPosX < -1) newPosX = -1
                 if (newPosY < -1) newPosY = -1
+
 
                 if(GameInfo.redOnLake){
                     console.log("X old: " + oldPosX + " | new: " + newPosX)
@@ -91,7 +97,15 @@ Common.LevelBase {
                     if (newPosX < -1) newPosX = -1
                     if (newPosY < -1) newPosY = -1
                 }
+                if(tankRed.tankBody.playing==false) damping()
                 updateMovement()
+            }
+
+            function damping(){
+                if(GameInfo.redOnLake==false){
+                    tankRed.circleCollider.linearDamping=GameInfo.damping
+                    tankRed.tankBody.playing=false
+                }
             }
 
             function updateMovement(){
@@ -116,47 +130,47 @@ Common.LevelBase {
     // ---------------------------------------------------
     // Joystick Controller tankRed
     // ---------------------------------------------------
-//    JoystickControllerHUD {
-//        id: joystickRed
-//        width: 180
-//        height: 180
-//        x: 50
-//        y: 50
-//        z: 5
+    //    JoystickControllerHUD {
+    //        id: joystickRed
+    //        width: 180
+    //        height: 180
+    //        x: 50
+    //        y: 50
+    //        z: 5
 
-//        Rectangle {
-//            id: cannonControlArea
-//            anchors.fill: parent
-//            color: "#aaaaaa"
-//            opacity: 0.3
-//            z: 5
-//        }
+    //        Rectangle {
+    //            id: cannonControlArea
+    //            anchors.fill: parent
+    //            color: "#aaaaaa"
+    //            opacity: 0.3
+    //            z: 5
+    //        }
 
-//        // delete the default images
-//        source: ""
-//        thumbSource: ""
+    //        // delete the default images
+    //        source: ""
+    //        thumbSource: ""
 
-//        // Touch Methods
-//        property var playerTwoAxisController: tankRed.getComponent("TwoAxisController")
+    //        // Touch Methods
+    //        property var playerTwoAxisController: tankRed.getComponent("TwoAxisController")
 
-//        onControllerXPositionChanged: {
-//            playerTwoAxisController.xAxis = controllerXPosition
-//            var angle = calcAngle(controllerXPosition, controllerYPosition) - 90
-//            if (controllerXPosition!=0 && controllerYPosition != 0){
-//                tankRed.tankBody.rotation = angle
-//                tankRed.circleCollider.rotation = angle
-//            }
-//        }
+    //        onControllerXPositionChanged: {
+    //            playerTwoAxisController.xAxis = controllerXPosition
+    //            var angle = calcAngle(controllerXPosition, controllerYPosition) - 90
+    //            if (controllerXPosition!=0 && controllerYPosition != 0){
+    //                tankRed.tankBody.rotation = angle
+    //                tankRed.circleCollider.rotation = angle
+    //            }
+    //        }
 
-//        onControllerYPositionChanged: {
-//            playerTwoAxisController.yAxis = controllerYPosition
-//            var angle = calcAngle(controllerXPosition, controllerYPosition) - 90
-//            if (controllerXPosition!=0 && controllerYPosition != 0){
-//                tankRed.tankBody.rotation = angle
-//                tankRed.circleCollider.rotation = angle
-//            }
-//        }
-//    }
+    //        onControllerYPositionChanged: {
+    //            playerTwoAxisController.yAxis = controllerYPosition
+    //            var angle = calcAngle(controllerXPosition, controllerYPosition) - 90
+    //            if (controllerXPosition!=0 && controllerYPosition != 0){
+    //                tankRed.tankBody.rotation = angle
+    //                tankRed.circleCollider.rotation = angle
+    //            }
+    //        }
+    //    }
 
     // ---------------------------------------------------
     // Controller redTankCannon
@@ -250,7 +264,9 @@ Common.LevelBase {
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
                 if (pressBool && timeDiff > playerRed.minTimeDistanceBullet) {
+                    tankRed.tankHead.playing=true
                     lastTime = currentTime
+
 
                     console.debug("Shoot Cannon")
 
@@ -284,8 +300,8 @@ Common.LevelBase {
 
             onEnabledChanged: {
                 if(rotateOnce){
-                tankRed.tankCannon.rotation = 90
-                rotateOnce = false
+                    tankRed.tankCannon.rotation = 90
+                    rotateOnce = false
                 }
             }
         }
@@ -325,9 +341,9 @@ Common.LevelBase {
 
             onEnabledChanged: {
                 if(rotateOnce){
-                tankBlue.tankBody.rotation = 180
-                tankBlue.circleCollider.rotation = 180
-                rotateOnce = false
+                    tankBlue.tankBody.rotation = 180
+                    tankBlue.circleCollider.rotation = 180
+                    rotateOnce = false
                 }
             }
 
@@ -372,49 +388,49 @@ Common.LevelBase {
         }
     }
 
-//    JoystickControllerHUD {
-//        rotation: 0
-//        id: joystickBlue
-//        width: 180
-//        height: 180
-//        x: scene.width - 230
-//        y: scene.height - 230
-//        z: 5
+    //    JoystickControllerHUD {
+    //        rotation: 0
+    //        id: joystickBlue
+    //        width: 180
+    //        height: 180
+    //        x: scene.width - 230
+    //        y: scene.height - 230
+    //        z: 5
 
-//        Rectangle {
-//            anchors.fill: parent
-//            color: "#aaaaaa"
-//            opacity: 0.3
-//            z: 5
-//        }
+    //        Rectangle {
+    //            anchors.fill: parent
+    //            color: "#aaaaaa"
+    //            opacity: 0.3
+    //            z: 5
+    //        }
 
-//        // delete the default images
-//        source: ""
-//        thumbSource: ""
+    //        // delete the default images
+    //        source: ""
+    //        thumbSource: ""
 
-//        property var playerTwoAxisController: tankBlue.getComponent("TwoAxisController")
+    //        property var playerTwoAxisController: tankBlue.getComponent("TwoAxisController")
 
-//        onControllerXPositionChanged: {
-//            console.debug("controllerXPosition-Blue = " + controllerXPosition)
-//            playerTwoAxisController.xAxis = controllerXPosition
-//            var angle = calcAngle(controllerXPosition, controllerYPosition)
-//            if (controllerXPosition!=0 && controllerYPosition != 0){
-//                tankBlue.tankBody.rotation = angle +90
-//                tankBlue.circleCollider.rotation = angle +90
-//            }
-//        }
+    //        onControllerXPositionChanged: {
+    //            console.debug("controllerXPosition-Blue = " + controllerXPosition)
+    //            playerTwoAxisController.xAxis = controllerXPosition
+    //            var angle = calcAngle(controllerXPosition, controllerYPosition)
+    //            if (controllerXPosition!=0 && controllerYPosition != 0){
+    //                tankBlue.tankBody.rotation = angle +90
+    //                tankBlue.circleCollider.rotation = angle +90
+    //            }
+    //        }
 
-//        onControllerYPositionChanged: {
-//            console.debug("controllerYPosition-Blue = " + controllerYPosition)
-//            playerTwoAxisController.yAxis = controllerYPosition
-//            var angle = calcAngle(controllerXPosition, controllerYPosition)
-//            if (controllerXPosition!=0 && controllerYPosition != 0){
-//                tankBlue.tankBody.rotation = angle +90
-//                tankBlue.circleCollider.rotation = angle +90
-//            }
-//        }
+    //        onControllerYPositionChanged: {
+    //            console.debug("controllerYPosition-Blue = " + controllerYPosition)
+    //            playerTwoAxisController.yAxis = controllerYPosition
+    //            var angle = calcAngle(controllerXPosition, controllerYPosition)
+    //            if (controllerXPosition!=0 && controllerYPosition != 0){
+    //                tankBlue.tankBody.rotation = angle +90
+    //                tankBlue.circleCollider.rotation = angle +90
+    //            }
+    //        }
 
-//    }
+    //    }
 
     // ---------------------------------------------------
     // Controller blueTankCannon
@@ -495,8 +511,8 @@ Common.LevelBase {
 
             onEnabledChanged: {
                 if(rotateOnce){
-                tankBlue.tankCannon.rotation = 270
-                rotateOnce = false
+                    tankBlue.tankCannon.rotation = 270
+                    rotateOnce = false
                 }
             }
         }
@@ -619,7 +635,7 @@ Common.LevelBase {
             bottom: scene.bottom
             bottomMargin: 50
         }
-    } 
+    }
 
     // energy tankred
     Text {

@@ -72,11 +72,13 @@ Common.LevelBase {
             onReleased: damping()
             onEnabledChanged:  damping()
 
+
             onTouchUpdated: {
                 tankRed.circleCollider.linearDamping=0
                 tankRed.tankBody.playing=true
                 newPosX = (pointCtrlRed.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlRed.y / (parent.height / 2) - 1)
+
 
                 newPosY = newPosY * -1
 
@@ -225,6 +227,10 @@ Common.LevelBase {
             }
         }
 */
+
+    // ----------------------------------
+    // Cannon Controller Player Red
+    // ------------------------------------
     Rectangle {
         // Object properties
         id: playerBulletControlAreaRed
@@ -244,29 +250,43 @@ Common.LevelBase {
             anchors.fill: parent
 
             property bool rotateOnce: true
-            property bool pressBool: false
-            property var lastTime: 0
+            property bool pressBool: false // becomes true when a touch-cycle starts
+            property var lastTime: 0 // stores the last time a bullet was shot
+            property var touchStartTime: 0 // will store the start-time of a touch-cycle
+            property int onTouchUpdatedCounter: 0 // counts how often the onTouchUpdatedCounter has been called for a touch-cycle
             property variant playerTwoAxisController: tankRed.getComponent("TwoAxisController")
 
             touchPoints: [
                 TouchPoint {id: point1}
             ]
 
-            onTouchUpdated: upDateCannon()
+            onTouchUpdated: {
+                console.log("--------onTouchUpdated");
+                onTouchUpdatedCounter += 1
+
+                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
+                if (onTouchUpdatedCounter > GameInfo.onTouchUpdateCounterThreshold) { // change this number to '6' to only shoot when a Tap occured!
+                    upDateCannon()
+                }
+            }
+
 
             onPressed: {
-                upDateCannon()
+                console.log("--------onPressed");
                 pressBool= true
+                touchStartTime = new Date().getTime()
             }
 
             onReleased: {
-                upDateCannon()
+                console.log("--------onReleased");
+                //upDateCannon()
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
-                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet) {
-                    tankRed.tankHead.playing=true
-                    lastTime = currentTime
+                var touchReleaseTime = currentTime - touchStartTime
+                console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
+                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && touchReleaseTime < 200) {
+                    lastTime = currentTime
 
                     console.debug("Shoot Cannon")
 
@@ -287,6 +307,7 @@ Common.LevelBase {
                                 });
                 }
                 pressBool= false
+                onTouchUpdatedCounter = 0
             }
 
             function upDateCannon(){
@@ -306,6 +327,10 @@ Common.LevelBase {
             }
         }
     }
+
+
+
+
 
     // ---------------------------------------------------
     // Controller tankBlue
@@ -457,25 +482,37 @@ Common.LevelBase {
             property bool rotateOnce: true
             property bool pressBool: true
             property var lastTime: 0
+            property var touchStartTime: 0
+            property int onTouchUpdatedCounter: 0
             property var playerTwoAxisController: tankBlue.getComponent("TwoAxisController")
 
             touchPoints: [
                 TouchPoint {id: point2}
             ]
 
-            onTouchUpdated: upDateCannon()
+            onTouchUpdated: {
+                console.log("--------onTouchUpdated");
+                onTouchUpdatedCounter += 1
 
+                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
+                if (onTouchUpdatedCounter > GameInfo.onTouchUpdateCounterThreshold) { // change this number to '6' to only shoot when a Tap occured!
+                    upDateCannon()
+                }
+            }
             onPressed: {
-                upDateCannon()
+                console.log("--------onPressed");
                 pressBool= true
+                touchStartTime = new Date().getTime()
             }
 
             onReleased: {
-                upDateCannon()
+                console.log("---------onReleased")
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
+                var touchReleaseTime = currentTime - touchStartTime
+                console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
-                if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet) {
+                if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet && touchReleaseTime < 200) {
 
                     lastTime = currentTime
 
@@ -497,6 +534,7 @@ Common.LevelBase {
                                 });
                 }
                 pressBool= false
+                onTouchUpdatedCounter = 0
             }
 
             function upDateCannon(){

@@ -33,4 +33,9 @@ Item {
     property int fillEnergy: 25     //extra energy powerup
     property int normalDamage: 25   //tank, opponent, obstacle
     property int powerDamage: 50    //with PowerUp
+
+
+
+    // Controller parameters
+    readonly property int onTouchUpdateCounterThreshold: 0
 }

@@ -78,6 +78,44 @@ EntityBase {
             var collidedColliderComponent = other.parent.parent;
             var collidedEntity = collidedColliderComponent.parent;
 
+            if (collidedEntity.entityId == tankRed.entityId || collidedEntity.entityId == tankBlue.entityId) {
+                console.log("fixture.parent.parent.parent.x: " + fixture.parent.parent.parent.x)
+                console.log("fixture.x: " + fixture.x)
+                collidedEntity.x = fixture.parent.parent.parent.x + 100
+                collidedEntity.y = fixture.parent.parent.parent.y + 100
+
+                // Load all iglus of this level
+                var iglus = entityManager.getEntityArrayByType("iglu")
+
+                // create a random int of the iglus-array-length
+                var random = Math.floor(Math.random() * (iglus.length))
+                console.log("random: " + random)
+                var destinationIglu = iglus[random] // load a random iglu
+
+                // get a random iglu as long as the retained iglu is the same that the player moved into!
+                while(iglu.entityId == destinationIglu.entityId) {
+                    random = Math.floor(Math.random() * (iglus.length))
+                    console.log("random: " + random)
+                    destinationIglu = iglus[random]
+                }
+
+                console.log("iglus.length: " + iglus.length)
+                console.log("destinationIglu.x: " + destinationIglu.x)
+                console.log("destinationIglu.y: " + destinationIglu.y)
+
+                // calculate the x and y position where the player should appear
+                var destinationX = (80 * Math.cos((destinationIglu.rotation - 10) * Math.PI / 180)) + destinationIglu.x + tankRed.width / 2
+                var destinationY = (80 * Math.sin((destinationIglu.rotation - 10) * Math.PI / 180)) + destinationIglu.y + tankRed.width / 2
+
+                // place the player to the calculated position and angle
+                collidedEntity.x = destinationX
+                collidedEntity.y = destinationY
+                collidedEntity.rotation = destinationIglu.rotation
+            }
+
+            return
+
+
             var igluX
             var igluY
             var igluR

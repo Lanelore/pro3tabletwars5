@@ -37,5 +37,12 @@ Item {
 
 
     // Controller parameters
-    readonly property int onTouchUpdateCounterThreshold: 0
+    readonly property int onTouchUpdateCounterThreshold: 0 // change this to about 6 to prevent the cannon from changing the angle when shooting
+
+    readonly property int controlType2AngleRange: 50
+    readonly property int controlType2Width: 240
+    readonly property int controlType2Height: 80
+
+    readonly property int controlType1Width: 180
+    readonly property int controlType1Height: 180
 }

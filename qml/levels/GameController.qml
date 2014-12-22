@@ -39,6 +39,8 @@ Common.LevelBase {
         tankHead.source: "../../assets/img/blueHead.png"
     }
 
+
+
     // ---------------------------------------------------
     // Controller tankRed
     // ---------------------------------------------------
@@ -121,6 +123,7 @@ Common.LevelBase {
                 if (newPosX!=0 && newPosY != 0){
                     tankRed.tankBody.rotation = angle
                     tankRed.circleCollider.rotation = angle
+                    tankRed.tankCannon.rotation = tankRed.tankBody.rotation + tankRed.cannonAngle + 90 // used for ControlType2
                 }
             }
         }
@@ -228,7 +231,8 @@ Common.LevelBase {
         }
 */
 
-    // ----------------------------------
+
+    // ------------------------------------
     // Cannon Controller Player Red
     // ------------------------------------
     Rectangle {
@@ -240,9 +244,10 @@ Common.LevelBase {
         color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.red
-        width: 180
-        height: 180
-        x: scene.width - 230
+
+        width: GameInfo.controlType2Width
+        height: GameInfo.controlType2Height
+        x: scene.width - GameInfo.controlType2Width - 50
         y: 50
         z: 5
 
@@ -311,12 +316,28 @@ Common.LevelBase {
             }
 
             function upDateCannon(){
+                // point1.x range: 0 - playerBulletControlAreaRed.width
+                console.log("touchpoint.x: " + point1.x)
+
+                // ControlType2
+                var b = point1.x - (playerBulletControlAreaRed.width / 2)
+                var m = playerBulletControlAreaRed.width / 2 / GameInfo.controlType2AngleRange
+                var angle = b / m * (-1)
+                angle = Math.max(angle, -GameInfo.controlType2AngleRange)
+                angle = Math.min(angle, GameInfo.controlType2AngleRange)
+                console.log("b: " + b + ", m: " + m + ", angle: " + angle)
+                tankRed.cannonAngle = angle
+                tankRed.tankCannon.rotation = tankRed.tankBody.rotation + tankRed.cannonAngle + 90
+
+                /*
+                // ControlType1
                 var x = point1.x
                 var y = point1.y
                 x = x - (playerBulletControlAreaRed.width / 2)
                 y = (y - (playerBulletControlAreaRed.height / 2)) * (-1)
                 var angle = calcAngle(x, y)
                 tankRed.tankCannon.rotation = angle
+                */
             }
 
             onEnabledChanged: {
@@ -408,6 +429,7 @@ Common.LevelBase {
                 if (newPosX!=0 && newPosY != 0){
                     tankBlue.tankBody.rotation = angle
                     tankBlue.circleCollider.rotation = angle
+                    tankBlue.tankCannon.rotation = tankBlue.tankBody.rotation + tankBlue.cannonAngle + 90 // used for ControlType2
                 }
             }
         }
@@ -470,10 +492,10 @@ Common.LevelBase {
         border.width: GameInfo.border
         border.color: GameInfo.blue
 
-        width: 180
-        height: 180
+        width: GameInfo.controlType2Width
+        height: GameInfo.controlType2Height
         x: 50
-        y: scene.height - 230
+        y: scene.height - GameInfo.controlType2Height - 50
         z: 5
 
         MultiPointTouchArea {
@@ -495,7 +517,7 @@ Common.LevelBase {
                 onTouchUpdatedCounter += 1
 
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
-                if (onTouchUpdatedCounter > GameInfo.onTouchUpdateCounterThreshold) { // change this number to '6' to only shoot when a Tap occured!
+                if (onTouchUpdatedCounter > GameInfo.onTouchUpdateCounterThreshold) { // change this number to '6' to only shoot when a Tap o.ccured!
                     upDateCannon()
                 }
             }
@@ -538,6 +560,22 @@ Common.LevelBase {
             }
 
             function upDateCannon(){
+                // point1.x range: 0 - playerBulletControlAreaRed.width
+                console.log("touchpoint.x: " + point2.x)
+
+                // ControlType2
+                var b = point2.x - (playerBulletControlAreaBlue.width / 2)
+                var m = playerBulletControlAreaBlue.width / 2 / GameInfo.controlType2AngleRange
+                var angle = b / m
+                angle = Math.max(angle, -GameInfo.controlType2AngleRange)
+                angle = Math.min(angle, GameInfo.controlType2AngleRange)
+                console.log("b: " + b + ", m: " + m + ", angle: " + angle)
+                tankBlue.cannonAngle = angle
+                tankBlue.tankCannon.rotation = tankBlue.tankBody.rotation + tankBlue.cannonAngle + 90
+
+
+                // ControlType1
+                /*
                 var x = point2.x
                 var y = point2.y
                 x = x - (playerBulletControlAreaBlue.width / 2)
@@ -545,6 +583,7 @@ Common.LevelBase {
 
                 var angle = calcAngle(x, y)
                 tankBlue.tankCannon.rotation = angle
+                */
             }
 
             onEnabledChanged: {

@@ -13,6 +13,7 @@ EntityBase {
     property alias circleCollider: circleCollider
 
     property int life: 3
+    property int cannonAngle: 0 // range of about -35 to + 35 degrees, the difference to the tankbody-angle
     // flag indicating if dead
     //property bool gameRunning: life == 0
 

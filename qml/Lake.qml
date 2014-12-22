@@ -84,8 +84,7 @@ EntityBase {
                 //playerMovementControlAreaRed.enabled=true;
                 //redOffLake();
                 GameInfo.redOnLake=false
-                playerMovementControlAreaRed.enabled=false
-                playerMovementControlAreaRed.enabled=true
+                redOffLake()
             }
 
             if(tankBlue.entityId ===collidedEntity.entityId){
@@ -94,8 +93,7 @@ EntityBase {
                 //playerMovementControlAreaBlue.enabled=true;
                 //blueOffLake()
                 GameInfo.blueOnLake=false
-                playerMovementControlAreaBlue.enabled=false
-                playerMovementControlAreaBlue.enabled=true
+                blueOffLake()
             }
 
             console.log("contact!")

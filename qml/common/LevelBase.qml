@@ -11,9 +11,9 @@ Item {
     signal damage
 
     //signal redOnLake
-    //signal redOffLake
+    signal redOffLake
     //signal blueOnLake
-    //signal blueOffLake
+    signal blueOffLake
 
     // this will be displayed in the GameScene
     property string levelName

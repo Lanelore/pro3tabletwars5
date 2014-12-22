@@ -35,8 +35,8 @@ Common.LevelBase {
         z: 1
         entityId: "tank_1"
         rotation: 0
-        tankBody.source: "../../assets/img/blueBody.png"
-        tankHead.source: "../../assets/img/blueHead.png"
+        tankBody.source: "../../assets/img/walk.gif"       //"../../assets/img/blueBody.png"
+        tankHead.source: "../../assets/img/shoot.gif"      //"../../assets/img/blueHead.png"
     }
 
 
@@ -44,6 +44,12 @@ Common.LevelBase {
     // ---------------------------------------------------
     // Controller tankRed
     // ---------------------------------------------------
+    onRedOffLake: {
+        if(GameInfo.redOnLake==false && tankRed.tankBody.playing==false){
+            tankRed.circleCollider.linearDamping=GameInfo.damping
+        }
+    }
+
     Rectangle {
         // Object properties
         id: playerMovementControlAreaRed
@@ -71,16 +77,16 @@ Common.LevelBase {
                 TouchPoint {id: pointCtrlRed}
             ]
 
-            onReleased: damping()
-            onEnabledChanged:  damping()
-
+            onReleased: {
+                tankRed.tankBody.playing=false
+                damping()
+            }
 
             onTouchUpdated: {
                 tankRed.circleCollider.linearDamping=0
                 tankRed.tankBody.playing=true
                 newPosX = (pointCtrlRed.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlRed.y / (parent.height / 2) - 1)
-
 
                 newPosY = newPosY * -1
 
@@ -108,7 +114,6 @@ Common.LevelBase {
             function damping(){
                 if(GameInfo.redOnLake==false){
                     tankRed.circleCollider.linearDamping=GameInfo.damping
-                    tankRed.tankBody.playing=false
                 }
             }
 
@@ -291,6 +296,9 @@ Common.LevelBase {
                 console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && touchReleaseTime < 200) {
+
+                    tankRed.tankHead.playing=true
+
                     lastTime = currentTime
 
                     console.debug("Shoot Cannon")
@@ -356,6 +364,14 @@ Common.LevelBase {
     // ---------------------------------------------------
     // Controller tankBlue
     // ---------------------------------------------------
+    onBlueOffLake: {
+        if(GameInfo.blueOnLake==false && tankBlue.tankBody.playing==false){
+            tankBlue.circleCollider.linearDamping=GameInfo.damping
+        }else{
+            tankBlue.circleCollider.linearDamping=0
+        }
+    }
+
     Rectangle {
         // Object properties
         id: playerMovementControlAreaBlue
@@ -393,7 +409,15 @@ Common.LevelBase {
                 }
             }
 
+            onReleased: {
+                tankBlue.tankBody.playing=false
+                damping()
+            }
+
             onTouchUpdated: {
+                tankBlue.circleCollider.linearDamping=0
+                tankBlue.tankBody.playing=true
+
                 newPosX = (pointCtrlBlue.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlBlue.y / (parent.height / 2) - 1)
 
@@ -415,7 +439,14 @@ Common.LevelBase {
                     if (newPosX < -1) newPosX = -1
                     if (newPosY < -1) newPosY = -1
                 }
+                if(tankBlue.tankBody.playing==false) damping()
                 updateMovement()
+            }
+
+            function damping(){
+                if(GameInfo.blueOnLake==false){
+                    tankBlue.circleCollider.linearDamping=GameInfo.damping
+                }
             }
 
             function updateMovement(){
@@ -535,6 +566,8 @@ Common.LevelBase {
                 console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet && touchReleaseTime < 200) {
+
+                    tankBlue.tankHead.playing=true
 
                     lastTime = currentTime
 

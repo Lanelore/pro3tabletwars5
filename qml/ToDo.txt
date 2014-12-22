@@ -14,7 +14,7 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
-
+     * Gehen beim Verlassen des Sees: es wird automatisch gestoppt - verhindern!
      * z Order der zur Laufzeit erzeugten Items (PowerUpspawn) ist nicht korrekt
 OK - * Cannon: onReleased vs onClicked auf Tablet testen - aktuell ist rot=onReleased und blau=onClicked
 OK - * PhysicsWorld ist vermutlich wieder kaputt - man kann unten durch die Wand fahren

@@ -66,6 +66,28 @@ EntityBase {
         anchors.centerIn: parent
     }
 
+    Timer {
+        id: teleportTimer
+        interval: 1000
+        running: false
+        repeat: false
+
+        property var destIglu // destinationIglu
+        property var teleportedPlayer
+        property var destinationX
+        property var destinationY
+
+        onTriggered:{
+
+            teleportedPlayer.x = destinationX
+            teleportedPlayer.y = destinationY
+            teleportedPlayer.rotation = destIglu.rotation
+
+            destIglu.opacity = 1.0
+            teleportedPlayer.opacity = 1.0
+        }
+    }
+
     BoxCollider {
         density: 100000000
         id: porter
@@ -89,32 +111,32 @@ EntityBase {
 
                 // create a random int of the iglus-array-length
                 var random = Math.floor(Math.random() * (iglus.length))
-                console.log("random: " + random)
                 var destinationIglu = iglus[random] // load a random iglu
 
                 // get a random iglu as long as the retained iglu is the same that the player moved into!
                 while(iglu.entityId == destinationIglu.entityId) {
                     random = Math.floor(Math.random() * (iglus.length))
-                    console.log("random: " + random)
                     destinationIglu = iglus[random]
                 }
-
-                console.log("iglus.length: " + iglus.length)
-                console.log("destinationIglu.x: " + destinationIglu.x)
-                console.log("destinationIglu.y: " + destinationIglu.y)
 
                 // calculate the x and y position where the player should appear
                 var destinationX = (80 * Math.cos((destinationIglu.rotation - 10) * Math.PI / 180)) + destinationIglu.x + tankRed.width / 2
                 var destinationY = (80 * Math.sin((destinationIglu.rotation - 10) * Math.PI / 180)) + destinationIglu.y + tankRed.width / 2
 
-                // place the player to the calculated position and angle
-                collidedEntity.x = destinationX
-                collidedEntity.y = destinationY
-                collidedEntity.rotation = destinationIglu.rotation
+                collidedEntity.opacity = 0.0
+                destinationIglu.opacity = 0.0
+
+                teleportTimer.destinationX = destinationX
+                teleportTimer.destinationY = destinationY
+                teleportTimer.destIglu = destinationIglu
+                teleportTimer.teleportedPlayer = collidedEntity
+                teleportTimer.start()
             }
 
             return
 
+/*
+  Old Code, not iglu-count independent!
 
             var igluX
             var igluY
@@ -154,6 +176,7 @@ EntityBase {
                 tankBlue.y = igluY
                 tankBlue.rotation = igluR
             }
+            */
         }
     }
 }

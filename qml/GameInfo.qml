@@ -43,4 +43,6 @@ Item {
 
     readonly property int controlType1Width: 180
     readonly property int controlType1Height: 180
+
+    readonly property double maximumPlayerVelocity: 1.4
 }

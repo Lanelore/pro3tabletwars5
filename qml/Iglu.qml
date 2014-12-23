@@ -68,6 +68,7 @@ EntityBase {
     }
 
     Timer {
+        // This timer is used to let the player disappear for a certain amount of time when he enters an iglu
         id: teleportTimer
         interval: 1000
         running: false

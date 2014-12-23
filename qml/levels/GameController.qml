@@ -58,7 +58,7 @@ Common.LevelBase {
         x: 50
         y: 50
         z: 5
-        radius: GameInfo.radius
+        radius: width / 2//GameInfo.radius
         opacity: GameInfo.pacity
         color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
@@ -82,9 +82,11 @@ Common.LevelBase {
                 damping()
             }
 
-            onTouchUpdated: {
+            onUpdated: {
+                // reset playing and linear damping (indicates that player is moving)
                 tankRed.circleCollider.linearDamping=0
                 tankRed.tankBody.playing=true
+
                 newPosX = (pointCtrlRed.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlRed.y / (parent.height / 2) - 1)
 
@@ -95,7 +97,7 @@ Common.LevelBase {
                 if (newPosX < -1) newPosX = -1
                 if (newPosY < -1) newPosY = -1
 
-
+                // if it is on the lake calculate it in a special way!
                 if(GameInfo.redOnLake){
                     console.log("X old: " + oldPosX + " | new: " + newPosX)
                     console.log("Y old: " + oldPosY + " | new: " + newPosY)
@@ -107,7 +109,11 @@ Common.LevelBase {
                     if (newPosX < -1) newPosX = -1
                     if (newPosY < -1) newPosY = -1
                 }
+
+                // If the player is not touching the control area, slowly stop the body!
                 if(tankRed.tankBody.playing==false) damping()
+
+                // update the movement
                 updateMovement()
             }
 
@@ -118,10 +124,32 @@ Common.LevelBase {
             }
 
             function updateMovement(){
-                playerTwoAxisController.xAxis = newPosX
-                playerTwoAxisController.yAxis = newPosY
+                // store the x and y values before they'll be altered
                 oldPosX=newPosX
                 oldPosY=newPosY
+
+                // Adjust the speed
+                newPosX = newPosX * GameInfo.maximumPlayerVelocity
+                newPosY = newPosY * GameInfo.maximumPlayerVelocity
+
+                /* normalise the speed! when driving diagonally the x and y speed is both 1
+                    when driving horizontally only either x or y is 1, which results in slower horizontal/vercial speed than diagonal speed
+                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) */
+
+                // calculate the distance from the center ( = speed)
+                var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
+
+                if (velocity > GameInfo.maximumPlayerVelocity) {
+                    // velocity is too high! shrink it down
+                    var shrinkFactor = GameInfo.maximumPlayerVelocity / velocity
+                    newPosX = newPosX * shrinkFactor
+                    newPosY = newPosY * shrinkFactor
+                }
+
+
+                // now update the twoAxisController with the calculated values
+                playerTwoAxisController.xAxis = newPosX
+                playerTwoAxisController.yAxis = newPosY
 
                 var angle = calcAngle(newPosX, newPosY) - 90
 
@@ -270,7 +298,7 @@ Common.LevelBase {
                 TouchPoint {id: point1}
             ]
 
-            onTouchUpdated: {
+            onUpdated: {
                 console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 
@@ -381,7 +409,7 @@ Common.LevelBase {
         y: scene.height - 230
         z: 5
 
-        radius: GameInfo.radius
+        radius: width / 2 //GameInfo.radius
         opacity: GameInfo.pacity
         color: Qt.lighter(GameInfo.blue, GameInfo.lighterColor)
         border.width: GameInfo.border
@@ -414,7 +442,8 @@ Common.LevelBase {
                 damping()
             }
 
-            onTouchUpdated: {
+            onUpdated: {
+                // reset playing and linear damping (indicates that player is moving)
                 tankBlue.circleCollider.linearDamping=0
                 tankBlue.tankBody.playing=true
 
@@ -428,6 +457,7 @@ Common.LevelBase {
                 if (newPosX < -1) newPosX = -1
                 if (newPosY < -1) newPosY = -1
 
+                // if it is on the lake calculate it in a special way!
                 if(GameInfo.blueOnLake){
                     console.log("X old: " + oldPosX + " | new: " + newPosX)
                     console.log("Y old: " + oldPosY + " | new: " + newPosY)
@@ -439,7 +469,11 @@ Common.LevelBase {
                     if (newPosX < -1) newPosX = -1
                     if (newPosY < -1) newPosY = -1
                 }
+
+                // if the player is not touching the control area, slowly stop the body!
                 if(tankBlue.tankBody.playing==false) damping()
+
+                // update the movement
                 updateMovement()
             }
 
@@ -450,10 +484,32 @@ Common.LevelBase {
             }
 
             function updateMovement(){
-                playerTwoAxisController.xAxis = newPosX
-                playerTwoAxisController.yAxis = newPosY
+                // store the x and y values before they'll be altered
                 oldPosX=newPosX
                 oldPosY=newPosY
+
+                // Adjust the speed
+                newPosX = newPosX * GameInfo.maximumPlayerVelocity
+                newPosY = newPosY * GameInfo.maximumPlayerVelocity
+
+                /* normalise the speed! when driving diagonally the x and y speed is both 1
+                    when driving horizontally only either x or y is 1, which results in slower horizontal/vercial speed than diagonal speed
+                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) */
+
+                // Calculate the distance from the center ( = speed)
+                var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
+
+                if (velocity > GameInfo.maximumPlayerVelocity) {
+                    // velocity is too high! shrink it down
+                    var shrinkFactor = GameInfo.maximumPlayerVelocity / velocity
+                    newPosX = newPosX * shrinkFactor
+                    newPosY = newPosY * shrinkFactor
+                }
+
+                // now update the twoAxisController with the calculated values
+                playerTwoAxisController.xAxis = newPosX
+                playerTwoAxisController.yAxis = newPosY
+
 
                 var angle = calcAngle(newPosX, newPosY) - 90
 
@@ -543,7 +599,7 @@ Common.LevelBase {
                 TouchPoint {id: point2}
             ]
 
-            onTouchUpdated: {
+            onUpdated: {
                 console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 

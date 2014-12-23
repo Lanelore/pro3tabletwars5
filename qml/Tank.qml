@@ -11,6 +11,7 @@ EntityBase {
     property alias tankHead: tankHead
     property alias tankCannon: tankCannon
     property alias circleCollider: circleCollider
+    property alias shield: shield
 
     property int life: 3
     property int cannonAngle: 0 // range of about -35 to + 35 degrees, the difference to the tankbody-angle
@@ -88,6 +89,16 @@ EntityBase {
         linearVelocity: Qt.point(twoAxisController.xAxis * 100, twoAxisController.yAxis * (-100))
         //force: Qt.point(twoAxisController.xAxis * 1000, twoAxisController.yAxis * 1000)
         //torque: 1000
+    }
+
+    Image {
+        opacity: 0
+        id: shield
+        width: 60
+        height: 60
+        //rotation: 0
+        anchors.centerIn: parent
+        source: "../assets/img/Shield.png"
     }
 }
 

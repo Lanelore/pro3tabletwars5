@@ -24,6 +24,9 @@ EntityBase {
 
         //disable powerUpShield after 5 seconds
         onTriggered: {
+            if (activateShield) {tankRed.shield.opacity=1}
+            if (activateShield==false) {tankRed.shield.opacity=0}
+
             //console.log ("activateShield: " + activateShield + " / " + activeShieldCounter)
             if (activateShield) { activeShieldCounter++; }
             if (activeShieldCounter === 80) { activateShield = false; activeShieldCounter = 0; }

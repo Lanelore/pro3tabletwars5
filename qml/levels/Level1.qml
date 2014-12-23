@@ -58,7 +58,7 @@ GameController {
         y: scene.height / 3 *2
 
         rotation: 145
-        igluBody.source: "../../assets/img/Iglu.png"
+        igluBody.source: "../../assets/img/Iglu.gif" //.png
     }
 
 
@@ -70,7 +70,7 @@ GameController {
         y: scene.height / 7 *5.5
 
         rotation: 90
-        igluBody.source: "../../assets/img/Iglu.png"
+        igluBody.source: "../../assets/img/Iglu.gif"
     }
 
     Iglu {
@@ -81,7 +81,7 @@ GameController {
         y: scene.height / 2
 
         rotation: 90
-        igluBody.source: "../../assets/img/Iglu.png"
+        igluBody.source: "../../assets/img/Iglu.gif"
     }
 
     Lake {

@@ -18,7 +18,8 @@ EntityBase {
     width: 150
     height: 180
 
-    Image {
+    AnimatedImage {
+        playing: false
         id: igluBody
         width: parent.width
         height: parent.height
@@ -83,7 +84,8 @@ EntityBase {
             teleportedPlayer.y = destinationY
             teleportedPlayer.rotation = destIglu.rotation
 
-            destIglu.opacity = 1.0
+            destIglu.igluBody.playing = false
+            //destIglu.opacity = 1.0
             teleportedPlayer.opacity = 1.0
         }
     }
@@ -124,7 +126,10 @@ EntityBase {
                 var destinationY = (80 * Math.sin((destinationIglu.rotation - 10) * Math.PI / 180)) + destinationIglu.y + tankRed.width / 2
 
                 collidedEntity.opacity = 0.0
-                destinationIglu.opacity = 0.0
+                //destinationIglu.opacity = 0.0
+                destinationIglu.igluBody.playing = false
+                destinationIglu.igluBody.playing = true
+
 
                 teleportTimer.destinationX = destinationX
                 teleportTimer.destinationY = destinationY

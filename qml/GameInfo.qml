@@ -34,8 +34,6 @@ Item {
     property int normalDamage: 25   //tank, opponent, obstacle
     property int powerDamage: 50    //with PowerUp
 
-
-
     // Controller parameters
     readonly property int onTouchUpdateCounterThreshold: 0 // change this to about 6 to prevent the cannon from changing the angle when shooting
 

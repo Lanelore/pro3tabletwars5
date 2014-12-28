@@ -12,6 +12,8 @@ EntityBase {
     property alias tankCannon: tankCannon
     property alias circleCollider: circleCollider
     property alias shield: shield
+    property alias glitter: glitter
+    property alias plingSound: plingSound
 
     property int life: 3
     property int cannonAngle: 0 // range of about -35 to + 35 degrees, the difference to the tankbody-angle
@@ -25,6 +27,14 @@ EntityBase {
         id: twoAxisController
     }
 
+    // gets played when tank shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: plingSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/pling.wav"
+    }
+
     AnimatedImage {
         id: tankBody
         width: 40
@@ -36,7 +46,6 @@ EntityBase {
 
     Rectangle {
         id: tankCannon
-
         x: tankBody.x + tankBody.width / 2
         y: tankBody.y + tankBody.height / 2 - 2
         width: 4 //26
@@ -45,7 +54,7 @@ EntityBase {
         //transformOriginPoint: Qt.point(13, 2)
 
         color: "transparent"
-/*
+        /*
         Image {
             id: tankHead
             width: 40
@@ -99,6 +108,16 @@ EntityBase {
         //rotation: 0
         anchors.centerIn: parent
         source: "../assets/img/Shield.png"
+    }
+
+    AnimatedImage {
+        id: glitter
+        width: 60
+        height: 60
+        //rotation: 0
+        anchors.centerIn: parent
+        playing: false
+        source: "../assets/img/GlitterYellow.gif"
     }
 }
 

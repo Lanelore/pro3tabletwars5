@@ -13,9 +13,27 @@ Common.LevelBase {
     property alias playerMovementControlAreaBlue: playerMovementControlAreaBlue
     property alias playerRed: playerRed
     property alias playerBlue: playerBlue
+    property alias nailSound: nailSound
+    property alias screamSound: screamSound
 
     //TODO
     focus: true
+
+    // gets played when tank shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: nailSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/nailgun.wav"
+    }
+
+    // gets played when tank shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: screamSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/scream.wav"
+    }
 
     Tank {
         id: tankRed
@@ -245,7 +263,10 @@ Common.LevelBase {
                 }
             }
 
-            Timer {
+
+
+
+{
                 interval: 500; running: true; repeat: true;
 
                 onTriggered: {
@@ -324,7 +345,7 @@ Common.LevelBase {
                 console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && touchReleaseTime < 200) {
-
+                    nailSound.play();
                     tankRed.tankHead.playing=true
 
                     lastTime = currentTime
@@ -622,7 +643,7 @@ Common.LevelBase {
                 console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet && touchReleaseTime < 200) {
-
+                    nailSound.play();
                     tankBlue.tankHead.playing=true
 
                     lastTime = currentTime
@@ -860,6 +881,8 @@ Common.LevelBase {
     }
 
     onDamage: {
+        screamSound.play();
+
         if (playerRed.life<=0){
             GameInfo.winnerRed=false
             GameInfo.redVictory+=1

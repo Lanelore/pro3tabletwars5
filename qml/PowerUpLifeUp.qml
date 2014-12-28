@@ -43,12 +43,16 @@ EntityBase {
             //console.log("onBeginContact: " + collidedEntity.entityId)
 
             if(tankRed.entityId === collidedEntity.entityId){
+                tankRed.glitter.playing=true;
+                tankRed.plingSound.play();
                 powLifeUp.destroy()
                 GameInfo.powerUpCount-=1
                 playerRed.life+=GameInfo.fillEnergy
                 if (playerRed.life+GameInfo.fillEnergy>GameInfo.maxEnergy) playerRed.life=100
 
             } else if(tankBlue.entityId === collidedEntity.entityId){
+                tankBlue.glitter.playing=true;
+                tankBlue.plingSound.play();
                 powLifeUp.destroy()
                 GameInfo.powerUpCount-=1
                 playerBlue.life+=GameInfo.fillEnergy

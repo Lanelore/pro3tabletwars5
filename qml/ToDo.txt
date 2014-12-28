@@ -4,7 +4,7 @@ TO DO:  (unsortierte Priorität, kann gerne geändert werden)
 Leben nur auffüllen, wenn bereits Energie verloren wurde? (Maximum = 100%)
 
 PowerUpSpawn: zu Testzwecken wurde momentan die Anzahl der max. erstellbaren PUps auf 10 gesetzt,
-jeder Spawnpunkt erzeugt alle 1-2 Sekunden ein Item. Wird ein Item eingesammelt, werden sie wieder nach-
+jeder Spawnpunkt erzeugt alle 1 - 2 Sekunden ein Item. Wird ein Item eingesammelt, werden sie wieder nach-
 produziert, bis das Maximum erreicht wird.
 
 Wie sollen GameOver und Result funktionieren? Soll nach jedem Teilsieg der GameOverScreen kommen
@@ -14,15 +14,18 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
-     * Gehen beim Verlassen des Sees: es wird automatisch gestoppt - verhindern!
+     * PowerUps starker + schneller Schuss zu einem PowerUp machen
+     * Sounds/Music on and off + geeignete Musik suchen
+     * Verletzung grafisch anzeigen + Sound
+OK - * Gehen beim Verlassen des Sees: es wird automatisch gestoppt - verhindern!
      * z Order der zur Laufzeit erzeugten Items (PowerUpspawn) ist nicht korrekt
 OK - * Cannon: onReleased vs onClicked auf Tablet testen - aktuell ist rot=onReleased und blau=onClicked
 OK - * PhysicsWorld ist vermutlich wieder kaputt - man kann unten durch die Wand fahren
 OK - * Lake-Eigenschaften funktionieren nicht mehr seit der Umstellung vom JoystickControllerHUD auf MultiTouchArea
 
-OK B * Spielauswertung: eigene Klasse, die Siege, Modi, Fortschritt, etc verwaltet
+OK * Spielauswertung: eigene Klasse, die Siege, Modi, Fortschritt, etc verwaltet
 OK    --> I * Random Item Spawn zu Random Zeiten - maximale Anzahl PowerUps am Feld beachten
-OK      --> ? * Game Over Anzeige: wer hat gewonnen?
+OK    --> ? * Game Over Anzeige: wer hat gewonnen?
 
 I * Je nach Powerup Anzeige am Charakter (zB Kreis erzeugen rund um Char bei Unverwundbarkeit)
 

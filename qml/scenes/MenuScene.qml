@@ -1,5 +1,6 @@
 import VPlay 2.0
 import QtQuick 2.0
+import QtMultimedia 5.0
 import "../common"
 
 SceneBase {
@@ -9,6 +10,30 @@ SceneBase {
     signal selectLevelPressed
     // signal indicating that the creditsScene should be displayed
     signal creditsPressed
+    property alias ambienceMusic: ambienceMusic
+
+
+
+    SoundEffectVPlay {
+        loops: SoundEffect.Infinite
+        volume: 0.3
+        id: ambienceMusic
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/meepit.wav"
+    }
+
+
+    Timer {
+        id: timerBlue
+        interval: 100; running: true; repeat: true;
+
+        //enable or disable powerUps for 5 seconds
+        onTriggered: {
+            ambienceMusic.play()
+            running = false
+        }
+    }
+
 
     // background
     Rectangle {

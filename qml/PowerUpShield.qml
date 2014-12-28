@@ -36,15 +36,16 @@ EntityBase {
         sensor:true
 
         fixture.onBeginContact: {
-
             var collidedEntity = other.parent.parent.parent;
 
             //console.log("onBeginContact: " + collidedEntity.entityId)
             if(tankRed.entityId === collidedEntity.entityId){
+                tankRed.plingSound.play();
                 playerRed.activateShield = true
                 powShield.destroy()
                 GameInfo.powerUpCount-=1
             } else if(tankBlue.entityId === collidedEntity.entityId){
+                tankBlue.plingSound.play();
                 playerBlue.activateShield = true
                 powShield.destroy()
                 GameInfo.powerUpCount-=1

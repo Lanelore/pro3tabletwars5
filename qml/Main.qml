@@ -6,6 +6,17 @@ import "common"
 
 
 GameWindow {
+    onActiveChanged: {
+        settings.setValue("soundEnabled", true)
+
+        settings.soundEnabled= true
+        settings.musicEnabled = true
+    }
+
+
+
+
+
     //property bool end
     //signal gameOver
     //id: gameWindow

@@ -12,6 +12,7 @@ EntityBase {
     property alias opponentBody: opponentBody
     property alias opponentCannon: opponentCannon
     property alias circleCollider: circleCollider
+    property alias shootSound: shootSound
     property bool targetTankRed: true
 
     // this is used as input for the BoxCollider force & torque properties
@@ -25,6 +26,14 @@ EntityBase {
         height: 40
         //rotation: 0
         anchors.centerIn: parent
+    }
+
+    // gets played when opponent shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: shootSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/taserfire.wav"
     }
 
     Rectangle {
@@ -89,6 +98,7 @@ EntityBase {
 
             onTriggered: {
                 if (parent.opponentShooting) {
+                    shootSound.play();
                     var distanceRed = Math.sqrt(Math.pow(tankRed.x - opponent.x, 2) + Math.pow(tankRed.y - opponent.y, 2));
                     var distanceBlue = Math.sqrt(Math.pow(tankBlue.x - opponent.x, 2) + Math.pow(tankBlue.y - opponent.y, 2));
 

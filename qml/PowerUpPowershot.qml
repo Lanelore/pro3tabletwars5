@@ -41,10 +41,12 @@ EntityBase {
             //console.log("onBeginContact: " + collidedEntity.entityId)
 
             if(tankRed.entityId === collidedEntity.entityId){
+                tankRed.plingSound.play();
                 playerRed.activatePowershot = true
                 powPowershot.destroy()
                 GameInfo.powerUpCount-=1
             } else if(tankBlue.entityId === collidedEntity.entityId){
+                tankBlue.plingSound.play();
                 playerBlue.activatePowershot = true
                 powPowershot.destroy()
                 GameInfo.powerUpCount-=1

@@ -18,6 +18,7 @@ EntityBase {
     property bool activateHitShield: false // activate shield for short after a hit
     property int activeHitShieldCounter: 0 // count from 0 to 5 every 100 millisecond for the duration between two bullet-hits
 
+
     Timer {
         id: timerRed
         interval: 100; running: true; repeat: true;
@@ -32,8 +33,8 @@ EntityBase {
             if (activeShieldCounter === 80) { activateShield = false; activeShieldCounter = 0; }
 
             //console.log ("activateAccelerator: " + activateAccelerator + " / " + activeAcceleratorCounter)
-            if (activateAccelerator) { activeAcceleratorCounter++; minTimeDistanceBullet = 20; }
-            if (activeAcceleratorCounter === 80) { activateAccelerator = false; activeAcceleratorCounter = 0; minTimeDistanceBullet = stdTimeDistanceBetweenBullets; }
+            if (activateAccelerator) { activeAcceleratorCounter++; minTimeDistanceBullet = 20; tankRed.fire.opacity=1}
+            if (activeAcceleratorCounter === 80) { activateAccelerator = false; activeAcceleratorCounter = 0; minTimeDistanceBullet = stdTimeDistanceBetweenBullets; tankRed.fire.opacity=0}
 
             //console.log ("activatePowershot: " + activatePowershot + " / " + activePowershotCounter)
             if (activatePowershot) { activePowershotCounter++ }

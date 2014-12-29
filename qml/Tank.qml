@@ -13,6 +13,7 @@ EntityBase {
     property alias circleCollider: circleCollider
     property alias shield: shield
     property alias glitter: glitter
+    property alias fire: fire
     property alias plingSound: plingSound
 
     property int life: 3
@@ -25,6 +26,20 @@ EntityBase {
 
     TwoAxisController {
         id: twoAxisController
+    }
+
+    //rocket fire effect while having the accelerator = speed powerup
+    AnimatedImage {
+        z:0
+        rotation: tankBody.rotation+180
+        opacity: 0
+        id: fire
+        width: 60
+        height: 60
+        //rotation: 0
+        anchors.centerIn: parent
+        playing: true
+        source: "../assets/img/Fire.gif"
     }
 
     // gets played when tank shoots
@@ -100,6 +115,7 @@ EntityBase {
         //torque: 1000
     }
 
+    //shield effect for powerup shield
     Image {
         opacity: 0
         id: shield
@@ -110,6 +126,7 @@ EntityBase {
         source: "../assets/img/Shield.png"
     }
 
+    //glitter effect when collecting a life powerup
     AnimatedImage {
         id: glitter
         width: 60
@@ -120,4 +137,3 @@ EntityBase {
         source: "../assets/img/GlitterYellow.gif"
     }
 }
-

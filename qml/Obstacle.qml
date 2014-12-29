@@ -41,7 +41,7 @@ EntityBase {
                 }
             }
             if(!playerBlue.activateHitShield && tankBlue.entityId===collidedEntity.entityId){
-                if(!playerRed.activateShield && !playerRed.activateHitShield) {
+                if(!playerBlue.activateShield && !playerBlue.activateHitShield) {
                     playerBlue.life=playerBlue.life-GameInfo.normalDamage
                     playerBlue.activateHitShield = true
                     damage()

@@ -19,6 +19,7 @@ Item {
     //power ups
     property int powerUpCount: 0
     property int maxPowerUpsOnField: 10
+    property int speed: 2   //for the accelerator powerup, doubles the tank speed
 
     //menu layout
     property color red: "red"

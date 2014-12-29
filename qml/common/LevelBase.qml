@@ -21,7 +21,7 @@ Item {
 
     Rectangle {
         id: background
-        color: "white"
+        color: Qt.lighter("lightgrey", 1.1)
         anchors.fill: parent
     }
 }

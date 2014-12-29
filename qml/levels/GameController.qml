@@ -156,14 +156,18 @@ Common.LevelBase {
 
                 // calculate the distance from the center ( = speed)
                 var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
-
-                if (velocity > GameInfo.maximumPlayerVelocity) {
+                var maxVelocity = GameInfo.maximumPlayerVelocity
+                if (playerRed.activateAccelerator){
+                    maxVelocity*= GameInfo.speed
+                    newPosX *= GameInfo.speed
+                    newPosY *= GameInfo.speed
+                }
+                if (velocity > maxVelocity) {
                     // velocity is too high! shrink it down
-                    var shrinkFactor = GameInfo.maximumPlayerVelocity / velocity
+                    var shrinkFactor = maxVelocity / velocity
                     newPosX = newPosX * shrinkFactor
                     newPosY = newPosY * shrinkFactor
                 }
-
 
                 // now update the twoAxisController with the calculated values
                 playerTwoAxisController.xAxis = newPosX
@@ -520,9 +524,16 @@ Common.LevelBase {
                 // Calculate the distance from the center ( = speed)
                 var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
 
-                if (velocity > GameInfo.maximumPlayerVelocity) {
+                //maxVelocity and speed depending on the accelerator powerup
+                var maxVelocity = GameInfo.maximumPlayerVelocity
+                if (playerBlue.activateAccelerator){
+                    maxVelocity*= GameInfo.speed
+                    newPosX *= GameInfo.speed
+                    newPosY *= GameInfo.speed
+                }
+                if (velocity > maxVelocity) {
                     // velocity is too high! shrink it down
-                    var shrinkFactor = GameInfo.maximumPlayerVelocity / velocity
+                    var shrinkFactor = maxVelocity / velocity
                     newPosX = newPosX * shrinkFactor
                     newPosY = newPosY * shrinkFactor
                 }
@@ -885,14 +896,12 @@ Common.LevelBase {
 
         if (playerRed.life<=0){
             GameInfo.winnerRed=false
-            GameInfo.redVictory+=1
-        }
-
-        if (playerBlue.life<=0){
-            GameInfo.winnerRed=true
             GameInfo.blueVictory+=1
         }
-
+        if (playerBlue.life<=0){
+            GameInfo.winnerRed=true
+            GameInfo.redVictory+=1
+        }
         if (playerRed.life<=0||playerBlue.life<=0){
             gameOver()
         }

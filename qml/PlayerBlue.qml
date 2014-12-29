@@ -32,8 +32,8 @@ EntityBase {
             if (activeShieldCounter === 80) { activateShield = false; activeShieldCounter = 0; }
 
             //console.log ("activateAccelerator: " + activateAccelerator + " / " + activeAcceleratorCounter)
-            if (activateAccelerator) { activeAcceleratorCounter++; minTimeDistanceBullet = 20; }
-            if (activeAcceleratorCounter === 80) { activateAccelerator = false; activeAcceleratorCounter = 0; minTimeDistanceBullet = stdTimeDistanceBetweenBullets; }
+            if (activateAccelerator) { activeAcceleratorCounter++; minTimeDistanceBullet = 20; tankBlue.fire.opacity=1}
+            if (activeAcceleratorCounter === 80) { activateAccelerator = false; activeAcceleratorCounter = 0; minTimeDistanceBullet = stdTimeDistanceBetweenBullets; tankBlue.fire.opacity=0}
 
             //console.log ("activatePowershot: " + activatePowershot + " / " + activePowershotCounter)
             if (activatePowershot) { activePowershotCounter++ }

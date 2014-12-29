@@ -14,14 +14,13 @@ SceneBase {
 
 
 
-    SoundEffectVPlay {
+    BackgroundMusic {
         loops: SoundEffect.Infinite
         volume: 0.3
         id: ambienceMusic
         // an ogg file is not playable on windows, because the extension is not supported!
         source: "../../assets/snd/meepit.wav"
     }
-
 
     Timer {
         id: timerBlue
@@ -41,7 +40,7 @@ SceneBase {
 
         color: "#47688e"
     }
-/*
+    /*
     Text {
         anchors.horizontalCenter: parent.horizontalCenter
         y: 30
@@ -57,10 +56,36 @@ SceneBase {
         MenuButton {
             text: "Levels"
             onClicked: selectLevelPressed()
+            label.source: "../../assets/img/Board.png"
+            color: "transparent"
         }
         MenuButton {
             text: "Credits"
             onClicked: creditsPressed()
+            label.source: "../../assets/img/Board.png"
+            color: "transparent"
+        }
+    }
+
+    Row {
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        spacing: 10
+        AudioButton {
+            source: "../../assets/img/Music.png"
+            active: !settings.musicEnabled
+            opacity: active? 0.5 : 1
+            onClicked: {
+                settings.musicEnabled ^= true
+            }
+        }
+        AudioButton {
+            source: "../../assets/img/Sound.png"
+            active: !settings.soundEnabled
+            opacity: active? 0.5 : 1
+            onClicked: {
+                settings.soundEnabled ^= true
+            }
         }
     }
 }

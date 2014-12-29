@@ -30,7 +30,7 @@ SceneBase {
     MenuButton {
         rotation: 90
         z: 1
-        text: "Back to menu"
+        text: "Back"
         // anchor the button to the gameWindowAnchorItem to be on the edge of the screen on any device
         anchors.right: gameScene.right
         anchors.rightMargin: -15
@@ -39,12 +39,13 @@ SceneBase {
             backPressed()
             activeLevelFileName = ""
         }
+        buttonText.font.pixelSize: 25
     }
 
 
     Connections {
-         target: gameScene.activeLevel || null
-         onGameOver: activeLevelFileName = ""
+        target: gameScene.activeLevel || null
+        onGameOver: activeLevelFileName = ""
     }
 
     // name of the current level

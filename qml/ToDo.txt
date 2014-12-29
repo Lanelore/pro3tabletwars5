@@ -14,9 +14,10 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+     * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
      * GameOverScreen in der LevelBase als Rechteck einfügen
      * starke Bullet Klasse - Kugeln stark, nicht der Charakter mit Powerup
-     * PowerUps schneller Schuss und schnelles Fahren trennen
+     * Eventuell PowerUps schneller Schuss und schnelles Fahren trennen ?
      * Sounds/Music on and off + geeignete Musik suchen
      * Verletzung grafisch anzeigen + Sound
 OK - * Gehen beim Verlassen des Sees: es wird automatisch gestoppt - verhindern!

@@ -6,8 +6,8 @@ Rectangle {
 
 
     // this will be the default size, it is same size as the contained text + some padding
-    width: buttonText.width+ paddingHorizontal*2
-    height: buttonText.height+ paddingVertical*2
+    width: buttonText.width+ paddingHorizontal*4
+    height: buttonText.height+ paddingVertical*4
 
     color: "#e9e9e9"
     // round edges
@@ -19,15 +19,24 @@ Rectangle {
     property int paddingVertical: 5
 
     // access the text of the Text component
+    property alias buttonText: buttonText
     property alias text: buttonText.text
+    property alias label: label
 
     // this handler is called when the button is clicked.
     signal clicked
 
+    Image {
+        id: label
+        anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
+    }
+
     Text {
         id: buttonText
         anchors.centerIn: parent
-        font.pixelSize: 18
+        font.pixelSize: 40
         color: "black"
     }
 
@@ -39,5 +48,6 @@ Rectangle {
         onPressed: button.opacity = 0.5
         onReleased: button.opacity = 1
     }
+
 }
 

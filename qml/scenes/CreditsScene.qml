@@ -20,6 +20,7 @@ SceneBase {
         anchors.top: creditsScene.top
         anchors.topMargin: 10
         onClicked: backPressed()
+        buttonText.font.pixelSize: 25
     }
 
     // credits

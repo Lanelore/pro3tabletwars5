@@ -36,6 +36,7 @@ SceneBase {
             GameInfo.blueVictory=0
             backPressed()
         }
+        buttonText.font.pixelSize: 25
     }
 
     // levels to be selected

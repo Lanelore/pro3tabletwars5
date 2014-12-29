@@ -14,7 +14,9 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
-     * PowerUps starker + schneller Schuss zu einem PowerUp machen
+     * GameOverScreen in der LevelBase als Rechteck einfügen
+     * starke Bullet Klasse - Kugeln stark, nicht der Charakter mit Powerup
+     * PowerUps schneller Schuss und schnelles Fahren trennen
      * Sounds/Music on and off + geeignete Musik suchen
      * Verletzung grafisch anzeigen + Sound
 OK - * Gehen beim Verlassen des Sees: es wird automatisch gestoppt - verhindern!
@@ -23,7 +25,7 @@ OK - * Cannon: onReleased vs onClicked auf Tablet testen - aktuell ist rot=onRel
 OK - * PhysicsWorld ist vermutlich wieder kaputt - man kann unten durch die Wand fahren
 OK - * Lake-Eigenschaften funktionieren nicht mehr seit der Umstellung vom JoystickControllerHUD auf MultiTouchArea
 
-OK * Spielauswertung: eigene Klasse, die Siege, Modi, Fortschritt, etc verwaltet
+OK   * Spielauswertung: eigene Klasse, die Siege, Modi, Fortschritt, etc verwaltet
 OK    --> I * Random Item Spawn zu Random Zeiten - maximale Anzahl PowerUps am Feld beachten
 OK    --> ? * Game Over Anzeige: wer hat gewonnen?
 
@@ -38,6 +40,21 @@ B * Rutschen: Richtungsänderung/Stopp nach Rutschen, Steuerbarkeit
 ? * Rückstöße funktionieren noch nicht so wie sie sollen
 ? * Beim Austritt aus TeleporterIglu muss Tank kurzfristig deaktiviert werden (Zeit zum Orientieren)
 ? * Tank Ausrichtung nach Teleporter noch fehlerhaft
+
+Grafiken:
+Bullet Schneeball
+Bullet Eiszapfen
+PowerUp Eiszapfen OK
+PowerUp Blitz OK
+Feuerantieb für Geschwindigkeitspowerups
+Glitzergrafik für Leben einsammeln
+PowerUp Schild OK
+Schutzblase für Charakter - Gelb (Rahmen mehr Opacity als Innenkugel)
+Grafik für Credits
+Grafik für Hauptmenü - Charakter in Schneelandschaft
+Buttongrafik ev. Holztaferl (abgestimmt auf Hauptmenügrafik)
+Sprache im Spiel - Englisch
+
 ____________________________________________________________________________
 Wer macht was:
     C = Bartsch

@@ -10,6 +10,7 @@ Item {
     property bool winnerRed: false
     property int redVictory: 0
     property int blueVictory: 0
+    property bool gameOver: false
 
     //lake
     property bool redOnLake: false

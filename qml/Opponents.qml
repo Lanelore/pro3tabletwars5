@@ -71,6 +71,7 @@ EntityBase {
     }
 
     MoveToPointHelper {
+        enabled: GameInfo.gameOver ? false : true
         id: moveToPointHelper
         // the entity to move towards
         targetObject: targetTankRed ? tankRed : tankBlue;
@@ -81,7 +82,9 @@ EntityBase {
         distanceToTargetThreshold: 200
 
         Timer {
-            interval: 100; running: true; repeat: true;
+            interval: 100;
+            running: GameInfo.gameOver ? false : true;
+            repeat: GameInfo.gameOver ? false : true;
 
             onTriggered: {
                 //MoveToPointHelper.targetObject = tankBlue;
@@ -94,7 +97,9 @@ EntityBase {
         }
 
         Timer {
-            interval: 3000; running: true; repeat: true;
+            interval: 3000;
+            running: GameInfo.gameOver ? false : true;
+            repeat: GameInfo.gameOver ? false : true;
 
             onTriggered: {
                 if (parent.opponentShooting) {

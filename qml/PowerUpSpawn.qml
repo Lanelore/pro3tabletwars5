@@ -46,7 +46,9 @@ EntityBase {
 
     Timer {
         id: timerGame
-        interval: limit; running: true; repeat: true;
+        interval: limit;
+        running: GameInfo.gameOver ? false : true;
+        repeat: true;
 
         onTriggered: {
             //spawn items at random times

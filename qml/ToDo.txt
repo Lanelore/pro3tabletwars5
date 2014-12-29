@@ -14,6 +14,7 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+     * Level Designs!
      * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
      * GameOverScreen in der LevelBase als Rechteck einfügen
      * starke Bullet Klasse - Kugeln stark, nicht der Charakter mit Powerup
@@ -33,7 +34,7 @@ OK    --> ? * Game Over Anzeige: wer hat gewonnen?
 I * Je nach Powerup Anzeige am Charakter (zB Kreis erzeugen rund um Char bei Unverwundbarkeit)
 
 I * Bilder einfügen
-OK ? * Kopf + Körper von Character getrennt einbauen (canonen-grafik ersetzen durch kopf)
+OK   * Kopf + Körper von Character getrennt einbauen (canonen-grafik ersetzen durch kopf)
 ? * Animation vom Tank (Gehen + Schießen)
 
 ? * Game Interface (Punkte, Energie, Powerups, ...)

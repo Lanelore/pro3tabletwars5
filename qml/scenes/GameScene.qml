@@ -38,10 +38,10 @@ SceneBase {
         onClicked: {
             backPressed()
             activeLevelFileName = ""
+            GameInfo.gameOver = false
         }
         buttonText.font.pixelSize: 25
     }
-
 
     Connections {
         target: gameScene.activeLevel || null

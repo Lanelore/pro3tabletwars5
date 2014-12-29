@@ -26,6 +26,7 @@ SceneBase {
         onClicked: {
             backPressed()
         }
+        buttonText.font.pixelSize: 25
     }
 
     // game over
@@ -40,7 +41,7 @@ SceneBase {
     // statistic
     Text {
         id: textStatistic
-        text: "<b>Statistic</b><br>Blue Victories: " + GameInfo.blueVictory + "<br>Red Victories: " + GameInfo.redVictory
+        text: "<b>Statistic</b><br>Blue: " + GameInfo.blueVictory + "<br>Red: " + GameInfo.redVictory
         font.pointSize: 13
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom

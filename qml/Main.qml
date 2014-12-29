@@ -85,13 +85,13 @@ GameWindow {
         id: creditsScene
         onBackPressed: window.state = "menu"
     }
-
+/*
     // gameOver scene
     GameOverScene {
         id: gameOverScene
         onBackPressed: window.state = "selectLevel"
     }
-
+*/
     // game scene to play a level
     GameScene {
         id: gameScene
@@ -124,11 +124,13 @@ GameWindow {
             PropertyChanges {target: creditsScene; opacity: 1}
             PropertyChanges {target: window; activeScene: creditsScene}
         },
+        /*
         State {
             name: "gameOver"
             PropertyChanges {target: gameOverScene; opacity: 1}
             PropertyChanges {target: window; activeScene: gameOverScene}
         },
+        */
         State {
             name: "game"
             PropertyChanges {target: gameScene; opacity: 1}

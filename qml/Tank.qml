@@ -100,11 +100,11 @@ EntityBase {
         x: radius
         y: radius
         anchors.centerIn: parent
-        density: GameInfo.gameOver ? 1000000 : 0
-        friction: GameInfo.gameOver ? 0 : 0.4
-        restitution: GameInfo.gameOver ? 0 : 0.4
+        density: GameInfo.gamePaused ? 1000000 : 0
+        friction: GameInfo.gamePaused ? 0 : 0.4
+        restitution: GameInfo.gamePaused ? 0 : 0.4
         bullet: true
-        linearDamping: GameInfo.gameOver ? 1000000 : 100
+        linearDamping: GameInfo.gamePaused ? 1000000 : 100
         //angularDamping: 0
 
         // this is applied every physics update tick

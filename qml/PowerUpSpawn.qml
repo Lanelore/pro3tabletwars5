@@ -47,7 +47,7 @@ EntityBase {
     Timer {
         id: timerGame
         interval: limit;
-        running: GameInfo.gameOver ? false : true;
+        running: GameInfo.gamePaused ? false : true;
         repeat: true;
 
         onTriggered: {

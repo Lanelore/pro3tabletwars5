@@ -83,7 +83,7 @@ Common.LevelBase {
         border.color: GameInfo.red
 
         MultiPointTouchArea {
-            enabled: GameInfo.gameOver ? false : true
+            enabled: GameInfo.gamePaused ? false : true
             anchors.fill: parent
             property variant playerTwoAxisController: tankRed.getComponent("TwoAxisController")     // Touch Methods
             property real newPosX: 0.0
@@ -311,7 +311,7 @@ Common.LevelBase {
         z: 5
 
         MultiPointTouchArea {
-            enabled: GameInfo.gameOver ? false : true
+            enabled: GameInfo.gamePaused ? false : true
             anchors.fill: parent
 
             property bool rotateOnce: true
@@ -443,7 +443,7 @@ Common.LevelBase {
         border.color: GameInfo.blue
 
         MultiPointTouchArea {
-            enabled: GameInfo.gameOver ? false : true
+            enabled: GameInfo.gamePaused ? false : true
             anchors.fill: parent
             property variant playerTwoAxisController: tankBlue.getComponent("TwoAxisController")     // Touch Methods
             property real newPosX: 0.0
@@ -621,7 +621,7 @@ Common.LevelBase {
         z: 5
 
         MultiPointTouchArea {
-            enabled: GameInfo.gameOver ? false : true
+            enabled: GameInfo.gamePaused ? false : true
             anchors.fill: parent
 
             property bool rotateOnce: true
@@ -907,13 +907,14 @@ Common.LevelBase {
             GameInfo.redVictory+=1
         }
         if (playerRed.life<=0||playerBlue.life<=0){
+            GameInfo.gamePaused = true
             GameInfo.gameOver=true
             tankRed.circleCollider.linearVelocity=Qt.point(0,0)
             tankBlue.circleCollider.linearVelocity=Qt.point(0,0)
             var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield", "singleBullet", "singleBulletOpponent"];
             entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
-            tankRed.tankBody.playing=true
-            tankBlue.tankBody.playing=true
+            tankRed.tankBody.playing=false
+            tankBlue.tankBody.playing=false
         }
     }
 }

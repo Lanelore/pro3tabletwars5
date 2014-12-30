@@ -10,7 +10,9 @@ Item {
     property bool winnerRed: false
     property int redVictory: 0
     property int blueVictory: 0
-    property bool gameOver: false
+    property bool gameOver: false  //indicates a gameover and shows gameovermessage
+    property bool gamePaused: true //freezes the animations, the controls, the opponent and the powerupspawn
+                                   //in the beginning while countdown is running and at the gameOver window
 
     //lake
     property bool redOnLake: false

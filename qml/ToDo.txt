@@ -14,6 +14,7 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+     * 3... 2... 1... runterzählen und dann Start
      * Level Designs!
      * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
      * GameOverScreen in der LevelBase als Rechteck einfügen

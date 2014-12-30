@@ -9,6 +9,10 @@ SceneBase {
     property string activeLevelFileName
     // the currently loaded level gets stored here
     property var activeLevel
+    // countdown shown at level start
+    property int countdown: 0
+
+
     property string winner: GameInfo.winnerRed ? "Rot" : "Blau";
     property alias victory: victory
 
@@ -39,6 +43,7 @@ SceneBase {
             backPressed()
             activeLevelFileName = ""
             GameInfo.gameOver = false
+            GameInfo.gamePaused = false
         }
         buttonText.font.pixelSize: 25
     }
@@ -66,6 +71,9 @@ SceneBase {
         onLoaded: {
             // store the loaded level as activeLevel for easier access
             activeLevel = item
+            // restarts the countdown
+            countdown = 3
+            GameInfo.gamePaused = true
         }
     }
 
@@ -77,5 +85,23 @@ SceneBase {
         anchors.centerIn: parent
         visible: GameInfo.victory ? true : false
 
+    }
+
+    // text displaying either the countdown or ""
+    Text {
+        anchors.centerIn: parent
+        color: "blue"
+        font.pixelSize: countdown > 0 ? 160 : 18
+        text: countdown > 0 ? countdown : ""
+    }
+
+    // if the countdown is greater than 0, this timer is triggered every second, decreasing the countdown (until it hits 0 again)
+    Timer {
+        repeat: true
+        running: countdown > 0
+        onTriggered: {
+            countdown--
+            if(countdown==0) GameInfo.gamePaused = false
+        }
     }
 }

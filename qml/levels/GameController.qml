@@ -39,10 +39,12 @@ Common.LevelBase {
 
     PlayerRed {
         id: playerRed
+        z: 1
     }
 
     PlayerBlue {
         id: playerBlue
+        z: 1
     }
 
 /*
@@ -71,16 +73,18 @@ Common.LevelBase {
 */
 
 
+
+
+
+    // ---------------------------------------------------
+    // Controller tankRed
+    // ---------------------------------------------------
     onRedOffLake: {
         if(GameInfo.redOnLake==false && playerRed.tankRed.tankBody.playing==false){
             playerRed.tankRed.circleCollider.linearDamping=GameInfo.damping
         }
     }
 
-
-    // ---------------------------------------------------
-    // Controller tankRed
-    // ---------------------------------------------------
     Rectangle {
         // Object properties
         id: playerMovementControlAreaRed
@@ -546,7 +550,6 @@ Common.LevelBase {
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
                                                                           "start" : Qt.point(startX, startY),
                                                                           "velocity" : Qt.point(xDirection, yDirection) });
-
                 }
                 pressBool= false
                 onTouchUpdatedCounter = 0
@@ -667,6 +670,8 @@ Common.LevelBase {
         return -180 / Math.PI * Math.atan2(touchY, touchX)
     }
 
+    /*
+      not needed anymore! is now included in Bullet.qml
     onDamage: {
         screamSound.play();
 
@@ -689,6 +694,7 @@ Common.LevelBase {
             playerBlue.tankBlue.tankBody.playing=false
         }
     }
+    */
 }
 
 

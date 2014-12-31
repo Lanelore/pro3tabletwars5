@@ -4,6 +4,7 @@ import "."
 
 EntityBase {
     id: playerRed
+    entityId: "playerRed"
     entityType: "playerRed"
 
     property int life: GameInfo.maxEnergy
@@ -18,6 +19,18 @@ EntityBase {
     property bool activateHitShield: false // activate shield for short after a hit
     property int activeHitShieldCounter: 0 // count from 0 to 5 every 100 millisecond for the duration between two bullet-hits
 
+    property var tankRed: tankRed
+
+    Tank {
+        id: tankRed
+        x: scene.width / 2
+        y: 100 + height/2
+        z: 1
+        entityId: "tank_0"
+        rotation: 0
+        tankBody.source: "../assets/img/walk.gif"
+        tankHead.source: "../assets/img/shoot.gif"
+    }
 
     Timer {
         id: timerRed

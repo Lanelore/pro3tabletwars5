@@ -4,6 +4,7 @@ import "."
 
 EntityBase {
     id: playerBlue
+    entityId: "playerBlue"
     entityType: "playerBlue"
 
     property int life: GameInfo.maxEnergy
@@ -17,6 +18,19 @@ EntityBase {
     property int minTimeDistanceBullet: stdTimeDistanceBetweenBullets // time distance between two bullets
     property bool activateHitShield: false // activate shield for short after a hit
     property int activeHitShieldCounter: 0 // count from 0 to 5 every 100 millisecond for the duration between two bullet-hits
+
+    property alias tankBlue: tankBlue
+
+    Tank {
+        id: tankBlue
+        x: scene.width / 2
+        y: scene.height - 100 - height/2
+        z: 1
+        entityId: "tank_1"
+        rotation: 0
+        tankBody.source: "../assets/img/walk.gif"       //"../assets/img/blueBody.png"
+        tankHead.source: "../assets/img/shoot.gif"      //"../assets/img/blueHead.png"
+    }
 
     Timer {
         id: timerBlue

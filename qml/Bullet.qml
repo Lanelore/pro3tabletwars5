@@ -68,51 +68,54 @@ EntityBase {
             var otherEntityId = component.parent.entityId;
             var otherEntityParent = otherEntity.parent;
 
-            // destroy the bullet it it collided with anything but lake or powerup
-            if (otherEntityId.substring(0, 3) !== "lak" || otherEntityId.substring(0, 3) !== "pow") {
+            // destroy the bullet if it collided with anything but lake or powerup
+            if (otherEntityId.substring(0, 3) !== "lak" && otherEntityId.substring(0, 3) !== "pow") {
                 console.log("bullet collides with: " + otherEntityId);
                 singleBullet.destroy();
-            }
 
-            if (otherEntityParent.entityId.substring(0, 6) === "player") {
-                if (!otherEntityParent.activateShield && !otherEntityParent.activateHidShield) {
+                // check if it hit a player
+                if (otherEntityParent.entityId.substring(0, 6) === "player") {
+                    if (!otherEntityParent.activateShield && !otherEntityParent.activateHidShield) {
 
-                    // decrease life and activate hit shield
-                    otherEntityParent.life = otherEntityParent.life - ((otherEntityParent.activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
-                    otherEntityParent.activateHitShield = true
+                        // decrease life and activate hit shield
+                        otherEntityParent.life = otherEntityParent.life - ((otherEntityParent.activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
+                        otherEntityParent.activateHitShield = true
 
-                    // play scream sound
-                    screamSound.play();
+                        // play scream sound
+                        screamSound.play();
 
-                    // check if life went below 0
-                    if (otherEntityParent.life <= 0) {
+                        // check if life went below 0
+                        if (otherEntityParent.life <= 0) {
 
-                        // check who won
-                        if (otherEntityParent.entityId === "playerRed") {
-                            // playerRed lost
-                            GameInfo.winnerRed = false
-                            GameInfo.blueVictory += 1
-                        } else {
-                            // playerBlue lost
-                            GameInfo.winnerRed = true
-                            GameInfo.redVictory += 1
+                            // check who won
+                            if (otherEntityParent.entityId === "playerRed") {
+                                // playerRed lost
+                                GameInfo.winnerRed = false
+                                GameInfo.blueVictory += 1
+                            } else {
+                                // playerBlue lost
+                                GameInfo.winnerRed = true
+                                GameInfo.redVictory += 1
+                            }
+
+
+
+                            GameInfo.gamePaused = true
+                            GameInfo.gameOver = true
+                            entityManager.getEntityById("playerRed").tankRed.circleCollider.linearVelocity = Qt.point(0, 0)
+                            entityManager.getEntityById("playerBlue").tankBlue.circleCollider.linearVelocity = Qt.point(0, 0)
+
+                            var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield", "singleBullet", "singleBulletOpponent"];
+                            entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
+
+                            entityManager.getEntityById("playerRed").tankRed.tankBody.playing = false
+                            entityManager.getEntityById("playerBlue").tankBlue.tankBody.playing = false
                         }
-
-
-
-                        GameInfo.gamePaused = true
-                        GameInfo.gameOver = true
-                        entityManager.getEntityById("playerRed").tankRed.circleCollider.linearVelocity = Qt.point(0, 0)
-                        entityManager.getEntityById("playerBlue").tankBlue.circleCollider.linearVelocity = Qt.point(0, 0)
-
-                        var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield", "singleBullet", "singleBulletOpponent"];
-                        entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
-
-                        entityManager.getEntityById("playerRed").tankRed.tankBody.playing = false
-                        entityManager.getEntityById("playerBlue").tankBlue.tankBody.playing = false
                     }
                 }
             }
+
+
 
 
 /*

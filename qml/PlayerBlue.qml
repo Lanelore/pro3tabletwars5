@@ -18,8 +18,9 @@ EntityBase {
     property int minTimeDistanceBullet: stdTimeDistanceBetweenBullets // time distance between two bullets
     property bool activateHitShield: false // activate shield for short after a hit
     property int activeHitShieldCounter: 0 // count from 0 to 5 every 100 millisecond for the duration between two bullet-hits
-
     property alias tankBlue: tankBlue
+
+    signal damage();
 
     Tank {
         id: tankBlue
@@ -55,6 +56,47 @@ EntityBase {
 
             if (activateHitShield) { activeHitShieldCounter++; tankBlue.opacity = 0.2; }
             if (activeHitShieldCounter === 10) { activateHitShield = false; activeHitShieldCounter = 0; tankBlue.opacity = 1; }
+        }
+    }
+
+    // gets played when tank shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: screamSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/scream.wav"
+    }
+
+    function onDamage() {
+        if (activateShield || activateHitShield) {
+            return
+        }
+
+        // decrease life and activate hit shield
+        life = life - ((activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
+        activateHitShield = true
+
+        // Play scream sound
+        screamSound.play()
+
+        // check if life went below 0
+        if (life <= 0) {
+
+            // player Blue lost
+            GameInfo.winnerRed = false
+            GameInfo.redVictory += true
+
+            // show game over screen
+            GameInfo.gamePaused = true
+            GameInfo.gameOver = true
+            tankRed.circleCollider.linearVelocity = Qt.point(0, 0)
+            entityManager.getEntityById("playerBlue").tankBlue.circleCollider.linearVelocity = Qt.point(0, 0)
+
+            var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield", "singleBullet", "singleBulletOpponent"];
+            entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
+
+            tankRed.tankBody.playing = false
+            entityManager.getEntityById("playerBlue").tankBlue.tankBody.playing = false
         }
     }
 }

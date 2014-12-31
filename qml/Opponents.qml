@@ -192,28 +192,25 @@ EntityBase {
 
                 fixture.onBeginContact: {
                     // handle the collision
-                    var collidedEntity = other.parent.parent.parent;
 
-                    var str = collidedEntity.entityId;
-                    var resId = str.substring(0, 3);
+                    var fixture = other;
+                    var body = other.parent;
+                    var component = other.parent.parent;
 
-                    // destroy bullet on collision with any component except lake and powerUpIcons
-                    if(collidedEntity.entityId !== opponent.entityId && resId !== "lak" && resId !== "pow"){
-                        console.log("opponent bullet collides with another object:" + singleBulletOpponent.entityId + " / " + collidedEntity.entityId + " / " + resId)
-                        singleBulletOpponent.destroy()
-                    }
+                    var otherEntity = component.parent;
+                    var otherEntityId = component.parent.entityId;
+                    var otherEntityParent = otherEntity.parent;
 
-                    if(tankRed.entityId === collidedEntity.entityId){
-                        if(!playerRed.activateShield && !playerRed.activateHitShield) {
-                            playerRed.life = playerRed.life - GameInfo.normalDamage
-                            playerRed.activateHitShield = true
-                            damage()
-                        }
-                    } else if(tankBlue.entityId === collidedEntity.entityId){
-                        if(!playerBlue.activateShield && !playerBlue.activateHitShield) {
-                            playerBlue.life = playerBlue.life - GameInfo.normalDamage
-                            playerBlue.activateHitShield = true
-                            damage()
+                    // destroy the bullet if it collided with anything but lake or powerup
+                    if (otherEntityId.substring(0, 3) !== "lak" && otherEntityId.substring(0, 3) !== "pow" && otherEntityId.substring(0, 3) !== "opp") {
+                        console.log("bullet collides with: " + otherEntityId);
+                        singleBulletOpponent.destroy();
+
+                        // check if it hit a player
+                        if (otherEntityId.substring(0, 4) === "tank") {
+
+                            // call damage method on playerred/playerblue
+                            otherEntityParent.onDamage();
                         }
                     }
                 }

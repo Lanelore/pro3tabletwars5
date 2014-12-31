@@ -30,22 +30,20 @@ EntityBase {
         fixture.onBeginContact: {
             // handle the collision and make the image semi-transparent
 
-            var collidedEntity = other.parent.parent.parent;
-            //console.log("bullet collides with something:" + collidedEntity.entityId)
+            var fixture = other;
+            var body = other.parent;
+            var component = other.parent.parent;
 
-            if(!playerRed.activateHitShield && tankRed.entityId===collidedEntity.entityId){
-                if(!playerRed.activateShield && !playerRed.activateHitShield) {
-                    playerRed.life=playerRed.life-GameInfo.normalDamage
-                    playerRed.activateHitShield = true
-                    damage()
-                }
-            }
-            if(!playerBlue.activateHitShield && tankBlue.entityId===collidedEntity.entityId){
-                if(!playerBlue.activateShield && !playerBlue.activateHitShield) {
-                    playerBlue.life=playerBlue.life-GameInfo.normalDamage
-                    playerBlue.activateHitShield = true
-                    damage()
-                }
+            var otherEntity = component.parent;
+            var otherEntityId = component.parent.entityId;
+            var otherEntityParent = otherEntity.parent;
+
+
+            // check if it hit a player
+            if (otherEntityParent.entityId.substring(0, 6) === "player") {
+
+                // call damage method on playerred/playerblue
+                otherEntityParent.onDamage();
             }
         }
     }

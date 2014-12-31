@@ -13,7 +13,6 @@ Common.LevelBase {
     property alias playerRed: playerRed
     property alias playerBlue: playerBlue
     property alias nailSound: nailSound
-    property alias screamSound: screamSound
     property alias tankRed: playerRed.tankRed
     property alias tankBlue: playerBlue.tankBlue
 
@@ -28,15 +27,6 @@ Common.LevelBase {
         source: "../../assets/snd/nailgun.wav"
     }
 
-    // gets played when tank shoots
-    SoundEffectVPlay {
-        volume: 0.3
-        id: screamSound
-        // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../../assets/snd/scream.wav"
-    }
-
-
     PlayerRed {
         id: playerRed
         z: 1
@@ -46,34 +36,6 @@ Common.LevelBase {
         id: playerBlue
         z: 1
     }
-
-/*
-    Tank {
-        id: tankRed
-        x: scene.width / 2
-        y: 100 + height/2
-        z: 1
-        entityId: "tank_0"
-        rotation: 0
-        tankBody.source: "../../assets/img/walk.gif"
-        tankHead.source: "../../assets/img/shoot.gif"
-    }
-
-    Tank {
-        id: tankBlue
-        x: scene.width / 2
-        y: scene.height - 100 - height/2
-        z: 1
-        entityId: "tank_1"
-        rotation: 0
-        tankBody.source: "../../assets/img/walk.gif"       //"../../assets/img/blueBody.png"
-        tankHead.source: "../../assets/img/shoot.gif"      //"../../assets/img/blueHead.png"
-    }
-
-*/
-
-
-
 
 
     // ---------------------------------------------------

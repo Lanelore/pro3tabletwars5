@@ -76,10 +76,13 @@ EntityBase {
 
             if (otherEntityParent.entityId.substring(0, 6) === "player") {
                 if (!otherEntityParent.activateShield && !otherEntityParent.activateHidShield) {
+
                     // decrease life and activate hit shield
                     otherEntityParent.life = otherEntityParent.life - ((otherEntityParent.activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
-                    //otherEntityParent.life = otherEntityParent.life - 10
                     otherEntityParent.activateHitShield = true
+
+                    // play scream sound
+                    screamSound.play();
 
                     // check if life went below 0
                     if (otherEntityParent.life <= 0) {
@@ -163,5 +166,13 @@ EntityBase {
         onStopped: {
             singleBullet.destroy()
         }
+    }
+
+    // gets played when tank shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: screamSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/scream.wav"
     }
 }

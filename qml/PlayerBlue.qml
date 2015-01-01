@@ -69,7 +69,7 @@ EntityBase {
     }
 
     function onDamage() {
-        onDamage(0)
+        onDamageWithBulletType(0)
     }
 
     function onDamageWithBulletType(bulletType) {

@@ -40,8 +40,8 @@ EntityBase {
         //torque: 1000
     }
 
-    property int timeMin: 1000    //5000    //wait at least 5 sec
-    property int timeSpan: 1000    //7000   //spawn between 5 and (5+7) 12 sec
+    property int timeMin: 8000    //5000    //wait at least 5 sec
+    property int timeSpan: 25000    //7000   //spawn between 5 and (5+7) 12 sec
     property int limit: Math.ceil(Math.random() * (timeSpan)+timeMin);
 
     Timer {

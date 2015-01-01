@@ -6,14 +6,15 @@ import "."
 EntityBase {
     id: powLifeUp
     entityType: "powLifeUp"
-    z: 1
 
     property var tankRed
     property var tankBlue
     property var playerRed
     property var playerBlue
 
-    onEntityCreated: GameInfo.powerUpCount+=1
+    onEntityCreated:{
+        GameInfo.powerUpCount+=1
+    }
 
     Rectangle {
         id: powLifeUpBody
@@ -21,6 +22,7 @@ EntityBase {
         height: 50
         rotation: 45
         color: "darkRed"
+
         Rectangle {
             id: powLifeUpBodyInner
             width: 30

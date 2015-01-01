@@ -20,6 +20,8 @@ EntityBase {
         height: 50
         rotation: 45
         color: "darkGreen"
+        z: 1
+
         Rectangle {
             id: powPowershotBodyInner
             width: 30

@@ -20,6 +20,8 @@ EntityBase {
         height: 50
         rotation: 45
         color: "orange"
+        z: 1
+
         Rectangle {
             id: powShieldBodyInner
             width: 30

@@ -20,7 +20,8 @@ EntityBase {
     property int activeHitShieldCounter: 0 // count from 0 to 5 every 100 millisecond for the duration between two bullet-hits
     property var tankRed: tankRed
 
-    signal damage();
+    signal damage()
+    signal damageWithBulletType(var bulletType)
 
     Tank {
         id: tankRed
@@ -68,12 +69,34 @@ EntityBase {
     }
 
     function onDamage() {
+        onDamage(0)
+    }
+
+    function onDamageWithBulletType(bulletType) {
         if (activateHitShield || activateShield) {
             return
         }
 
         // decrease life and activate hit shield
-        life = life - ((activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
+        // find out the amount of damage (depends on the bulletType)
+        var damage = 0;
+        switch (bulletType) {
+        case 0:
+            // normal bullet
+            damage = GameInfo.normalDamage;
+            break;
+
+        case 1:
+            // powerBullet
+            damage = GameInfo.powerDamage;
+            break;
+
+        default:
+            damage = GameInfo.normalDamage;
+            break;
+        }
+
+        life = life - damage;
         activateHitShield = true
 
         screamSound.play()

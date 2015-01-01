@@ -18,6 +18,7 @@ EntityBase {
 
     property point start
     property point velocity
+    property int bulletType // 0 normal bullet, 1 strong bullet
 
     x: start.x
     y: start.y
@@ -38,22 +39,6 @@ EntityBase {
 
         // handle the collision
         fixture.onBeginContact: {
-            /*
-            var fixture = other;
-            var body = other.parent;
-            var component = other.parent.parent;
-
-            var collidingType = component.owningEntity.entityType;
-
-            if(collidingType === "car" ||
-                    collidingType === "rocket") {
-                entity.removeEntity();
-                return;
-            }
-
-
-            */
-
 
             var fixture = other;
             var body = other.parent;
@@ -77,44 +62,9 @@ EntityBase {
                 if (otherEntityParent.entityId.substring(0, 6) === "player") {
 
                     // call damage method on playerred/playerblue
-                    otherEntityParent.onDamage();
+                    otherEntityParent.onDamageWithBulletType(bulletType);
                 }
             }
-
-
-
-
-/*
-            var collidedEntity = other.parent.parent.parent;
-
-            //                    console.log("bullet collides with tank or something else:" + singleBullet.entityId + " / " + collidedEntity.entityId)
-
-            //   if(tankRed.entityId !== collidedEntity.entityId &&
-            //   tankBlue.entityId !== collidedEntity.entityId &&
-            //   collidedEntity.entityId !== "lake"){
-
-            var str = collidedEntity.entityId;
-            var resId = str.substring(0, 3);
-            // destroy bullet on collision with any component except lake and powerUpIcons
-            if(resId !== "lak" && resId !== "pow"){
-                console.log("bullet collides with:" + singleBullet.entityId + " / " + collidedEntity.entityId + " / " + resId)
-                singleBullet.destroy()
-            }
-
-            if(tankRed.entityId===collidedEntity.entityId){
-                if(!playerRed.activateShield && !playerRed.activateHitShield) {
-                    playerRed.life = playerRed.life - ((playerBlue.activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
-                    playerRed.activateHitShield = true
-                    damage()
-                }
-            } else if(tankBlue.entityId===collidedEntity.entityId){
-                if(!playerBlue.activateShield && !playerBlue.activateHitShield) {
-                    playerBlue.life = playerBlue.life - ((playerRed.activatePowershot) ? GameInfo.powerDamage : GameInfo.normalDamage)
-                    playerBlue.activateHitShield = true
-                    damage()
-                }
-            }
-            */
         }
     }
 

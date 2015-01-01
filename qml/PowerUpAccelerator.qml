@@ -20,6 +20,8 @@ EntityBase {
         height: 50
         rotation: 45
         color: "darkBlue"
+        z: 1
+
         Rectangle {
             id: powAcceleratorBodyInner
             width: 30

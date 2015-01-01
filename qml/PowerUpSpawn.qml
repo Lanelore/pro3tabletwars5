@@ -87,7 +87,7 @@ EntityBase {
                         "tankRed": tankRed,
                         "tankBlue": tankBlue,
                         "playerRed": playerRed,
-                        "playerBlue": playerBlue
+                        "playerBlue": playerBlue,
                     }
         );
     }

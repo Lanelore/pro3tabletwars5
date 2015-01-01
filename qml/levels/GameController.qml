@@ -54,7 +54,7 @@ Common.LevelBase {
         height: 180
         x: 50
         y: 50
-        z: 5
+        z: 1000
         radius: width / 2//GameInfo.radius
         opacity: GameInfo.pacity
         color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
@@ -186,7 +186,7 @@ Common.LevelBase {
         height: GameInfo.controlType1Height
         x: scene.width - GameInfo.controlType1Width - 50
         y: 50
-        z: 5
+        z: 1000
 
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused ? false : true
@@ -248,7 +248,8 @@ Common.LevelBase {
                     // create and remove entities at runtime
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
                                                                           "start" : Qt.point(startX, startY),
-                                                                          "velocity" : Qt.point(xDirection, yDirection) });
+                                                                          "velocity" : Qt.point(xDirection, yDirection),
+                                                                          "bulletType" : playerRed.activatePowershot ? 1 : 0});
 
 
                 }
@@ -312,7 +313,7 @@ Common.LevelBase {
         height: 180
         x: scene.width - 230
         y: scene.height - 230
-        z: 5
+        z: 1000
 
         radius: width / 2 //GameInfo.radius
         opacity: GameInfo.pacity
@@ -453,7 +454,7 @@ Common.LevelBase {
         height: GameInfo.controlType1Height
         x: 50
         y: scene.height - GameInfo.controlType1Height - 50
-        z: 5
+        z: 1000
 
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused ? false : true
@@ -509,9 +510,11 @@ Common.LevelBase {
                     var startY= (45*Math.sin((playerBlue.tankBlue.tankCannon.rotation)*Math.PI/180)) + playerBlue.tankBlue.y + playerBlue.tankBlue.height / 2
 
                     // create and remove entities at runtime
+                    console.log("activatepowershot: " + playerBlue.activatePowershot)
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
                                                                           "start" : Qt.point(startX, startY),
-                                                                          "velocity" : Qt.point(xDirection, yDirection) });
+                                                                          "velocity" : Qt.point(xDirection, yDirection),
+                                                                          "bulletType" : playerBlue.activatePowershot ? 1 : 0})
                 }
                 pressBool= false
                 onTouchUpdatedCounter = 0

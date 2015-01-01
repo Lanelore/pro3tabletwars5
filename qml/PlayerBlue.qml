@@ -73,7 +73,7 @@ EntityBase {
     }
 
     function onDamageWithBulletType(bulletType) {
-        if (activateShield || activateHitShield) {
+        if (activateHitShield) {
             return
         }
 
@@ -94,6 +94,10 @@ EntityBase {
         default:
             damage = GameInfo.normalDamage;
             break;
+        }
+
+        if (activateShield) {
+            damage = damage / 100.0 * (100 - GameInfo.shieldDamageReduction)
         }
 
         life = life - damage;

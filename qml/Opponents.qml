@@ -5,6 +5,7 @@ import "."
 EntityBase {
     id: opponent
     entityType: "opponent"
+    entityId: "opponent"
 
     // make the twoAxisController acessible from outside
     property alias opponent: opponent

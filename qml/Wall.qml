@@ -3,6 +3,7 @@ import VPlay 2.0
 
 EntityBase {
     id: entity
+    entityId: "Wall"
     entityType: "wall"
 
     Rectangle {

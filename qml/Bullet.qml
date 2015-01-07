@@ -59,7 +59,8 @@ EntityBase {
                 singleBullet.destroy();
 
                 // check if it hit a player
-                if (otherEntityParent.entityId.substring(0, 6) === "player") {
+                if (otherEntityId.substring(0, 4) === "tank") {
+                //if (otherEntityParent.entityId.substring(0, 6) === "player") {
 
                     // call damage method on playerred/playerblue
                     otherEntityParent.onDamageWithBulletType(bulletType);

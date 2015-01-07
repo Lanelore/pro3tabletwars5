@@ -4,6 +4,7 @@ import "../qml"
 
 EntityBase {
     entityType: "tank"
+    entityId: "tank"
     id: tank
 
     // make the twoAxisController acessible from outside

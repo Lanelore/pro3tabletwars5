@@ -12,10 +12,22 @@ EntityBase {
     property var playerRed
     property var playerBlue
 
-    onEntityCreated:{
-        GameInfo.powerUpCount+=1
+    onEntityCreated: GameInfo.powerUpCount+=1
+
+    width: 50
+    height: 50
+
+    AnimatedImage {
+        id: powLifeUpImage
+        width: parent.width
+        height: parent.height
+        z: 1
+        source: "../assets/img/final/PULifeUP.gif"
+        anchors.centerIn: parent
+        playing: true
     }
 
+    /*
     Rectangle {
         id: powLifeUpBody
         width: 50
@@ -31,10 +43,11 @@ EntityBase {
             color: "red"
         }
     }
+*/
 
     BoxCollider {
         id: boxCollider
-        anchors.fill: powLifeUpBody
+        anchors.fill: powLifeUpImage
         anchors.centerIn: parent
         sensor:true
 

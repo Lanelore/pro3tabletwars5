@@ -14,6 +14,20 @@ EntityBase {
 
     onEntityCreated: GameInfo.powerUpCount+=1
 
+    width: 50
+    height: 50
+
+    AnimatedImage {
+        id: powShieldImage
+        width: parent.width
+        height: parent.height
+        z: 1
+        source: "../assets/img/final/PUShield.gif"
+        anchors.centerIn: parent
+        playing: true
+    }
+
+/*
     Rectangle {
         id: powShieldBody
         width: 50
@@ -30,10 +44,10 @@ EntityBase {
             color: "yellow"
         }
     }
-
+*/
     BoxCollider {
         id: boxCollider
-        anchors.fill: powShieldBody
+        anchors.fill: powShieldImage
         anchors.centerIn: parent
         sensor:true
 

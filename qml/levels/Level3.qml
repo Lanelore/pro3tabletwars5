@@ -13,7 +13,7 @@ GameController {
         height: 1000
         width: 1000
         rotation: 0
-        lakeBody.source: "../../assets/img/Lake.png"
+        lakeBody.source: "../../assets/img/final/Lake.png"
     }
 
 

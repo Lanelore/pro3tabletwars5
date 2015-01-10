@@ -59,7 +59,7 @@ GameController {
         y: scene.height / 3 *2
 
         rotation: 145
-        igluBody.source: "../../assets/img/Iglu.gif" //.png
+        igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
 
@@ -71,7 +71,7 @@ GameController {
         y: scene.height / 7 *5.5
 
         rotation: 90
-        igluBody.source: "../../assets/img/Iglu.gif"
+        igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
     Iglu {
@@ -82,7 +82,7 @@ GameController {
         y: scene.height / 2
 
         rotation: 90
-        igluBody.source: "../../assets/img/Iglu.gif"
+        igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
     Lake {
@@ -91,7 +91,7 @@ GameController {
         y: 200 - height/2
 
         rotation: 0
-        lakeBody.source: "../../assets/img/Lake.png"
+        lakeBody.source: "../../assets/img/final/Lake.png"
     }
 
     Opponents {
@@ -104,52 +104,47 @@ GameController {
     }
 
     Wall {
+        id: wallLeft
+        width: 30
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+        image.source: "../../assets/img/final/Wall2.png"
+        image.rotation: 180
+    }
+
+    Wall {
+        id: wallRight
+        width: 30
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+            top: parent.top
+        }
+        image.source: "../../assets/img/final/Wall2.png"
+    }
+
+    Wall {
         id: wallTop
-        height: 20
+        height: 30
         anchors {
             left: parent.left
             right: parent.right
             top:parent.top
         }
-    }
-
-    Wall {
-        enabled: false
-        id: wallBottomOld
-        height: 20
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
+        image.source: "../../assets/img/final/Wall.png"
+        image.rotation: 180
     }
 
     Wall {
         id: wallBottom
-        height: 20
+        height: 30
         width: parent.width
         x: 0
         y: parent.height-height
-    }
-
-    Wall {
-        id: wallLeft
-        width: 20
-        anchors {
-            left: parent.left
-            top: parent.top
-            bottom: parent.bottom
-        }
-    }
-
-    Wall {
-        id: wallRight
-        width: 20
-        anchors {
-            right: parent.right
-            bottom: parent.bottom
-            top: parent.top
-        }
+        image.source: "../../assets/img/final/Wall.png"
     }
 
     Obstacle {
@@ -176,6 +171,15 @@ GameController {
         x: scene.width / 7 *5.3
         y: scene.height / 7 *2
 
-        spawnBody.source: "../../assets/img/Spawn.png"
+        spawnBody.source: "../../assets/img/final/PUSpawn.png"
+    }
+
+    Tree {
+        entityId: "tree"
+        id: tree
+        x: scene.width / 7 *5.3
+        y: scene.height / 7 *5.2
+
+        treeBody.source: "../../assets/img/final/Tree.png"
     }
 }

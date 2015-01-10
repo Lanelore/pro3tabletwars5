@@ -22,7 +22,7 @@ EntityBase {
         width: 15
         height: 25
         //anchors.fill: parent
-        source: bulletType ?"../assets/img/Icicle.png" :  "../assets/img/SnowballBig.png"
+        source: bulletType ?"../assets/img/final/Icicle.png" :  "../assets/img/final/Snowball.png"
     }
 
     onEntityCreated: console.debug("***** Bullet Entity Angle: " + rotation)

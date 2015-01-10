@@ -127,6 +127,7 @@ EntityBase {
                     entityManager.createEntityFromComponentWithProperties(
                                 bulletOpponent, {
                                     start: Qt.point(opponent.x, opponent.y),
+                                    rotation : angle + 90,
                                     velocity: Qt.point(xDirection, yDirection)
                                 });
                 }
@@ -164,11 +165,18 @@ EntityBase {
             id: singleBulletOpponent
             entityType: "singleBulletOpponent"
 
+            /*
             Rectangle {
                 width: 10
                 height: 10
                 //anchors.fill: parent
                 color: "#000000"
+            }
+            */
+            Image {
+                width: 15
+                height: 25
+                source: "../assets/img/final/Snowball.png"
             }
 
             property point start

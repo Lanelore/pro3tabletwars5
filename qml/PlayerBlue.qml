@@ -39,8 +39,8 @@ EntityBase {
         z: 1
         entityId: "tank_1"
         rotation: 0
-        tankBody.source: "../assets/img/walk.gif"       //"../assets/img/blueBody.png"
-        tankHead.source: "../assets/img/shoot.gif"      //"../assets/img/blueHead.png"
+        tankBody.source: "../assets/img/final/BlueBody.gif"       //"../assets/img/blueBody.png"
+        tankHead.source: "../assets/img/final/BlueHead.gif"      //"../assets/img/blueHead.png"
     }
 
     Timer {

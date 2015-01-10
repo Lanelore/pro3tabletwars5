@@ -141,7 +141,7 @@ GameController {
         x: scene.width / 7 *2
         y: scene.height / 7 *2
 
-        spawnBody.source: "../../assets/img/Spawn.png"
+        spawnBody.source: "../../assets/img/final/PUSpawn.png"
     }
 
     PowerUpSpawn {
@@ -150,7 +150,7 @@ GameController {
         x: scene.width / 7 *5
         y: scene.height / 7 *2
 
-        spawnBody.source: "../../assets/img/Spawn.png"
+        spawnBody.source: "../../assets/img/final/PUSpawn.png"
     }
 
 /*

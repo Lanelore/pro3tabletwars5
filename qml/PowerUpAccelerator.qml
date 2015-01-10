@@ -14,6 +14,20 @@ EntityBase {
 
     onEntityCreated: GameInfo.powerUpCount+=1
 
+    width: 50
+    height: 50
+
+    AnimatedImage {
+        id: powAcceleratorImage
+        width: parent.width
+        height: parent.height
+        z: 1
+        source: "../assets/img/final/PUAccelerator.gif"
+        anchors.centerIn: parent
+        playing: true
+    }
+
+    /*
     Rectangle {
         id: powAcceleratorBody
         width: 50
@@ -30,10 +44,12 @@ EntityBase {
             color: "lightBlue"
         }
     }
+*/
+
 
     BoxCollider {
         id: boxCollider
-        anchors.fill: powAcceleratorBody
+        anchors.fill: powAcceleratorImage
         anchors.centerIn: parent
         sensor:true
 

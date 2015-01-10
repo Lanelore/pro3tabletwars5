@@ -23,10 +23,17 @@ Item {
 
     property string winner: GameInfo.winnerRed ? "Red" : "Blue" ;
 
+    /*
     Rectangle {
         id: background
         color: Qt.lighter("lightblue", 1.3)
         anchors.fill: parent
+    }
+    */
+    Image {
+        id: background
+        anchors.fill: parent
+        source: "../../assets/img/final/BG.png"
     }
 
     Rectangle {

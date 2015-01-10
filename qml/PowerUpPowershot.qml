@@ -14,6 +14,20 @@ EntityBase {
 
     onEntityCreated: GameInfo.powerUpCount+=1
 
+    width: 50
+    height: 50
+
+    AnimatedImage {
+        id: powPowershotImage
+        width: parent.width
+        height: parent.height
+        z: 1
+        source: "../assets/img/final/PUPowershot.gif"
+        anchors.centerIn: parent
+        playing: true
+    }
+
+/*
     Rectangle {
         id: powPowershotBody
         width: 50
@@ -30,10 +44,10 @@ EntityBase {
             color: "lightGreen"
         }
     }
-
+*/
     BoxCollider {
         id: boxCollider
-        anchors.fill: powPowershotBody
+        anchors.fill: powPowershotImage
         anchors.centerIn: parent
         sensor:true
 

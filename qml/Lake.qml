@@ -11,7 +11,7 @@ EntityBase {
     property alias lakeBody: lakeBody
     property alias boxCollider: boxCollider
 
-    width: 400
+    width: 500
     height: 400
 
     Image {
@@ -33,9 +33,10 @@ EntityBase {
         */
 
         vertices: [
-            Qt.point(lakeBody.x+50,lakeBody.y+50),
-            Qt.point(lakeBody.x+lakeBody.width-50, lakeBody.y+50),
-            Qt.point(lakeBody.x+50, lakeBody.y+lakeBody.height-50)
+            Qt.point(lakeBody.x+lakeBody.width-100, lakeBody.y+90),
+            Qt.point(lakeBody.x+220,lakeBody.y+30),
+            Qt.point(lakeBody.x+130, lakeBody.y+lakeBody.height-130),
+            Qt.point(lakeBody.x+lakeBody.width-150, lakeBody.y+lakeBody.height-90)
         ]
 
         anchors.centerIn: parent

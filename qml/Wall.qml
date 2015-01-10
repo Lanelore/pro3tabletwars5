@@ -5,11 +5,18 @@ EntityBase {
     id: entity
     entityId: "Wall"
     entityType: "wall"
+    property alias image: image
 
+    /*
     Rectangle {
         anchors.fill: parent
         color: "brown"
         visible: true // set to 'true' for debugging
+    }
+*/
+    Image {
+        id: image
+        anchors.fill: parent
     }
 
     BoxCollider {

@@ -47,12 +47,12 @@ SceneBase {
         }
         buttonText.font.pixelSize: 25
     }
-
+/*
     Connections {
         target: gameScene.activeLevel || null
         onGameOver: activeLevelFileName = ""
     }
-
+*/
     // name of the current level
     Text {
         anchors.left: gameScene.gameWindowAnchorItem.left

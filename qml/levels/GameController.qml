@@ -195,14 +195,15 @@ Common.LevelBase {
             property bool rotateOnce: true
             property bool pressBool: false // becomes true when a touch-cycle starts
             property var lastTime: 0 // stores the last time a bullet was shot
-            property var touchStartTime: 0 // will store the start-time of a touch-cycle
-            property int onTouchUpdatedCounter: 0 // counts how often the onTouchUpdatedCounter has been called for a touch-cycle
+            //*// property var touchStartTime: 0 // will store the start-time of a touch-cycle
+            //*// property int onTouchUpdatedCounter: 0 // counts how often the onTouchUpdatedCounter has been called for a touch-cycle
             property variant playerTwoAxisController: playerRed.tankRed.getComponent("TwoAxisController")
 
             touchPoints: [
                 TouchPoint {id: point1}
             ]
 
+            /*
             onUpdated: {
                 console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
@@ -212,29 +213,32 @@ Common.LevelBase {
                     upDateCannon()
                 }
             }
+            */
 
+            onTouchUpdated: upDateCannon()
 
             onPressed: {
-                console.log("--------onPressed");
+                //*//console.log("--------onPressed");
                 pressBool= true
-                touchStartTime = new Date().getTime()
+                //*//touchStartTime = new Date().getTime()
+                upDateCannon()
             }
 
             onReleased: {
-                console.log("--------onReleased");
-                //upDateCannon()
+                //console.log("--------onReleased");
+                upDateCannon()
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
-                var touchReleaseTime = currentTime - touchStartTime
-                console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
+                //*//var touchReleaseTime = currentTime - touchStartTime
+                //*//console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
-                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && touchReleaseTime < 200) {
+                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet) {
                     nailSound.play();
                     playerRed.tankRed.tankHead.playing=true
 
                     lastTime = currentTime
 
-                    console.debug("Shoot Cannon")
+                    //console.debug("Shoot Cannon")
 
 
                     var speed = (playerRed.activateAccelerator) ? 500 : 250
@@ -247,19 +251,19 @@ Common.LevelBase {
 
                     // create and remove entities at runtime
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
-                                                                          "start" : Qt.point(startX, startY),
-                                                                          "velocity" : Qt.point(xDirection, yDirection),
-                                                                          "bulletType" : playerRed.activatePowershot ? 1 : 0});
+                                                                        "start" : Qt.point(startX, startY),
+                                                                        "velocity" : Qt.point(xDirection, yDirection),
+                                                                        "bulletType" : playerRed.activatePowershot ? 1 : 0});
 
 
                 }
                 pressBool= false
-                onTouchUpdatedCounter = 0
+                //*//onTouchUpdatedCounter = 0
             }
 
             function upDateCannon(){
                 // point1.x range: 0 - playerBulletControlAreaRed.width
-                console.log("touchpoint.x: " + point1.x)
+                //console.log("touchpoint.x: " + point1.x)
 
                 // ControlType2
                 /*
@@ -471,6 +475,7 @@ Common.LevelBase {
                 TouchPoint {id: point2}
             ]
 
+            /*
             onUpdated: {
                 console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
@@ -480,26 +485,31 @@ Common.LevelBase {
                     upDateCannon()
                 }
             }
+            */
+            onTouchUpdated: upDateCannon()
+
             onPressed: {
-                console.log("--------onPressed");
+                //*//console.log("--------onPressed");
                 pressBool= true
-                touchStartTime = new Date().getTime()
+                //*//touchStartTime = new Date().getTime()
+                upDateCannon()
             }
 
             onReleased: {
-                console.log("---------onReleased")
+                upDateCannon()
+                //console.log("---------onReleased")
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
-                var touchReleaseTime = currentTime - touchStartTime
-                console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
+                //var touchReleaseTime = currentTime - touchStartTime
+                //console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
-                if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet && touchReleaseTime < 200) {
+                if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet) {
                     nailSound.play();
                     playerBlue.tankBlue.tankHead.playing=true
 
                     lastTime = currentTime
 
-                    console.debug("Shoot Cannon")
+                    //console.debug("Shoot Cannon")
 
                     var speed = (playerBlue.activateAccelerator) ? 500 : 250
 
@@ -510,19 +520,19 @@ Common.LevelBase {
                     var startY= (45*Math.sin((playerBlue.tankBlue.tankCannon.rotation)*Math.PI/180)) + playerBlue.tankBlue.y + playerBlue.tankBlue.height / 2
 
                     // create and remove entities at runtime
-                    console.log("activatepowershot: " + playerBlue.activatePowershot)
+                    //*//console.log("activatepowershot: " + playerBlue.activatePowershot)
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
-                                                                          "start" : Qt.point(startX, startY),
-                                                                          "velocity" : Qt.point(xDirection, yDirection),
-                                                                          "bulletType" : playerBlue.activatePowershot ? 1 : 0})
+                                                                        "start" : Qt.point(startX, startY),
+                                                                        "velocity" : Qt.point(xDirection, yDirection),
+                                                                        "bulletType" : playerBlue.activatePowershot ? 1 : 0})
                 }
                 pressBool= false
-                onTouchUpdatedCounter = 0
+                //*//onTouchUpdatedCounter = 0
             }
 
             function upDateCannon(){
                 // point1.x range: 0 - playerBulletControlAreaRed.width
-                console.log("touchpoint.x: " + point2.x)
+                //*//console.log("touchpoint.x: " + point2.x)
 
                 // ControlType2
                 /*

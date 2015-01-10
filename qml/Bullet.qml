@@ -9,12 +9,23 @@ EntityBase {
     id: singleBullet
     entityType: "singleBullet"
 
+/*
     Rectangle {
         width: 10
         height: 10
         //anchors.fill: parent
         color: "#000000"
     }
+*/
+
+    Image {
+        width: 15
+        height: 25
+        //anchors.fill: parent
+        source: bulletType ?"../assets/img/Icicle.png" :  "../assets/img/SnowballBig.png"
+    }
+
+    onEntityCreated: console.debug("***** Bullet Entity Angle: " + rotation)
 
     property point start
     property point velocity
@@ -60,7 +71,7 @@ EntityBase {
 
                 // check if it hit a player
                 if (otherEntityId.substring(0, 4) === "tank") {
-                //if (otherEntityParent.entityId.substring(0, 6) === "player") {
+                    //if (otherEntityParent.entityId.substring(0, 6) === "player") {
 
                     // call damage method on playerred/playerblue
                     otherEntityParent.onDamageWithBulletType(bulletType);

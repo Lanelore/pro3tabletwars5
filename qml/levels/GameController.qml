@@ -7,24 +7,32 @@ Common.LevelBase {
     id: scene
     state: "0"
 
-
     property alias playerMovementControlAreaRed: playerMovementControlAreaRed
     property alias playerMovementControlAreaBlue: playerMovementControlAreaBlue
     property alias playerRed: playerRed
     property alias playerBlue: playerBlue
-    property alias nailSound: nailSound
+    property alias snowballSound: snowballSound
+    property alias icicleSound: icicleSound
     property alias tankRed: playerRed.tankRed
     property alias tankBlue: playerBlue.tankBlue
 
     //TODO
     focus: true
 
-    // gets played when tank shoots
+    // gets played when tank shoots a normal bullet
     SoundEffectVPlay {
         volume: 0.3
-        id: nailSound
+        id: snowballSound
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../../assets/snd/nailgun.wav"
+        source: "../../assets/snd/Snowball.wav"
+    }
+
+    // gets played when tank shoots a strong bullter
+    SoundEffectVPlay {
+        volume: 0.3
+        id: icicleSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/Icicle.wav"
     }
 
     PlayerRed {
@@ -233,7 +241,11 @@ Common.LevelBase {
                 //*//console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerRed.minTimeDistanceBullet) {
-                    nailSound.play();
+                    if (playerRed.activatePowershot){
+                        icicleSound.play()
+                    }else{
+                        snowballSound.play()
+                    }
                     playerRed.tankRed.tankHead.playing=true
 
                     lastTime = currentTime
@@ -253,7 +265,10 @@ Common.LevelBase {
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
                                                                         "start" : Qt.point(startX, startY),
                                                                         "velocity" : Qt.point(xDirection, yDirection),
+                                                                        "rotation" : playerRed.tankRed.tankCannon.rotation + 90,
                                                                         "bulletType" : playerRed.activatePowershot ? 1 : 0});
+                    console.debug("***** Bullet Angle: "  + (playerRed.tankRed.tankCannon.rotation + 90))
+
 
 
                 }
@@ -504,7 +519,12 @@ Common.LevelBase {
                 //console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet) {
-                    nailSound.play();
+                    if (playerRed.activatePowershot){
+                        icicleSound.play()
+                    }else{
+                        snowballSound.play()
+                    }
+
                     playerBlue.tankBlue.tankHead.playing=true
 
                     lastTime = currentTime
@@ -524,6 +544,7 @@ Common.LevelBase {
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
                                                                         "start" : Qt.point(startX, startY),
                                                                         "velocity" : Qt.point(xDirection, yDirection),
+                                                                        "rotation" : playerBlue.tankBlue.tankCannon.rotation + 90,
                                                                         "bulletType" : playerBlue.activatePowershot ? 1 : 0})
                 }
                 pressBool= false

@@ -19,7 +19,7 @@ SceneBase {
         volume: 0.3
         id: ambienceMusic
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../../assets/snd/meepit.wav"
+        source: "../../assets/snd/BG.wav"
     }
 
     Timer {

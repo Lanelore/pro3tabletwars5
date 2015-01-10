@@ -49,7 +49,7 @@ EntityBase {
         volume: 0.3
         id: plingSound
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../assets/snd/pling.wav"
+        source: "../assets/snd/Pickup.wav"
     }
 
     AnimatedImage {

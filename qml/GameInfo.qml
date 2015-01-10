@@ -13,7 +13,6 @@ Item {
     property bool gameOver: false  //indicates a gameover and shows gameovermessage
     property bool gamePaused: true //freezes the animations, the controls, the opponent and the powerupspawn
                                    //in the beginning while countdown is running and at the gameOver window
-
     //lake
     property bool redOnLake: false
     property bool blueOnLake: false
@@ -22,7 +21,7 @@ Item {
     //power ups
     property int powerUpCount: 0
     property int maxPowerUpsOnField: 10
-    property int speed: 2   //for the accelerator powerup, doubles the tank speed
+    property int speed: 2                   //for the accelerator powerup, doubles the tank speed
     property int shieldDamageReduction: 65 // percentage of damage reduction when you have the shield powerup
 
     //menu layout

@@ -19,9 +19,18 @@ EntityBase {
     property bool activateHitShield: false // activate shield for short after a hit
     property int activeHitShieldCounter: 0 // count from 0 to 5 every 100 millisecond for the duration between two bullet-hits
     property var tankRed: tankRed
+    property alias winnerSound: winnerSound
 
     signal damage()
     signal damageWithBulletType(var bulletType)
+
+    // gets played when one player wins the match
+    SoundEffectVPlay {
+        volume: 0.3
+        id: winnerSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/Winner.wav"
+    }
 
     Tank {
         id: tankRed
@@ -65,7 +74,7 @@ EntityBase {
         volume: 0.3
         id: screamSound
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../assets/snd/scream.wav"
+        source: "../assets/snd/Injury.wav"
     }
 
     function onDamage() {
@@ -113,6 +122,8 @@ EntityBase {
             GameInfo.blueVictory += 1
 
             // show game over screen
+            winnerSound.play()
+
             GameInfo.gamePaused = true
             GameInfo.gameOver = true
             tankRed.circleCollider.linearVelocity = Qt.point(0, 0)

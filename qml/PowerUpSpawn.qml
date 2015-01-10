@@ -9,6 +9,15 @@ EntityBase {
 
     property alias spawnBody: spawnBody
     property alias circleCollider: circleCollider
+    property alias spawnSound: spawnSound
+
+    // gets played when a powerup spawns
+    SoundEffectVPlay {
+        volume: 0.3
+        id: spawnSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/Spawn.wav"
+    }
 
     Image {
         id: spawnBody
@@ -78,6 +87,8 @@ EntityBase {
         if(randomItem==2){url = "PowerUpLifeUp.qml"}
         if(randomItem==3){url = "PowerUpPowershot.qml"}
         if(randomItem==4){url = "PowerUpShield.qml"}
+
+        spawnSound.play()
 
         entityManager.createEntityFromUrlWithProperties(
                     Qt.resolvedUrl(url), {

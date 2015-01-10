@@ -14,9 +14,18 @@ EntityBase {
     property alias rectColliderLeft: rectColliderLeft
     property alias rectColliderRight: rectColliderRight
     property alias rectColliderBottom: rectColliderBottom
+    property alias teleportSound: teleportSound
 
     width: 150
     height: 180
+
+    // gets played when tank shoots a normal bullet
+    SoundEffectVPlay {
+        volume: 0.3
+        id: teleportSound
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/Teleport.wav"
+    }
 
     AnimatedImage {
         playing: false
@@ -104,6 +113,8 @@ EntityBase {
             var collidedEntity = collidedColliderComponent.parent;
 
             if (collidedEntity.entityId == tankRed.entityId || collidedEntity.entityId == tankBlue.entityId) {
+                teleportSound.play()
+
                 console.log("fixture.parent.parent.parent.x: " + fixture.parent.parent.parent.x)
                 console.log("fixture.x: " + fixture.x)
                 collidedEntity.x = fixture.parent.parent.parent.x + 100
@@ -141,7 +152,7 @@ EntityBase {
 
             return
 
-/*
+            /*
   Old Code, not iglu-count independent!
 
             var igluX

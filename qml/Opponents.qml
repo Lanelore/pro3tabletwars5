@@ -34,7 +34,7 @@ EntityBase {
         volume: 0.3
         id: shootSound
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../assets/snd/taserfire.wav"
+        source: "../assets/snd/Snowman.wav"
     }
 
     Rectangle {

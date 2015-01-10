@@ -5,6 +5,7 @@ import "."
 EntityBase {
     id: obstacle
     entityType: "obstacle"
+    entityId: "obstacle"
 
     property alias obstacleBody: obstacleBody
     property alias boxCollider: boxCollider

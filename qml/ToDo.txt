@@ -15,15 +15,15 @@ Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
      * Lebensberechnung: nicht unter 0!
-     * Steuerung auf onReleased
+OK   * Steuerung auf onReleased
      * 3... 2... 1... runterzählen und dann Start (Interval?)
      * Level Designs!
      * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
 OK   * GameOverScreen in der LevelBase als Rechteck einfügen
-     * starke Bullet Klasse - Kugeln stark, nicht der Charakter mit Powerup
+OK   * starke Bullet Klasse - Kugeln stark, nicht der Charakter mit Powerup
 OK   * Eventuell PowerUps schneller Schuss und schnelles Fahren trennen ?
-     * Sounds/Music on and off + geeignete Musik suchen
-     * Verletzung grafisch anzeigen + Sound
+OK   * Sounds/Music on and off + geeignete Musik suchen
+OK   * Verletzung grafisch anzeigen + Sound
 OK - * Gehen beim Verlassen des Sees: es wird automatisch gestoppt - verhindern!
      * z Order der zur Laufzeit erzeugten Items (PowerUpspawn) ist nicht korrekt
 OK - * Cannon: onReleased vs onClicked auf Tablet testen - aktuell ist rot=onReleased und blau=onClicked
@@ -47,8 +47,8 @@ B * Rutschen: Richtungsänderung/Stopp nach Rutschen, Steuerbarkeit
 ? * Tank Ausrichtung nach Teleporter noch fehlerhaft
 
 Grafiken:
-Bullet Schneeball
-Bullet Eiszapfen
+Bullet Schneeball OK
+Bullet Eiszapfen OK
 PowerUp Eiszapfen OK
 PowerUp Blitz OK
 Feuerantieb für Geschwindigkeitspowerups

@@ -47,6 +47,12 @@ EntityBase {
             Qt.point(igluBody.x + igluBody.width/2, igluBody.y+igluBody.height)
         ]
 
+        transform: Rotation {
+            origin.x: iglu.width / 2
+            origin.y: iglu.width / 2
+            angle: 135
+        }
+
         anchors.centerIn: parent
     }
 
@@ -73,6 +79,7 @@ EntityBase {
             Qt.point(igluBody.x + igluBody.width/5*4, igluBody.y + igluBody.height/5*2),
             Qt.point(igluBody.x+igluBody.width/2, igluBody.y+igluBody.height)
         ]
+
         anchors.centerIn: parent
     }
 

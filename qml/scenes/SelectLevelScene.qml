@@ -84,6 +84,14 @@ SceneBase {
                 levelPressed("Level3.qml")
             }
         }
+        MenuButton {
+            text: "4"
+            width: 50
+            height: 50
+            onClicked: {
+                levelPressed("Level4.qml")
+            }
+        }
     }
 }
 

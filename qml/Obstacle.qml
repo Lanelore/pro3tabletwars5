@@ -41,7 +41,7 @@ EntityBase {
 
 
             // check if it hit a player
-            if (otherEntityParent.entityId.substring(0, 6) === "player") {
+            if (otherEntityId.substring(0, 4) === "tank") {
 
                 // call damage method on playerred/playerblue
                 otherEntityParent.onDamage();

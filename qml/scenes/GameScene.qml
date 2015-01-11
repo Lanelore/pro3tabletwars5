@@ -32,12 +32,17 @@ SceneBase {
 
     // back button to leave scene
     MenuButton {
-        rotation: 90
-        z: 1
-        text: "Back"
+        label.height: 50
+        label.width: 50
+        label.source: "../../assets/img/final/Back.png"
+        color: "transparent"
+
+        //rotation: 90
+        z: 10
+        //text: "Back"
         // anchor the button to the gameWindowAnchorItem to be on the edge of the screen on any device
         anchors.right: gameScene.right
-        anchors.rightMargin: -15
+        anchors.rightMargin: 15
         anchors.verticalCenter: parent.verticalCenter
         onClicked: {
             backPressed()
@@ -90,8 +95,9 @@ SceneBase {
     // text displaying either the countdown or ""
     Text {
         anchors.centerIn: parent
-        color: "blue"
+        color: "black"
         font.pixelSize: countdown > 0 ? 160 : 18
+        font.bold: true
         text: countdown > 0 ? countdown : ""
     }
 

@@ -119,11 +119,11 @@ EntityBase {
     Image {
         opacity: 0
         id: shield
-        width: 60
-        height: 60
+        width: 65
+        height: 65
         //rotation: 0
         anchors.centerIn: parent
-        source: "../assets/img/Shield.png"
+        source: "../assets/img/final/Shield.png"
     }
 
     //glitter effect when collecting a life powerup

@@ -10,9 +10,9 @@ SceneBase {
     signal levelPressed(string selectedLevel)
 
     // background
-    Rectangle {
+    Image {
         anchors.fill: parent
-        color: "#ece468"
+        source: "../../assets/img/final/BG.png"
     }
 
     onLevelPressed: {
@@ -23,6 +23,7 @@ SceneBase {
         GameInfo.blueOnLake = false;
     }
 
+    /*
     // back button to leave scene
     MenuButton {
         text: "Back"
@@ -36,6 +37,21 @@ SceneBase {
             GameInfo.blueVictory=0
             backPressed()
         }
+        buttonText.font.pixelSize: 25
+    }
+    */
+
+    // back button to leave scene
+    MenuButton {
+        label.height: 50
+        label.width: 50
+        label.source: "../../assets/img/final/Back.png"
+        color: "transparent"
+        z: 10
+        anchors.right: parent.right
+        anchors.rightMargin: 15
+        anchors.verticalCenter: parent.verticalCenter
+        onClicked: backPressed()
         buttonText.font.pixelSize: 25
     }
 

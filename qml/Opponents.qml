@@ -11,7 +11,7 @@ EntityBase {
     property alias opponent: opponent
     property alias controller: twoAxisController
     property alias opponentBody: opponentBody
-    property alias opponentCannon: opponentCannon
+   // property alias opponentCannon: opponentCannon
     property alias circleCollider: circleCollider
     property alias shootSound: shootSound
     property bool targetTankRed: true
@@ -21,11 +21,12 @@ EntityBase {
         id: twoAxisController
     }
 
-    Image {
+    AnimatedImage {
+        playing: false
         id: opponentBody
         width: 40
-        height: 40
-        //rotation: 0
+        height: 55
+        rotation: 180
         anchors.centerIn: parent
     }
 
@@ -36,7 +37,7 @@ EntityBase {
         // an ogg file is not playable on windows, because the extension is not supported!
         source: "../assets/snd/Snowman.wav"
     }
-
+/*
     Rectangle {
         id: opponentCannon
         x: opponentBody.x + opponentBody.width / 2
@@ -47,7 +48,7 @@ EntityBase {
         //transformOriginPoint: Qt.point(13, 2)
         color: "#000000"
     }
-
+*/
     CircleCollider {
         id: circleCollider
         radius: 20
@@ -104,6 +105,7 @@ EntityBase {
 
             onTriggered: {
                 if (parent.opponentShooting) {
+                    opponentBody.playing=true;
                     shootSound.play();
                     var distanceRed = Math.sqrt(Math.pow(tankRed.x - opponent.x, 2) + Math.pow(tankRed.y - opponent.y, 2));
                     var distanceBlue = Math.sqrt(Math.pow(tankBlue.x - opponent.x, 2) + Math.pow(tankBlue.y - opponent.y, 2));
@@ -124,9 +126,13 @@ EntityBase {
                     var xDirection = Math.cos(angle * Math.PI / 180.0) * speed
                     var yDirection = Math.sin(angle * Math.PI / 180.0) * speed
 
+                    var startX= (45*Math.cos((angle)*Math.PI/180)) + opponent.x
+                    var startY= (45*Math.sin((angle)*Math.PI/180)) + opponent.y
+
                     entityManager.createEntityFromComponentWithProperties(
                                 bulletOpponent, {
-                                    start: Qt.point(opponent.x, opponent.y),
+                                    //start: Qt.point(opponent.x, opponent.y),
+                                    start: Qt.point(startX, startY),
                                     rotation : angle + 90,
                                     velocity: Qt.point(xDirection, yDirection)
                                 });
@@ -175,8 +181,8 @@ EntityBase {
             */
             Image {
                 width: 15
-                height: 25
-                source: "../assets/img/final/Snowball.png"
+                height: 28
+                source: "../assets/img/final/Iceball.png"
             }
 
             property point start

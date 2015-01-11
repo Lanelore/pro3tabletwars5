@@ -9,7 +9,7 @@ Rectangle {
     width: buttonText.width+ paddingHorizontal*4
     height: buttonText.height+ paddingVertical*4
 
-    color: "#e9e9e9"
+    color: "transparent"
     // round edges
     radius: 10
 
@@ -36,7 +36,7 @@ Rectangle {
     Text {
         id: buttonText
         anchors.centerIn: parent
-        font.pixelSize: 40
+        font.pixelSize: 50
         color: "black"
     }
 

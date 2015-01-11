@@ -35,10 +35,9 @@ SceneBase {
 
 
     // background
-    Rectangle {
+    Image {
         anchors.fill: parent
-
-        color: "#47688e"
+        source: "../../assets/img/final/Menu.png"
     }
     /*
     Text {
@@ -48,31 +47,67 @@ SceneBase {
         color: "#e9e9e9"
         text: "MultiSceneMultiLevel"
     }
-*/
+
     // menu
     Column {
         anchors.centerIn: parent
         spacing: 10
+        rotation: 350
         MenuButton {
             text: "Levels"
             onClicked: selectLevelPressed()
-            label.source: "../../assets/img/Board.png"
+            //label.source: "../../assets/img/Board.png"
             color: "transparent"
+            buttonText.color: "white"
         }
         MenuButton {
             text: "Credits"
             onClicked: creditsPressed()
-            label.source: "../../assets/img/Board.png"
+            //label.source: "../../assets/img/Board.png"
             color: "transparent"
+            buttonText.color: "white"
         }
     }
+*/
+    MenuButton {
+        anchors.top: parent.top
+        anchors.topMargin: 403
+        anchors.left: parent.left
+        anchors.leftMargin: 380
+        rotation: 353
+
+        text: "Levels"
+        onClicked: selectLevelPressed()
+        //label.source: "../../assets/img/Board.png"
+        color: "transparent"
+        buttonText.color: "white"
+        buttonText.font.pixelSize: 80
+    }
+
+    MenuButton {
+        anchors.top: parent.top
+        anchors.topMargin: 583
+        anchors.left: parent.left
+        anchors.leftMargin: 388
+        rotation: 353
+
+        text: "Credits"
+        onClicked: creditsPressed()
+        //label.source: "../../assets/img/Board.png"
+        color: "transparent"
+        buttonText.color: "white"
+        buttonText.font.pixelSize: 80
+    }
+
 
     Row {
         anchors.left: parent.left
+        anchors.leftMargin: 12
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 15
         spacing: 10
         AudioButton {
-            source: "../../assets/img/Music.png"
+            source: "../../assets/img/final/Music.png"
             active: !settings.musicEnabled
             opacity: active? 0.5 : 1
             onClicked: {
@@ -80,7 +115,7 @@ SceneBase {
             }
         }
         AudioButton {
-            source: "../../assets/img/Sound.png"
+            source: "../../assets/img/final/Sound.png"
             active: !settings.soundEnabled
             opacity: active? 0.5 : 1
             onClicked: {

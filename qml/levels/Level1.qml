@@ -100,7 +100,7 @@ GameController {
         y: scene.height - 520
 
         rotation: 0
-        opponentBody.source: "../../assets/img/opponentSnowman.png"
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
     }
 
     Wall {
@@ -162,7 +162,7 @@ GameController {
         y: scene.height / 4
 
         rotation: 0
-        ballBody.source: "../../assets/img/Ball.png"
+        ballBody.source: "../../assets/img/final/SnowballBig.png"
     }
 
     PowerUpSpawn {

@@ -6,19 +6,21 @@ SceneBase {
     id:creditsScene
 
     // background
-    Rectangle {
+    Image {
         anchors.fill: parent
-        color: "#49a349"
+        source: "../../assets/img/final/BG.png"
     }
 
     // back button to leave scene
     MenuButton {
-        text: "Back"
-        // anchor the button to the gameWindowAnchorItem to be on the edge of the screen on any device
-        anchors.right: creditsScene.right
-        anchors.rightMargin: 10
-        anchors.top: creditsScene.top
-        anchors.topMargin: 10
+        label.height: 50
+        label.width: 50
+        label.source: "../../assets/img/final/Back.png"
+        color: "transparent"
+        z: 10
+        anchors.right: parent.right
+        anchors.rightMargin: 15
+        anchors.verticalCenter: parent.verticalCenter
         onClicked: backPressed()
         buttonText.font.pixelSize: 25
     }
@@ -26,7 +28,7 @@ SceneBase {
     // credits
     Text {
         text: "Credits to: YOU :)"
-        color: "white"
+        color: "black"
         anchors.centerIn: parent
     }
 }

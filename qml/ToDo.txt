@@ -14,7 +14,10 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
-     * Lebensberechnung: nicht unter 0!
+     * Titel: "Durdles" als Schriftzug oder Grafik
+     * Spawnintervall der Items anpassen - langsamer spawnen?
+     * nach Iglu: Character in richtige Richtung drehen
+     * Lebensberechnung: Zahlen rausnehmen
 OK   * Steuerung auf onReleased
      * 3... 2... 1... runterzählen und dann Start (Interval?)
      * Level Designs!

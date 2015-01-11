@@ -610,6 +610,7 @@ Common.LevelBase {
         }
     }
 
+    /*
     // energy tankred
     Text {
         z:1
@@ -648,18 +649,7 @@ Common.LevelBase {
             bottomMargin: 90  //30
         }
     }
-
-
-
-    /*
-    Text {
-        z :1
-        anchors.centerIn: parent
-        color: "green"
-        font.pixelSize: 50
-        text: playerRed.life<=0 || playerBlue.life<=0 ? "Game Over" : ""
-    }
-    */
+*/
 
     function calcAngle(touchX, touchY) {
         //console.log("calcAngle: " + (-180 / Math.PI * Math.atan2(touchY, touchX)))

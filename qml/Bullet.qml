@@ -20,7 +20,7 @@ EntityBase {
 
     Image {
         width: 15
-        height: 25
+        height: 28
         //anchors.fill: parent
         source: bulletType ?"../assets/img/final/Icicle.png" :  "../assets/img/final/Snowball.png"
     }

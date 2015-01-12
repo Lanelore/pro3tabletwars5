@@ -14,6 +14,10 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+     * Blau gewinnt immer?!
+     * z-Order der Iglus
+     * Spawnmaximum
+     * Blinklicht für Iglus
      * Titel: "Durdles" als Schriftzug oder Grafik
      * Spawnintervall der Items anpassen - langsamer spawnen?
      * nach Iglu: Character in richtige Richtung drehen
@@ -21,7 +25,7 @@ Soll innerhalb eines Matches nur ein Level spielbar sein?
 OK   * Steuerung auf onReleased
      * 3... 2... 1... runterzählen und dann Start (Interval?)
      * Level Designs!
-     * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
+OK   * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
 OK   * GameOverScreen in der LevelBase als Rechteck einfügen
 OK   * starke Bullet Klasse - Kugeln stark, nicht der Charakter mit Powerup
 OK   * Eventuell PowerUps schneller Schuss und schnelles Fahren trennen ?
@@ -37,17 +41,17 @@ OK   * Spielauswertung: eigene Klasse, die Siege, Modi, Fortschritt, etc verwalt
 OK    --> I * Random Item Spawn zu Random Zeiten - maximale Anzahl PowerUps am Feld beachten
 OK    --> ? * Game Over Anzeige: wer hat gewonnen?
 
-I * Je nach Powerup Anzeige am Charakter (zB Kreis erzeugen rund um Char bei Unverwundbarkeit)
+OK * Je nach Powerup Anzeige am Charakter (zB Kreis erzeugen rund um Char bei Unverwundbarkeit)
 
-I * Bilder einfügen
+OK * Bilder einfügen
 OK   * Kopf + Körper von Character getrennt einbauen (canonen-grafik ersetzen durch kopf)
-? * Animation vom Tank (Gehen + Schießen)
+OK * Animation vom Tank (Gehen + Schießen)
 
-? * Game Interface (Punkte, Energie, Powerups, ...)
-B * Rutschen: Richtungsänderung/Stopp nach Rutschen, Steuerbarkeit
-? * Rückstöße funktionieren noch nicht so wie sie sollen
-? * Beim Austritt aus TeleporterIglu muss Tank kurzfristig deaktiviert werden (Zeit zum Orientieren)
-? * Tank Ausrichtung nach Teleporter noch fehlerhaft
+OK * Game Interface (Punkte, Energie, Powerups, ...)
+OK * Rutschen: Richtungsänderung/Stopp nach Rutschen, Steuerbarkeit
+   * Rückstöße funktionieren noch nicht so wie sie sollen
+   * Beim Austritt aus TeleporterIglu muss Tank kurzfristig deaktiviert werden (Zeit zum Orientieren)
+   * Tank Ausrichtung nach Teleporter noch fehlerhaft
 
 Grafiken:
 Bullet Schneeball OK

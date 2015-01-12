@@ -50,7 +50,7 @@ EntityBase {
     }
 
     property int timeMin: 8000    //5000    //wait at least 5 sec
-    property int timeSpan: 25000    //7000   //spawn between 5 and (5+7) 12 sec
+    property int timeSpan: 12000    //7000   //spawn between 5 and (5+7) 12 sec
     property int limit: Math.ceil(Math.random() * (timeSpan)+timeMin);
 
     Timer {
@@ -75,7 +75,7 @@ EntityBase {
         var randomItem = Math.ceil(Math.random() * (differentItems));
 
         var randomAngle = Math.ceil(Math.random() * (359));
-        var radius = Math.ceil(Math.random() * (70)) + 20;    //between 70 and 140
+        var radius = Math.ceil(Math.random() * (20)) + 70;    //between 70 and 140
 
         var startX= (radius*Math.cos((randomAngle)*Math.PI/180)) + powerUpSpawn.x
         var startY= (radius*Math.sin((randomAngle)*Math.PI/180)) + powerUpSpawn.y

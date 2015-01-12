@@ -12,7 +12,18 @@ SceneBase {
     signal creditsPressed
     property alias ambienceMusic: ambienceMusic
 
+    Text {
+        z: 2
+      id: textItem
+      text: "Durdles"
+      color: "black"
+      font.family: titleFont.name
+      font.pixelSize: 200
 
+      anchors.top: parent.top
+      anchors.topMargin: 100
+      anchors.horizontalCenter: menuScene.horizontalCenter
+    }
 
     BackgroundMusic {
         loops: SoundEffect.Infinite
@@ -36,6 +47,7 @@ SceneBase {
 
     // background
     Image {
+        z: 1
         anchors.fill: parent
         source: "../../assets/img/final/Menu.png"
     }
@@ -70,10 +82,12 @@ SceneBase {
     }
 */
     MenuButton {
+        id: menuButton1
+        z: 2
         anchors.top: parent.top
-        anchors.topMargin: 403
+        anchors.topMargin: 435
         anchors.left: parent.left
-        anchors.leftMargin: 380
+        anchors.leftMargin: 370
         rotation: 353
 
         text: "Levels"
@@ -81,12 +95,15 @@ SceneBase {
         //label.source: "../../assets/img/Board.png"
         color: "transparent"
         buttonText.color: "white"
-        buttonText.font.pixelSize: 80
+        buttonText.opacity: 0.85
+        buttonText.font.pixelSize: 70
+        buttonText.font.family: standardFont.name
     }
 
     MenuButton {
+        z: 2
         anchors.top: parent.top
-        anchors.topMargin: 583
+        anchors.topMargin: 610
         anchors.left: parent.left
         anchors.leftMargin: 388
         rotation: 353
@@ -96,7 +113,9 @@ SceneBase {
         //label.source: "../../assets/img/Board.png"
         color: "transparent"
         buttonText.color: "white"
-        buttonText.font.pixelSize: 80
+        buttonText.opacity: 0.85
+        buttonText.font.pixelSize: 70
+        buttonText.font.family: standardFont.name
     }
 
 

@@ -40,6 +40,16 @@ GameWindow {
         entityContainer: gameScene
     }
 
+    FontLoader {
+        id: titleFont
+        source: "fonts/CHLORINR.ttf"
+    }
+
+    FontLoader {
+        id: standardFont
+        source: "fonts/gc.ttf"
+    }
+
     // menu scene
     MenuScene {
         id: menuScene

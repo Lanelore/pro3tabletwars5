@@ -67,6 +67,7 @@ SceneBase {
         color: "white"
         font.pixelSize: 20
         text: activeLevel ? activeLevel.levelName : ""
+        font.family: standardFont.name
     }
 
     // load levels at runtime
@@ -89,6 +90,7 @@ SceneBase {
         color: GameInfo.winnerRed ? "red" : "blue"
         anchors.centerIn: parent
         visible: GameInfo.victory ? true : false
+        font.family: standardFont.name
 
     }
 
@@ -99,6 +101,8 @@ SceneBase {
         font.pixelSize: countdown > 0 ? 160 : 18
         font.bold: true
         text: countdown > 0 ? countdown : ""
+        font.family: standardFont.name
+        opacity: 0.85
     }
 
     // if the countdown is greater than 0, this timer is triggered every second, decreasing the countdown (until it hits 0 again)

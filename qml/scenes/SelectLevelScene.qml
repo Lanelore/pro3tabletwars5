@@ -55,49 +55,132 @@ SceneBase {
         buttonText.font.pixelSize: 25
     }
 
+    Text {
+          id: headerText
+          text: "Select a level"
+          color: "black"
+          font.family: standardFont.name
+          font.pixelSize: 60
+
+          anchors.horizontalCenter: parent.horizontalCenter
+          anchors.top: parent.top
+          anchors.topMargin: parent.height / 2 - 200
+    }
+
     // levels to be selected
     Grid {
         anchors.centerIn: parent
         spacing: 10
         columns: 5
-        MenuButton {
-            text: "1"
-            width: 50
-            height: 50
-            onClicked: {
-                levelPressed("Level1.qml")
+
+        Rectangle {
+            width: 100
+            height: 100
+            radius: 12
+            color: "white"
+
+            Rectangle {
+                width: 86
+                height: 86
+                anchors.centerIn: parent
+                radius: 11
+                color: "#54A4BF"
+
+                Rectangle {
+                    width: 80
+                    height: 80
+                    anchors.centerIn: parent
+                    radius: 10
+                    color: "white"
+
+                    MenuButton {
+                        text: "1"
+                        width: 50
+                        height: 50
+                        anchors.top: parent.top
+                        anchors.topMargin: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonText.color: "#54A4BF"
+                        buttonText.font.family: standardFont.name
+                        onClicked: {
+                            levelPressed("Level_01.qml")
+                        }
+                    }
+                }
             }
         }
-        MenuButton {
-            text: "2"
-            width: 50
-            height: 50
-            onClicked: {
-                levelPressed("Level2.qml")
+
+        Rectangle {
+            width: 100
+            height: 100
+            radius: 12
+            color: "white"
+
+            Rectangle {
+                width: 86
+                height: 86
+                anchors.centerIn: parent
+                radius: 11
+                color: "#54A4BF"
+
+                Rectangle {
+                    width: 80
+                    height: 80
+                    anchors.centerIn: parent
+                    radius: 10
+                    color: "white"
+
+                    MenuButton {
+                        text: "2"
+                        width: 50
+                        height: 50
+                        anchors.top: parent.top
+                        anchors.topMargin: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonText.color: "#54A4BF"
+                        buttonText.font.family: standardFont.name
+                        onClicked: {
+                            levelPressed("Level_02.qml")
+                        }
+                    }
+                }
             }
         }
-        MenuButton {
-            text: "3"
-            width: 50
-            height: 50
-            onClicked: {
-                levelPressed("Level3.qml")
-            }
-        }
-        MenuButton {
-            text: "4"
-            width: 50
-            height: 50
-            onClicked: {
-                levelPressed("Level4.qml")
-            }
-        }
-        MenuButton {
-            text: "5"
-            width: 50
-            height: 50
-            onClicked: {
-                levelPressed("Level5.qml")
+
+        Rectangle {
+            width: 100
+            height: 100
+            radius: 12
+            color: "white"
+
+            Rectangle {
+                width: 86
+                height: 86
+                anchors.centerIn: parent
+                radius: 11
+                color: "#54A4BF"
+
+                Rectangle {
+                    width: 80
+                    height: 80
+                    anchors.centerIn: parent
+                    radius: 10
+                    color: "white"
+
+                    MenuButton {
+                        text: "3"
+                        width: 50
+                        height: 50
+                        anchors.top: parent.top
+                        anchors.topMargin: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonText.color: "#54A4BF"
+                        buttonText.font.family: standardFont.name
+                        onClicked: {
+                            levelPressed("Level_03.qml")
+                        }
+                    }
+                }
             }
         }
     }

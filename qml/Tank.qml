@@ -37,8 +37,8 @@ EntityBase {
         rotation: tankBody.rotation+180
         opacity: 0
         id: fire
-        width: 60
-        height: 60
+        width: 45
+        height: 70
 
 
         //rotation: 0

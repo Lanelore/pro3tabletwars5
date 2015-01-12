@@ -27,6 +27,7 @@ SceneBase {
 
     // credits
     Text {
+        font.family: standardFont.name
         text: "Credits to: YOU :)"
         color: "black"
         anchors.centerIn: parent

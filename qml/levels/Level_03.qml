@@ -70,7 +70,7 @@ GameController {
         x: scene.width / 7 *2
         y: scene.height / 7 *5.5
 
-        rotation: 0
+        rotation: 90
         igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
@@ -113,6 +113,7 @@ GameController {
         }
         image.source: "../../assets/img/final/Wall2.png"
         image.rotation: 180
+        z:1
     }
 
     Wall {
@@ -124,6 +125,7 @@ GameController {
             top: parent.top
         }
         image.source: "../../assets/img/final/Wall2.png"
+        z:1
     }
 
     Wall {
@@ -136,6 +138,7 @@ GameController {
         }
         image.source: "../../assets/img/final/Wall.png"
         image.rotation: 180
+        z:1
     }
 
     Wall {
@@ -145,6 +148,7 @@ GameController {
         x: 0
         y: parent.height-height
         image.source: "../../assets/img/final/Wall.png"
+        z:1
     }
 
     Obstacle {

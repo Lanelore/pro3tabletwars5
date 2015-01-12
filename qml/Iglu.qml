@@ -88,7 +88,10 @@ EntityBase {
         id: teleportGlow
         width: 50
         height: 50
-        anchors.centerIn: rectColliderBottom
+        anchors.bottom: rectColliderBottom.bottom
+        anchors.bottomMargin: 20
+        anchors.left: rectColliderBottom.left
+        anchors.leftMargin: 55
         playing: false
         source: "../assets/img/final/TeleportGlow.gif"
     }

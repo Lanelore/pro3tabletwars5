@@ -55,19 +55,21 @@ Item {
             color: GameInfo.winnerRed ? GameInfo.red : GameInfo.blue
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            anchors.topMargin: 30
-            font.pointSize: 15
+            anchors.topMargin: 20
+            font.pointSize: 12
+            font.family: standardFont.name
         }
 
         // statistic
         Text {
             id: textStatistic
             text: "<b>Statistic</b><br>Blue: " + GameInfo.blueVictory + "<br>Red: " + GameInfo.redVictory
-            font.pointSize: 13
+            font.pointSize: 10
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 30
+            anchors.bottomMargin: 25
             horizontalAlignment:  Text.AlignHCenter
+            font.family: standardFont.name
         }
     }
 }

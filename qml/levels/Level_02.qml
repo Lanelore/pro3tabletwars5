@@ -96,7 +96,7 @@ GameController {
         y: scene.height / 6
 
         rotation: 0
-        obstacleBody.source: "../../assets/img/Obstacle.jpg"
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
     }
 
     Obstacle {
@@ -105,8 +105,8 @@ GameController {
         y: scene.height / 6 + 45
 
         rotation: 0
-        obstacleBody.source: "../../assets/img/Obstacle.jpg"
-    }
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+          }
 
     Obstacle {
         id: obstacle3
@@ -114,8 +114,8 @@ GameController {
         y: scene.height / 6 * 5
 
         rotation: 0
-        obstacleBody.source: "../../assets/img/Obstacle.jpg"
-    }
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+           }
 
     Obstacle {
         id: obstalce4
@@ -123,8 +123,8 @@ GameController {
         y: scene.height / 6 * 5 - 45
 
         rotation: 0
-        obstacleBody.source: "../../assets/img/Obstacle.jpg"
-    }
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+       }
 
 
 

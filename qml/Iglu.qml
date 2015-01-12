@@ -14,6 +14,7 @@ EntityBase {
     property alias rectColliderLeft: rectColliderLeft
     property alias rectColliderRight: rectColliderRight
     property alias rectColliderBottom: rectColliderBottom
+    property alias teleportGlow: teleportGlow
     property alias teleportSound: teleportSound
 
     width: 150
@@ -27,8 +28,7 @@ EntityBase {
         source: "../assets/snd/Teleport.wav"
     }
 
-    AnimatedImage {
-        playing: false
+    Image {
         id: igluBody
         width: parent.width
         height: parent.height
@@ -83,6 +83,15 @@ EntityBase {
         anchors.centerIn: parent
     }
 
+    //glitter effect when collecting a life powerup
+    AnimatedImage {
+        id: teleportGlow
+        width: 50
+        height: 50
+        anchors.centerIn: rectColliderBottom
+        playing: false
+        source: "../assets/img/final/TeleportGlow.gif"
+    }
 
     // ATTENTION!!!!
     // TWO SEPARATE TIMERS ARE NEEDED for the case that two players go into the same iglu at the same time
@@ -104,7 +113,7 @@ EntityBase {
             teleportedPlayer.y = destinationY
             teleportedPlayer.rotation = destIglu.rotation
 
-            destIglu.igluBody.playing = false
+            //destIglu.teleportGlow.playing = false
             //destIglu.opacity = 1.0
             teleportedPlayer.opacity = 1.0
         }
@@ -126,7 +135,7 @@ EntityBase {
             teleportedPlayer.y = destinationY
             teleportedPlayer.rotation = destIglu.rotation
 
-            destIglu.igluBody.playing = false
+            //destIglu.teleportGlow.playing = false
             teleportedPlayer.opacity = 1.0
         }
     }
@@ -170,8 +179,8 @@ EntityBase {
 
                 collidedEntity.opacity = 0.0
                 //destinationIglu.opacity = 0.0
-                destinationIglu.igluBody.playing = false
-                destinationIglu.igluBody.playing = true
+                destinationIglu.teleportGlow.playing = false
+                destinationIglu.teleportGlow.playing = true
 
                 if (collidedEntity.entityId == tankRed.entityId) {
                     // Player Red

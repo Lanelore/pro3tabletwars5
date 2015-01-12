@@ -11,7 +11,7 @@ SceneBase {
     // signal indicating that the creditsScene should be displayed
     signal creditsPressed
     property alias ambienceMusic: ambienceMusic
-
+/*
     Text {
         z: 2
       id: textItem
@@ -24,7 +24,7 @@ SceneBase {
       anchors.topMargin: 100
       anchors.horizontalCenter: menuScene.horizontalCenter
     }
-
+*/
     BackgroundMusic {
         loops: SoundEffect.Infinite
         volume: 0.3
@@ -47,7 +47,7 @@ SceneBase {
 
     // background
     Image {
-        z: 1
+        z: 0
         anchors.fill: parent
         source: "../../assets/img/final/Menu.png"
     }
@@ -85,9 +85,9 @@ SceneBase {
         id: menuButton1
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 435
+        anchors.topMargin: 375
         anchors.left: parent.left
-        anchors.leftMargin: 370
+        anchors.leftMargin: 375
         rotation: 353
 
         text: "Levels"
@@ -103,7 +103,7 @@ SceneBase {
     MenuButton {
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 610
+        anchors.topMargin: 555
         anchors.left: parent.left
         anchors.leftMargin: 388
         rotation: 353

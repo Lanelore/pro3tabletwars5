@@ -5,7 +5,7 @@ Image {
 
     // this handler is called when the button is clicked.
     signal clicked
-    width: 80
+    width: 90
     height: 80
     property bool active: false
 

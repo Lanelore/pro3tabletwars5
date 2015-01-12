@@ -31,6 +31,7 @@ EntityBase {
     }
 
     //rocket fire effect while having the accelerator = speed powerup
+
     AnimatedImage {
         z:0
         rotation: tankBody.rotation+180
@@ -38,10 +39,12 @@ EntityBase {
         id: fire
         width: 60
         height: 60
+
+
         //rotation: 0
         anchors.centerIn: parent
         playing: true
-        source: "../assets/img/Fire.gif"
+        source: "../assets/img/final/Rocket.gif"
     }
 
     // gets played when tank shoots

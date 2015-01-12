@@ -70,7 +70,7 @@ GameController {
         x: scene.width / 7 *2
         y: scene.height / 7 *5.5
 
-        rotation: 90
+        rotation: 0
         igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
@@ -153,7 +153,7 @@ GameController {
         y: scene.height - 700
 
         rotation: 0
-        obstacleBody.source: "../../assets/img/Obstacle.jpg"
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
     }
 
     Ball {

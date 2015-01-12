@@ -8,7 +8,7 @@ EntityBase {
     entityId: "obstacle"
 
     property alias obstacleBody: obstacleBody
-    property alias boxCollider: boxCollider
+    property alias circleCollider: circleCollider
 
     Image {
         id: obstacleBody
@@ -18,11 +18,14 @@ EntityBase {
         anchors.centerIn: parent
     }
 
-    BoxCollider {
-        id: boxCollider
+    CircleCollider {
+        id: circleCollider
+
+        radius: obstacleBody.width/2
+        x: radius
+        y: radius
 
         // the image and the physics will use this size
-        anchors.fill: obstacleBody
         anchors.centerIn: parent
 
         //density: 100000000

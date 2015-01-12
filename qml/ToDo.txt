@@ -14,14 +14,15 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
-     * Blau gewinnt immer?!
+     * Sounds unterschiedlich laut - Teleport + Gewinner Sound
+OK   * Blau gewinnt immer?!
      * z-Order der Iglus
-     * Spawnmaximum
+OK   * Spawnmaximum verändern - 10 ist zu viel!
      * Blinklicht für Iglus
      * Titel: "Durdles" als Schriftzug oder Grafik
-     * Spawnintervall der Items anpassen - langsamer spawnen?
+OK   * Spawnintervall + Radius der Items anpassen - langsamer spawnen?
      * nach Iglu: Character in richtige Richtung drehen
-     * Lebensberechnung: Zahlen rausnehmen
+OK   * Lebensberechnung: Zahlen rausnehmen
 OK   * Steuerung auf onReleased
      * 3... 2... 1... runterzählen und dann Start (Interval?)
      * Level Designs!

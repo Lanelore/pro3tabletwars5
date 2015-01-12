@@ -85,7 +85,7 @@ SceneBase {
         id: menuButton1
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 375
+        anchors.topMargin: 425
         anchors.left: parent.left
         anchors.leftMargin: 375
         rotation: 353
@@ -103,7 +103,7 @@ SceneBase {
     MenuButton {
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 555
+        anchors.topMargin: 605
         anchors.left: parent.left
         anchors.leftMargin: 388
         rotation: 353

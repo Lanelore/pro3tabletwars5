@@ -20,7 +20,7 @@ EntityBase {
 
     CircleCollider {
         id: circleCollider
-        radius: 40
+        radius: 37
         x: radius
         y: radius
 

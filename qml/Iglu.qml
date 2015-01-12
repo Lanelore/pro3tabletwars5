@@ -83,10 +83,13 @@ EntityBase {
         anchors.centerIn: parent
     }
 
+
+    // ATTENTION!!!!
+    // TWO SEPARATE TIMERS ARE NEEDED for the case that two players go into the same iglu at the same time
     Timer {
         // This timer is used to let the player disappear for a certain amount of time when he enters an iglu
-        id: teleportTimer
-        interval: 1000
+        id: teleportTimerPlayerBlue
+        interval: 750
         running: false
         repeat: false
 
@@ -103,6 +106,27 @@ EntityBase {
 
             destIglu.igluBody.playing = false
             //destIglu.opacity = 1.0
+            teleportedPlayer.opacity = 1.0
+        }
+    }
+
+    Timer {
+        id: teleportTimerPlayerRed
+        interval: 750
+        running: false
+        repeat: false
+
+        property var destIglu
+        property var teleportedPlayer
+        property var destinationX
+        property var destinationY
+
+        onTriggered: {
+            teleportedPlayer.x = destinationX
+            teleportedPlayer.y = destinationY
+            teleportedPlayer.rotation = destIglu.rotation
+
+            destIglu.igluBody.playing = false
             teleportedPlayer.opacity = 1.0
         }
     }
@@ -149,12 +173,21 @@ EntityBase {
                 destinationIglu.igluBody.playing = false
                 destinationIglu.igluBody.playing = true
 
-
-                teleportTimer.destinationX = destinationX
-                teleportTimer.destinationY = destinationY
-                teleportTimer.destIglu = destinationIglu
-                teleportTimer.teleportedPlayer = collidedEntity
-                teleportTimer.start()
+                if (collidedEntity.entityId == tankRed.entityId) {
+                    // Player Red
+                    teleportTimerPlayerRed.destinationX = destinationX
+                    teleportTimerPlayerRed.destinationY = destinationY
+                    teleportTimerPlayerRed.destIglu = destinationIglu
+                    teleportTimerPlayerRed.teleportedPlayer = collidedEntity
+                    teleportTimerPlayerRed.start()
+                } else {
+                    // Player Iglu
+                    teleportTimerPlayerBlue.destinationX = destinationX
+                    teleportTimerPlayerBlue.destinationY = destinationY
+                    teleportTimerPlayerBlue.destIglu = destinationIglu
+                    teleportTimerPlayerBlue.teleportedPlayer = collidedEntity
+                    teleportTimerPlayerBlue.start()
+                }
             }
 
             return

@@ -75,7 +75,7 @@ EntityBase {
         var randomItem = Math.ceil(Math.random() * (differentItems));
 
         var randomAngle = Math.ceil(Math.random() * (359));
-        var radius = Math.ceil(Math.random() * (70)) + 70;    //between 70 and 140
+        var radius = Math.ceil(Math.random() * (70)) + 20;    //between 70 and 140
 
         var startX= (radius*Math.cos((randomAngle)*Math.PI/180)) + powerUpSpawn.x
         var startY= (radius*Math.sin((randomAngle)*Math.PI/180)) + powerUpSpawn.y

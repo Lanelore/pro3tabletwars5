@@ -17,6 +17,7 @@ GameController {
         id: iglu1
         x: 160
         y:  60
+        z: 2
         igluBody.source: "../../assets/img/final/Iglu.png"
 
         rotation: 135
@@ -29,6 +30,7 @@ GameController {
         id: iglu2
         x: scene.width - 60
         y: 160
+        z: 2
         igluBody.source: "../../assets/img/final/Iglu.png"
         rotation: 225
     }
@@ -38,8 +40,8 @@ GameController {
         entityId: "iglu3"
         id: iglu3
         x: 60
+        z: 2
         y: scene.height - 160
-
         rotation: 45
         igluBody.source: "../../assets/img/final/Iglu.png"
     }
@@ -50,7 +52,7 @@ GameController {
         id: iglu4
         x: scene.width - 160
         y: scene.height - 60
-
+        z:2
         rotation: 315
         igluBody.source: "../../assets/img/final/Iglu.png"
     }

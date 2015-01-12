@@ -119,7 +119,7 @@ EntityBase {
         if (life <= 0) {
 
             // player Blue lost
-            GameInfo.winnerRed = false
+            GameInfo.winnerRed = true
             GameInfo.redVictory += true
 
             // show game over screen

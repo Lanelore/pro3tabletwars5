@@ -52,15 +52,15 @@ SceneBase {
         anchors.rightMargin: 15
         anchors.verticalCenter: parent.verticalCenter
         onClicked: backPressed()
-        buttonText.font.pixelSize: 25
+        buttonText.font.pointSize: 25
     }
 
     Text {
           id: headerText
-          text: "Select a level"
+          text: "Levels"
           color: "black"
           font.family: standardFont.name
-          font.pixelSize: 60
+          font.pointSize: 40
 
           anchors.horizontalCenter: parent.horizontalCenter
           anchors.top: parent.top

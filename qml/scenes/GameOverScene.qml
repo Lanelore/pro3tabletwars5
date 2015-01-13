@@ -31,7 +31,7 @@ SceneBase {
         onClicked: {
             backPressed()
         }
-        buttonText.font.pixelSize: 25
+        buttonText.font.pointSize: 25
     }
 
     // game over

@@ -85,36 +85,36 @@ SceneBase {
         id: menuButton1
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 425
+        anchors.topMargin: 360
         anchors.left: parent.left
-        anchors.leftMargin: 375
-        rotation: 353
+        anchors.leftMargin: 385
+        rotation: 352
 
-        text: "Levels"
+        text: "Play"
         onClicked: selectLevelPressed()
         //label.source: "../../assets/img/Board.png"
         color: "transparent"
         buttonText.color: "white"
-        buttonText.opacity: 0.85
-        buttonText.font.pixelSize: 70
+        buttonText.opacity: 1//0.85
+        buttonText.font.pointSize: 47
         buttonText.font.family: standardFont.name
     }
 
     MenuButton {
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 605
+        anchors.topMargin: 540
         anchors.left: parent.left
-        anchors.leftMargin: 388
-        rotation: 353
+        anchors.leftMargin: 368
+        rotation: 352
 
         text: "Credits"
         onClicked: creditsPressed()
         //label.source: "../../assets/img/Board.png"
         color: "transparent"
         buttonText.color: "white"
-        buttonText.opacity: 0.85
-        buttonText.font.pixelSize: 70
+        buttonText.opacity: 1//0.85
+        buttonText.font.pointSize: 47
         buttonText.font.family: standardFont.name
     }
 

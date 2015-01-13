@@ -49,4 +49,7 @@ Item {
     readonly property int controlType1Height: 180
 
     readonly property double maximumPlayerVelocity: 1.4
+
+    // Controller modes
+    property bool easymode: true
 }

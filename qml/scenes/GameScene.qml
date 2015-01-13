@@ -14,7 +14,7 @@ SceneBase {
 
 
     property string winner: GameInfo.winnerRed ? "Rot" : "Blau";
-    property alias victory: victory
+    //property alias victory: victory
 
 
     // set the name of the current level, this will cause the Loader to load the corresponding level
@@ -50,7 +50,7 @@ SceneBase {
             GameInfo.gameOver = false
             GameInfo.gamePaused = false
         }
-        buttonText.font.pixelSize: 25
+        buttonText.font.pointSize: 25
     }
 /*
     Connections {
@@ -65,7 +65,7 @@ SceneBase {
         anchors.top: gameScene.gameWindowAnchorItem.top
         anchors.topMargin: 10
         color: "white"
-        font.pixelSize: 20
+        font.pointSize: 20
         text: activeLevel ? activeLevel.levelName : ""
         font.family: standardFont.name
     }
@@ -83,6 +83,7 @@ SceneBase {
         }
     }
 
+    /*
     // game over
     Text {
         id: victory
@@ -91,14 +92,13 @@ SceneBase {
         anchors.centerIn: parent
         visible: GameInfo.victory ? true : false
         font.family: standardFont.name
-
     }
-
+*/
     // text displaying either the countdown or ""
     Text {
         anchors.centerIn: parent
         color: "black"
-        font.pixelSize: countdown > 0 ? 160 : 18
+        font.pointSize: countdown > 0 ? 160 : 18
         font.bold: true
         text: countdown > 0 ? countdown : ""
         font.family: standardFont.name

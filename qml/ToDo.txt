@@ -14,6 +14,21 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+offene Punkte aus Besprechung mit PAG am 13.01.2015
+---------------------------------------------------
+     * Unsterblichkeitsdauer nach einem Treffer sollte auf 2-3 Sekunden verlängert werden, damit Player Zeit zum ausweichen hat.
+     * Steuerung sollte innerhalb der eigenen Displayhälfte möglich sein, anstatt nur im Steuerkreis rechts unten
+     * Schuss-Steuerung soll zwischen Expert- (mitdrehbar) und Easy-Mode (Schuss nur in Blickrichtung möglich) umschaltbar sein.
+     * eigenen Sound reingeben, wenn 2 Schneebälle sich treffen
+     * Wenn Player mehrmals hintereinander getroffen wird, sollte der Sound leicht variieren (random Auswahl aus mehreren Dateien)
+     * Schlagschatten für Bäume, Iglus, ... (entweder überall oder nirgendwo)
+     * Strichstärke Powerups, Player, Bäume, ... vereinheitlichen
+     * Energie sollte bei Treffern schneller zu Ende gehen = Tod mit 6 oder 7 Treffern anstatt wie bisher mit 10
+     * neue Grafik wenn Schneeball irgendwo auftrifft
+     * Game Over Fenster im Querformat anzeigen
+
+ältere offene Punkte:
+---------------------
      * Wall/Iglu/Back-Button z-Order spinnt noch! (oft bei Level 2 wenn Rot in Stacheln fährt)
      * GameOver Message in der LevelBase aufhübschen
      * Replay Button nach GameOver! (mit Level Loader?)

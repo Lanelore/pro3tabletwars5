@@ -2,6 +2,7 @@ import VPlay 2.0
 import QtQuick 2.0
 import QtMultimedia 5.0
 import "../common"
+import ".."
 
 SceneBase {
     id: menuScene
@@ -118,7 +119,6 @@ SceneBase {
         buttonText.font.family: standardFont.name
     }
 
-
     Row {
         anchors.left: parent.left
         anchors.leftMargin: 12
@@ -140,6 +140,16 @@ SceneBase {
             onClicked: {
                 settings.soundEnabled ^= true
             }
+        }
+        AudioButton {
+            source: "../../assets/img/final/Settings.png"
+            active: !GameInfo.easyMode
+            opacity: active? 0.5 : 1
+            onClicked: {
+                GameInfo.easyMode ^= true
+            }
+            width: 80
+            height: 80
         }
     }
 }

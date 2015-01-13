@@ -51,5 +51,5 @@ Item {
     readonly property double maximumPlayerVelocity: 1.4
 
     // Controller modes
-    property bool easymode: true
+    property bool easyMode: true
 }

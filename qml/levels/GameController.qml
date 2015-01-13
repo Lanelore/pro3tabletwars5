@@ -65,9 +65,24 @@ Common.LevelBase {
         z: 1000
         radius: width / 2//GameInfo.radius
         opacity: GameInfo.pacity
-        color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
+        color: GameInfo.easyMode? "yellow" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
-        border.color: GameInfo.red
+        border.color: GameInfo.easyMode? "transparent" : GameInfo.red
+
+        Image {
+            source: "../../assets/img/final/Control.png"
+            opacity: GameInfo.easyMode? 100: 0
+            anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
+        }
+
+
+        Rectangle {
+            color: "pink"
+            width: 15
+            height: 15
+        }
 
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused ? false : true
@@ -88,6 +103,8 @@ Common.LevelBase {
                 damping()
             }
 
+
+
             onUpdated: {
                 // reset playing and linear damping (indicates that player is moving)
                 playerRed.tankRed.circleCollider.linearDamping=0
@@ -96,12 +113,50 @@ Common.LevelBase {
                 newPosX = (pointCtrlRed.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlRed.y / (parent.height / 2) - 1)
 
+                var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
+
+                if (GameInfo.easyMode && distance >1) {
+
+                    var angle = Math.atan2(newPosX, newPosY) * 180 / Math.PI
+
+                    console.debug("##angle: " + angle)
+
+                    var startX= ((parent.width/2)*Math.cos((angle)*Math.PI/180)) + pointCtrlRed.x + parent.x
+                    var startY= ((parent.height/2)*Math.sin((angle)*Math.PI/180)) + pointCtrlRed.y + parent.y
+
+                    playerMovementControlAreaRed.x=startX
+                    playerMovementControlAreaRed.y = startY
+                }
+
                 newPosY = newPosY * -1
 
-                if (newPosX > 1) newPosX = 1
-                if (newPosY > 1) newPosY = 1
-                if (newPosX < -1) newPosX = -1
-                if (newPosY < -1) newPosY = -1
+                if (newPosX > 1) {
+                    newPosX = 1
+                    if(GameInfo.easyMode){
+                        //playerMovementControlAreaRed.x=playerMovementControlAreaRed.x+1
+                    }
+                }
+
+                if (newPosY > 1) {
+                    newPosY = 1
+                    if(GameInfo.easyMode){
+                        //playerMovementControlAreaRed.y=playerMovementControlAreaRed.y-1
+                    }
+                }
+
+                if (newPosX < -1) {
+                    newPosX = -1
+                    if(GameInfo.easyMode){
+                        //playerMovementControlAreaRed.x=playerMovementControlAreaRed.x-1
+                    }
+                }
+
+                if (newPosY < -1) {
+                    newPosY = -1
+                    if(GameInfo.easyMode){
+                        //playerMovementControlAreaRed.y=playerMovementControlAreaRed.y+1
+                    }
+                }
 
                 // if it is on the lake calculate it in a special way!
                 if(GameInfo.redOnLake){

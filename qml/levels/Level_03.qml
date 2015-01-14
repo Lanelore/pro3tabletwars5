@@ -7,10 +7,10 @@ GameController {
     id: scene
 
     property alias opponentSnowman: opponentSnowman
-    property alias powShield: powShield
-    property alias powAccelerator: powAccelerator
+    //property alias powShield: powShield
+    //property alias powAccelerator: powAccelerator
     //property alias lake: lake
-
+/*
     PowerUpShield {
         id: powShield
         x: 50
@@ -40,25 +40,27 @@ GameController {
         playerRed: parent.playerRed
         playerBlue: parent.playerBlue
     }
-
+*/
     PowerUpLifeUp {
         id: powLifeUp
-        x: 50
-        y: 400
+        x: scene.width / 10
+        y: scene.height / 10 * 8.8
         tankRed: parent.tankRed
         tankBlue: parent.tankBlue
         playerRed: parent.playerRed
         playerBlue: parent.playerBlue
     }
 
+
+
     Iglu {
         igluCount: 3
         entityId: "iglu1"
         id: iglu1
-        x: scene.width / 3 *2
-        y: scene.height / 3 *2
+        x: scene.width / 2 + iglu1.igluBody.width / 2
+        y: scene.height / 2 - 10
 
-        rotation: 145
+        rotation: 180
         igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
@@ -67,10 +69,10 @@ GameController {
         igluCount: 3
         entityId: "iglu2"
         id: iglu2
-        x: scene.width / 7 *2
-        y: scene.height / 7 *5.5
+        x: scene.width / 7 * 4.2
+        y: scene.height / 7 * 5
 
-        rotation: 90
+        rotation: 300
         igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
@@ -78,10 +80,10 @@ GameController {
         igluCount: 3
         entityId: "iglu3"
         id: iglu3
-        x: scene.width /7*6
-        y: scene.height / 2
+        x: scene.width /7 * 1.9
+        y: scene.height / 2 + iglu3.igluBody.height / 2 - 10
 
-        rotation: 90
+        rotation: 60
         igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
@@ -96,12 +98,55 @@ GameController {
 
     Opponents {
         id: opponentSnowman
-        x: scene.width / 2
-        y: scene.height - 520
+
+        x: scene.width / 5
+        y: scene.height / 2 - opponentSnowman.opponentBody.height * 2
 
         rotation: 0
         opponentBody.source: "../../assets/img/final/Snowman.gif"
     }
+
+    Obstacle {
+        id: obstacleMiddle
+        x: scene.width / 2
+        y: scene.height / 2 + obstacleMiddle.obstacleBody.height * 2.6
+
+        rotation: 0
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+    }
+
+    Ball {
+        id: ball
+        x: scene.width / 4
+        y: scene.height / 4
+
+        rotation: 0
+        ballBody.source: "../../assets/img/final/SnowballBig.png"
+    }
+
+
+    // Planet trees and power up spawners
+
+    PowerUpSpawn {
+        entityId: "spawn"
+        id: spawn
+        x: scene.width / 7 *5.3
+        y: scene.height / 7 *2
+
+        spawnBody.source: "../../assets/img/final/PUSpawn.png"
+    }
+
+    Tree {
+        entityId: "tree"
+        id: tree
+        x: scene.width / 7 *5.3
+        y: scene.height / 2 - tree.treeBody.height / 2
+
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+
+    // Place the 4 walls
 
     Wall {
         id: wallLeft
@@ -149,41 +194,5 @@ GameController {
         y: parent.height-height
         image.source: "../../assets/img/final/Wall.png"
         z:1
-    }
-
-    Obstacle {
-        id: obstacleMiddle
-        x: scene.width / 2
-        y: scene.height - 700
-
-        rotation: 0
-        obstacleBody.source: "../../assets/img/final/Obstacle.png"
-    }
-
-    Ball {
-        id: ball
-        x: scene.width / 4
-        y: scene.height / 4
-
-        rotation: 0
-        ballBody.source: "../../assets/img/final/SnowballBig.png"
-    }
-
-    PowerUpSpawn {
-        entityId: "spawn"
-        id: spawn
-        x: scene.width / 7 *5.3
-        y: scene.height / 7 *2
-
-        spawnBody.source: "../../assets/img/final/PUSpawn.png"
-    }
-
-    Tree {
-        entityId: "tree"
-        id: tree
-        x: scene.width / 7 *5.3
-        y: scene.height / 7 *5.2
-
-        treeBody.source: "../../assets/img/final/Tree.png"
     }
 }

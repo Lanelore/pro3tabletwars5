@@ -88,9 +88,10 @@ EntityBase {
             running: GameInfo.gamePaused ? false : true;
             repeat: GameInfo.gamePaused ? false : true;
 
+
+
             onTriggered: {
                 //MoveToPointHelper.targetObject = tankBlue;
-
                 var distanceRed = Math.sqrt(Math.pow(tankRed.x - opponent.x, 2) + Math.pow(tankRed.y - opponent.y, 2));
                 var distanceBlue = Math.sqrt(Math.pow(tankBlue.x - opponent.x, 2) + Math.pow(tankBlue.y - opponent.y, 2));
                 targetTankRed = (distanceRed >= distanceBlue) ? false : true;

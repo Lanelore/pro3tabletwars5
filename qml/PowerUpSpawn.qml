@@ -10,6 +10,8 @@ EntityBase {
     property alias spawnBody: spawnBody
     property alias circleCollider: circleCollider
     property alias spawnSound: spawnSound
+    property int minSpawnRadius: 65 // between 65 and 95 by default
+    property int spawnRadiusDelta: 30
 
     // gets played when a powerup spawns
     SoundEffectVPlay {
@@ -75,7 +77,7 @@ EntityBase {
         var randomItem = Math.ceil(Math.random() * (differentItems));
 
         var randomAngle = Math.ceil(Math.random() * (359));
-        var radius = Math.ceil(Math.random() * (30)) + 65;    //between 65 and 95
+        var radius = Math.ceil(Math.random() * (spawnRadiusDelta)) + minSpawnRadius;    //between 65 and 95 by default
 
         var startX= (radius*Math.cos((randomAngle)*Math.PI/180)) + powerUpSpawn.x
         var startY= (radius*Math.sin((randomAngle)*Math.PI/180)) + powerUpSpawn.y

@@ -183,6 +183,81 @@ SceneBase {
                 }
             }
         }
+
+
+        Rectangle {
+            width: 100
+            height: 100
+            radius: 12
+            color: "white"
+
+            Rectangle {
+                width: 86
+                height: 86
+                anchors.centerIn: parent
+                radius: 11
+                color: "#54A4BF"
+
+                Rectangle {
+                    width: 80
+                    height: 80
+                    anchors.centerIn: parent
+                    radius: 10
+                    color: "white"
+
+                    MenuButton {
+                        text: "4"
+                        width: 50
+                        height: 50
+                        anchors.top: parent.top
+                        anchors.topMargin: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonText.color: "#54A4BF"
+                        buttonText.font.family: standardFont.name
+                        onClicked: {
+                            levelPressed("Level_04.qml")
+                        }
+                    }
+                }
+            }
+        }
+
+        Rectangle {
+            width: 100
+            height: 100
+            radius: 12
+            color: "white"
+
+            Rectangle {
+                width: 86
+                height: 86
+                anchors.centerIn: parent
+                radius: 11
+                color: "#54A4BF"
+
+                Rectangle {
+                    width: 80
+                    height: 80
+                    anchors.centerIn: parent
+                    radius: 10
+                    color: "white"
+
+                    MenuButton {
+                        text: "5"
+                        width: 50
+                        height: 50
+                        anchors.top: parent.top
+                        anchors.topMargin: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        buttonText.color: "#54A4BF"
+                        buttonText.font.family: standardFont.name
+                        onClicked: {
+                            levelPressed("Level_05.qml")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

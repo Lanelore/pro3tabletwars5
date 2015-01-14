@@ -8,7 +8,7 @@ SceneBase {
     // background
     Image {
         anchors.fill: parent
-        source: "../../assets/img/final/BG.png"
+        source: "../../assets/img/credits.png"
     }
 
     // back button to leave scene
@@ -25,11 +25,24 @@ SceneBase {
         buttonText.font.pointSize: 25
     }
 
+    Text {
+        font.family: standardFont.name
+        font.pointSize: 170
+        text: "Credits"
+        color: "black"
+        anchors.top: parent.top
+        anchors.topMargin: 90
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+
     // credits
     Text {
         font.family: standardFont.name
-        text: "Credits to: YOU :)"
+        font.pointSize: 40
+        text: "Christian Enengl\nBirgit Fritz\nFlorian Peinsold\nBianca Zankl"
         color: "black"
-        anchors.centerIn: parent
+        anchors.left: parent.left
+        anchors.leftMargin: 40
+        anchors.verticalCenter: parent.verticalCenter
     }
 }

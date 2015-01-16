@@ -7,6 +7,7 @@ Item {
     width: 768
     height: 1024
 
+    signal replay
     //signal result
     //signal gameOver
     signal damage
@@ -71,6 +72,18 @@ Item {
 
             horizontalAlignment:  Text.AlignHCenter
             font.family: standardFont.name
+        }
+
+        AudioButton {
+            source: "../../assets/img/final/Play.png"
+            onClicked: {
+                replay()
+            }
+            width: 80
+            height: 80
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: -50
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 }

@@ -115,11 +115,14 @@ Common.LevelBase {
 
                 var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 
+
+                var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI)
+
+                console.debug("##angle: " + (angle))
+
                 if (GameInfo.easyMode && distance >1) {
 
-                    var angle = Math.atan2(newPosX, newPosY) * 180 / Math.PI
 
-                    console.debug("##angle: " + angle)
 
                     var startX= ((parent.width/2)*Math.cos((angle)*Math.PI/180)) + pointCtrlRed.x + parent.x
                     var startY= ((parent.height/2)*Math.sin((angle)*Math.PI/180)) + pointCtrlRed.y + parent.y

@@ -11,6 +11,7 @@ SceneBase {
     property var activeLevel
     // countdown shown at level start
     property int countdown: 0
+    property alias loader: loader
 
 
     property string winner: GameInfo.winnerRed ? "Rot" : "Blau";
@@ -52,12 +53,18 @@ SceneBase {
         }
         buttonText.font.pointSize: 25
     }
-/*
+
     Connections {
         target: gameScene.activeLevel || null
-        onGameOver: activeLevelFileName = ""
+        onReplay: {
+            var tmpFileName = activeLevelFileName
+            activeLevelFileName = ""
+            activeLevelFileName = tmpFileName
+            GameInfo.gameOver = false
+            GameInfo.gamePaused = false
+        }
     }
-*/
+
     // name of the current level
     Text {
         anchors.left: gameScene.gameWindowAnchorItem.left

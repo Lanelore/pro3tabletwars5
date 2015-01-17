@@ -15,6 +15,7 @@ Common.LevelBase {
     property alias icicleSound: icicleSound
     property alias tankRed: playerRed.tankRed
     property alias tankBlue: playerBlue.tankBlue
+    property alias tester: tester
 
     //TODO
     focus: true
@@ -79,6 +80,7 @@ Common.LevelBase {
 
 
         Rectangle {
+            id: tester
             color: "pink"
             width: 15
             height: 15
@@ -103,8 +105,6 @@ Common.LevelBase {
                 damping()
             }
 
-
-
             onUpdated: {
                 // reset playing and linear damping (indicates that player is moving)
                 playerRed.tankRed.circleCollider.linearDamping=0
@@ -115,20 +115,21 @@ Common.LevelBase {
 
                 var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 
-
-                var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI)
-
-                console.debug("##angle: " + (angle))
+                var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI) -180
+                angle = angle * (-1)
+                angle -= 90
 
                 if (GameInfo.easyMode && distance >1) {
+                    var newX= ((playerMovementControlAreaRed.width/2)*Math.cos((angle)*Math.PI/180))
+                            +(playerMovementControlAreaRed.width/2) + playerMovementControlAreaRed.x
+                    var newY= ((playerMovementControlAreaRed.height/2)*Math.sin((angle)*Math.PI/180))
+                            +(playerMovementControlAreaRed.height/2) + playerMovementControlAreaRed.y
 
+                    var diffX = pointCtrlRed.x + playerMovementControlAreaRed.x - newX
+                    var diffY = pointCtrlRed.y + playerMovementControlAreaRed.y - newY
 
-
-                    var startX= ((parent.width/2)*Math.cos((angle)*Math.PI/180)) + pointCtrlRed.x + parent.x
-                    var startY= ((parent.height/2)*Math.sin((angle)*Math.PI/180)) + pointCtrlRed.y + parent.y
-
-                    playerMovementControlAreaRed.x=startX
-                    playerMovementControlAreaRed.y = startY
+                    playerMovementControlAreaRed.x += diffX
+                    playerMovementControlAreaRed.y += diffY
                 }
 
                 newPosY = newPosY * -1

@@ -24,7 +24,7 @@ SceneBase {
         onClicked: backPressed()
         buttonText.font.pointSize: 25
     }
-
+/*
     Text {
         font.family: standardFont.name
         font.pointSize: 170
@@ -34,7 +34,7 @@ SceneBase {
         anchors.topMargin: 90
         anchors.horizontalCenter: parent.horizontalCenter
     }
-
+*/
     // credits
     Text {
         font.family: standardFont.name

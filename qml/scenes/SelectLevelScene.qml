@@ -51,7 +51,10 @@ SceneBase {
         anchors.right: parent.right
         anchors.rightMargin: 15
         anchors.verticalCenter: parent.verticalCenter
-        onClicked: backPressed()
+        onClicked: {
+            GameInfo.redVictory=0
+            GameInfo.blueVictory=0
+            backPressed()}
         buttonText.font.pointSize: 25
     }
 

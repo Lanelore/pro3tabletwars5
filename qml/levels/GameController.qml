@@ -9,13 +9,16 @@ Common.LevelBase {
 
     property alias playerMovementControlAreaRed: playerMovementControlAreaRed
     property alias playerMovementControlAreaBlue: playerMovementControlAreaBlue
+
+    property alias redField: redField
+
     property alias playerRed: playerRed
     property alias playerBlue: playerBlue
     property alias snowballSound: snowballSound
     property alias icicleSound: icicleSound
     property alias tankRed: playerRed.tankRed
     property alias tankBlue: playerBlue.tankBlue
-    property alias tester: tester
+
 
     //TODO
     focus: true
@@ -46,6 +49,83 @@ Common.LevelBase {
         z: 1
     }
 
+    // ------------------------------------
+    // Red Field
+    // ------------------------------------
+    Rectangle {
+        // Object properties
+        id: redField
+        radius: GameInfo.radius
+        opacity: GameInfo.easyMode? GameInfo.pacity : 0
+        color: "transparent"
+        border.width: GameInfo.border
+        border.color: GameInfo.red
+
+        width: scene.width
+        height: scene.height/2
+        x: 0
+        y: 0
+        z: 1000
+
+
+        MultiPointTouchArea {
+            enabled: GameInfo.gamePaused&&GameInfo.easyMode ? false : true
+            anchors.fill: parent
+
+            property bool pressBool: false // becomes true when a touch-cycle starts
+            property real lastTime: 0
+            //property var touchStartTime: 0
+            property int onTouchUpdatedCounter: 0
+            property variant playerTwoAxisController: playerRed.tankRed.getComponent("TwoAxisController")
+
+            touchPoints: [
+                TouchPoint {id: redFieldPoint}
+            ]
+
+            /*
+            onUpdated: {
+                console.log("--------onTouchUpdated");
+                onTouchUpdatedCounter += 1
+
+                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
+                if (onTouchUpdatedCounter >= GameInfo.onTouchUpdateCounterThreshold) { // change this number to '6' to only shoot when a Tap occured!
+                    upDateCannon()
+                }
+            }
+            */
+
+            onUpdated: {
+                console.log("--------onTouchUpdated");
+                onTouchUpdatedCounter += 1
+
+                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
+                if (onTouchUpdatedCounter >= 6) { // change this number to '6' to only shoot when a Tap occured!
+                    var newX = redFieldPoint.x - playerMovementControlAreaRed.width/2
+                    var newY = redFieldPoint.y - playerMovementControlAreaRed.height/2
+
+                    playerMovementControlAreaRed.x = newX
+                    playerMovementControlAreaRed.y = newY
+
+                    if(newX <= 0){
+                        playerMovementControlAreaRed.x = 0
+                    }else if(newX >= (scene.width - playerMovementControlAreaRed.width)){
+                        playerMovementControlAreaRed.x = scene.width - playerMovementControlAreaRed.width
+                    }else{
+                        playerMovementControlAreaRed.x = newX
+                    }
+
+                    if(newY <= 0){
+                        playerMovementControlAreaRed.y = 0
+                    }else if(newY >= (scene.height/2 - playerMovementControlAreaRed.height)){
+                        playerMovementControlAreaRed.y = scene.height/2 - playerMovementControlAreaRed.height
+                    }else{
+                        playerMovementControlAreaRed.y = newY
+                    }
+                }
+            }
+        }
+    }
+
 
     // ---------------------------------------------------
     // Controller tankRed
@@ -63,10 +143,10 @@ Common.LevelBase {
         height: 180
         x: 50
         y: 50
-        z: 1000
+        z: 2000
         radius: width / 2//GameInfo.radius
         opacity: GameInfo.pacity
-        color: GameInfo.easyMode? "yellow" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
+        color: GameInfo.easyMode? "grey" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.easyMode? "transparent" : GameInfo.red
 
@@ -76,14 +156,6 @@ Common.LevelBase {
             anchors.centerIn: parent
             width: parent.width
             height: parent.height
-        }
-
-
-        Rectangle {
-            id: tester
-            color: "pink"
-            width: 15
-            height: 15
         }
 
         MultiPointTouchArea {
@@ -100,6 +172,7 @@ Common.LevelBase {
                 TouchPoint {id: pointCtrlRed}
             ]
 
+
             onReleased: {
                 playerRed.tankRed.tankBody.playing=false
                 damping()
@@ -115,52 +188,47 @@ Common.LevelBase {
 
                 var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 
-                var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI) -180
-                angle = angle * (-1)
-                angle -= 90
 
                 if (GameInfo.easyMode && distance >1) {
+                    //angle is used to find a reference point at the border of the circular pad
+                    var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI) -180
+                    angle = angle * (-1)
+                    angle -= 90
+
+                    //find a new reference point at the border of the circular pad
                     var newX= ((playerMovementControlAreaRed.width/2)*Math.cos((angle)*Math.PI/180))
                             +(playerMovementControlAreaRed.width/2) + playerMovementControlAreaRed.x
                     var newY= ((playerMovementControlAreaRed.height/2)*Math.sin((angle)*Math.PI/180))
                             +(playerMovementControlAreaRed.height/2) + playerMovementControlAreaRed.y
 
+                    //calculate the difference between the border reference point and the point outside of the pad
                     var diffX = pointCtrlRed.x + playerMovementControlAreaRed.x - newX
                     var diffY = pointCtrlRed.y + playerMovementControlAreaRed.y - newY
 
-                    playerMovementControlAreaRed.x += diffX
-                    playerMovementControlAreaRed.y += diffY
+                    //translate the pad in the new direction within the half of the field
+                    if((playerMovementControlAreaRed.x + diffX) <= 0){
+                        playerMovementControlAreaRed.x = 0
+                    }else if((playerMovementControlAreaRed.x + diffX) >= (scene.width - playerMovementControlAreaRed.width)){
+                        playerMovementControlAreaRed.x = scene.width - playerMovementControlAreaRed.width
+                    }else{
+                        playerMovementControlAreaRed.x += diffX
+                    }
+
+                    if((playerMovementControlAreaRed.y + diffY) <= 0){
+                        playerMovementControlAreaRed.y = 0
+                    }else if((playerMovementControlAreaRed.y + diffY) >= (scene.height/2 - playerMovementControlAreaRed.height)){
+                        playerMovementControlAreaRed.y = scene.height/2 - playerMovementControlAreaRed.height
+                    }else{
+                        playerMovementControlAreaRed.y += diffY
+                    }
                 }
 
                 newPosY = newPosY * -1
 
-                if (newPosX > 1) {
-                    newPosX = 1
-                    if(GameInfo.easyMode){
-                        //playerMovementControlAreaRed.x=playerMovementControlAreaRed.x+1
-                    }
-                }
-
-                if (newPosY > 1) {
-                    newPosY = 1
-                    if(GameInfo.easyMode){
-                        //playerMovementControlAreaRed.y=playerMovementControlAreaRed.y-1
-                    }
-                }
-
-                if (newPosX < -1) {
-                    newPosX = -1
-                    if(GameInfo.easyMode){
-                        //playerMovementControlAreaRed.x=playerMovementControlAreaRed.x-1
-                    }
-                }
-
-                if (newPosY < -1) {
-                    newPosY = -1
-                    if(GameInfo.easyMode){
-                        //playerMovementControlAreaRed.y=playerMovementControlAreaRed.y+1
-                    }
-                }
+                if (newPosX > 1) newPosX = 1
+                if (newPosY > 1) newPosY = 1
+                if (newPosX < -1) newPosX = -1
+                if (newPosY < -1) newPosY = -1
 
                 // if it is on the lake calculate it in a special way!
                 if(GameInfo.redOnLake){
@@ -327,9 +395,6 @@ Common.LevelBase {
                                                                         "rotation" : playerRed.tankRed.tankCannon.rotation + 90,
                                                                         "bulletType" : playerRed.activatePowershot ? 1 : 0});
                     console.debug("***** Bullet Angle: "  + (playerRed.tankRed.tankCannon.rotation + 90))
-
-
-
                 }
                 pressBool= false
                 //*//onTouchUpdatedCounter = 0
@@ -541,8 +606,8 @@ Common.LevelBase {
             property bool rotateOnce: true
             property bool pressBool: true
             property var lastTime: 0
-            property var touchStartTime: 0
-            property int onTouchUpdatedCounter: 0
+            //*// property var touchStartTime: 0
+            //*// property int onTouchUpdatedCounter: 0
             property var playerTwoAxisController: playerBlue.tankBlue.getComponent("TwoAxisController")
 
             touchPoints: [

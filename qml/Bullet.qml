@@ -69,6 +69,18 @@ EntityBase {
                 console.log("bullet collides with: " + otherEntityId);
                 singleBullet.destroy();
 
+
+                entityManager.createEntityFromUrlWithProperties(
+                            Qt.resolvedUrl("Splat.qml"), {
+                                "z": 1,
+                                "x": singleBullet.x,
+                                "y": singleBullet.y,
+                                "rotation": singleBullet.rotation
+                            }
+                );
+
+
+
                 // check if it hit a player
                 if (otherEntityId.substring(0, 4) === "tank") {
                     //if (otherEntityParent.entityId.substring(0, 6) === "player") {

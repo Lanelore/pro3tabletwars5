@@ -65,7 +65,14 @@ GameController {
         y: scene.height / 2 + 19
         treeBody.source: "../../assets/img/final/Tree.png"
     }
-
+/*
+    Splat {
+        entityId: "splat"
+        id: splat
+        x: scene.width  / 2
+        y: scene.height / 2
+    }
+*/
 
 
 

@@ -14,8 +14,9 @@ EntityBase {
     property alias rectColliderLeft: rectColliderLeft
     property alias rectColliderRight: rectColliderRight
     property alias rectColliderBottom: rectColliderBottom
-    property alias teleportGlow: teleportGlow
+    // property alias teleportGlow: teleportGlow
     property alias teleportSound: teleportSound
+    property alias glowTimer: glowTimer
 
     width: 150
     height: 180
@@ -82,7 +83,7 @@ EntityBase {
 
         anchors.centerIn: parent
     }
-
+    /*
     //glitter effect when collecting a life powerup
     AnimatedImage {
         id: teleportGlow
@@ -95,7 +96,7 @@ EntityBase {
         playing: false
         source: "../assets/img/final/TeleportGlow.gif"
     }
-
+*/
     // ATTENTION!!!!
     // TWO SEPARATE TIMERS ARE NEEDED for the case that two players go into the same iglu at the same time
     Timer {
@@ -143,6 +144,30 @@ EntityBase {
         }
     }
 
+    Timer {
+        // This timer is used to let the player disappear for a certain amount of time when he enters an iglu
+        id: glowTimer
+        interval: 250
+        running: false
+        repeat: true
+        property int glowCounter: 0
+
+        onTriggered:{
+            if(glowCounter % 2 == 0){
+                console.debug("######### IgluTimer")
+                igluBody.source= "../assets/img/final/IgluLight.png"
+            }else{
+                igluBody.source= "../assets/img/final/Iglu.png"
+            }
+            glowCounter++
+            if(glowCounter>=4) {
+                glowCounter=0
+                igluBody.source= "../assets/img/final/Iglu.png"
+                glowTimer.running=false
+            }
+        }
+    }
+
     BoxCollider {
         density: 100000000
         id: porter
@@ -181,11 +206,9 @@ EntityBase {
                 var destinationY = (80 * Math.sin((destinationIglu.rotation - 10) * Math.PI / 180)) + destinationIglu.y + tankRed.width / 2
 
                 collidedEntity.opacity = 0.0
-                //destinationIglu.opacity = 0.0
-                destinationIglu.teleportGlow.playing = false
-                destinationIglu.teleportGlow.playing = true
+                destinationIglu.glowTimer.running=true
 
-                if (collidedEntity.entityId == tankRed.entityId) {
+                if (collidedEntity.entityId === tankRed.entityId) {
                     // Player Red
                     teleportTimerPlayerRed.destinationX = destinationX
                     teleportTimerPlayerRed.destinationY = destinationY

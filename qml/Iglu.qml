@@ -26,7 +26,7 @@ EntityBase {
         volume: 0.3
         id: teleportSound
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../assets/snd/Teleport_02.wav"
+        source: "../assets/snd/Teleport.wav"
     }
 
     Image {

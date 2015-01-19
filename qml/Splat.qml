@@ -15,7 +15,7 @@ EntityBase {
         width: 30
         height: 50
         //anchors.fill: parent
-        source: "../assets/img/final/Splat2.png"
+        source: "../assets/img/final/Splat.png"
     }
 
     onEntityCreated: splatTimer.running= true
@@ -25,7 +25,6 @@ EntityBase {
         interval: 300
         running: false
         repeat: false
-
 
         onTriggered:{
             splat.destroy();

@@ -29,6 +29,8 @@ offene Punkte aus Besprechung mit PAG am 13.01.2015
 
 ältere offene Punkte:
 ---------------------
+     * neue BG Musik (Wav)
+     * Schneeballsounds 1-3 (Wav)
      * Beide Player sterben kurz hintereinander - beide erhalten einen Punkt!?
      * Wall/Iglu/Back-Button z-Order spinnt noch! (oft bei Level 2 wenn Rot in Stacheln fährt)
      * GameOver Message in der LevelBase aufhübschen

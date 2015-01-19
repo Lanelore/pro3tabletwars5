@@ -35,8 +35,8 @@ Item {
     //energy management
     property int maxEnergy: 100
     property int fillEnergy: 25     //extra energy powerup
-    property int normalDamage: 10   //tank, opponent, obstacle
-    property int powerDamage: 20    //with PowerUp
+    property int normalDamage: 18   //tank, opponent, obstacle
+    property int powerDamage: 36    //with PowerUp
 
     // Controller parameters
     readonly property int onTouchUpdateCounterThreshold: 0 // change this to about 6 to prevent the cannon from changing the angle when shooting

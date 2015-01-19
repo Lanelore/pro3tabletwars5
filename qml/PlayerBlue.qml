@@ -74,11 +74,18 @@ EntityBase {
         volume: 0.3
         id: screamSound
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../assets/snd/Injury.wav"
+        source: "../assets/snd/Injury1.wav"
     }
 
     function onDamage() {
         onDamageWithBulletType(0)
+    }
+
+    function scream() {
+        var random = Math.floor(Math.random() * 3) + 1 //Sounds 1 - 3
+        var src = "../assets/snd/Injury" + random + ".wav"
+        screamSound.source = src
+        screamSound.play()
     }
 
     function onDamageWithBulletType(bulletType) {
@@ -113,7 +120,7 @@ EntityBase {
         activateHitShield = true
 
         // Play scream sound
-        screamSound.play()
+        scream()
 
         // check if life went below 0
         if (life <= 0) {

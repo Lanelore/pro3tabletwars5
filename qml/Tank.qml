@@ -73,6 +73,8 @@ EntityBase {
         transformOrigin: Item.Left
         //transformOriginPoint: Qt.point(13, 2)
 
+  //      rotation: GameInfo.easyMode ? tankBody.rotation : ""
+
         color: "transparent"
         /*
         Image {
@@ -94,6 +96,8 @@ EntityBase {
             anchors.centerIn: tankCannon
             //x: -tankHead.width
             playing: false
+
+  //                  rotation: tankBody.rotation
         }
 
     }

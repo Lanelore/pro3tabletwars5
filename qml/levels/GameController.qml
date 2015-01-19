@@ -14,8 +14,12 @@ Common.LevelBase {
 
     property alias playerRed: playerRed
     property alias playerBlue: playerBlue
-    property alias snowballSound: snowballSound
-    property alias icicleSound: icicleSound
+    property alias snowballSound1: snowballSound1
+    property alias snowballSound2: snowballSound2
+    property alias snowballSound3: snowballSound3
+    property alias icicleSound1: icicleSound1
+    property alias icicleSound2: icicleSound2
+    property alias icicleSound3: icicleSound3
     property alias tankRed: playerRed.tankRed
     property alias tankBlue: playerBlue.tankBlue
 
@@ -26,17 +30,66 @@ Common.LevelBase {
     // gets played when tank shoots a normal bullet
     SoundEffectVPlay {
         volume: 0.3
-        id: snowballSound
+        id: snowballSound1
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../../assets/snd/Snowball.wav"
+        source: "../../assets/snd/Snow1.wav"
+    }
+
+    // gets played when tank shoots a normal bullet
+    SoundEffectVPlay {
+        volume: 0.3
+        id: snowballSound2
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/Snow2.wav"
+    }
+
+    // gets played when tank shoots a normal bullet
+    SoundEffectVPlay {
+        volume: 0.3
+        id: snowballSound3
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/Snow3.wav"
     }
 
     // gets played when tank shoots a strong bullter
     SoundEffectVPlay {
         volume: 0.3
-        id: icicleSound
+        id: icicleSound1
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../../assets/snd/Icicle.wav"
+        source: "../../assets/snd/Icicle1.wav"
+    }
+
+    // gets played when tank shoots a strong bullter
+    SoundEffectVPlay {
+        volume: 0.3
+        id: icicleSound2
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/Icicle2.wav"
+    }
+
+    // gets played when tank shoots a strong bullter
+    SoundEffectVPlay {
+        volume: 0.3
+        id: icicleSound3
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../../assets/snd/Icicle3.wav"
+    }
+
+    function snowball() {
+        var random = Math.floor(Math.random() * 3) + 1 //Sounds 1 - 3
+
+        if (random==1) snowballSound1.play()
+        if (random==2) snowballSound2.play()
+        if (random==3) snowballSound3.play()
+
+        //snowballSound1.play()
+    }
+
+    function icicle() {
+        var random = Math.floor(Math.random() * 3) + 1 //Sounds 1 - 3
+        if (random==1) icicleSound1.play()
+        if (random==2) icicleSound2.play()
+        if (random==3) icicleSound3.play()
     }
 
     PlayerRed {
@@ -69,12 +122,13 @@ Common.LevelBase {
 
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused&&GameInfo.easyMode ? false : true
+            enabled: GameInfo.gamePaused||(GameInfo.easyMode==false) ? false : true
             anchors.fill: parent
 
             property bool pressBool: false // becomes true when a touch-cycle starts
+            property bool rotateOnce: true
             property real lastTime: 0
-            //property var touchStartTime: 0
+            property real touchStartTime: 0
             property int onTouchUpdatedCounter: 0
             property variant playerTwoAxisController: playerRed.tankRed.getComponent("TwoAxisController")
 
@@ -123,6 +177,63 @@ Common.LevelBase {
                     }
                 }
             }
+
+            onPressed: {
+                //*//console.log("--------onPressed");
+                pressBool= true
+                touchStartTime = new Date().getTime()
+                //upDateCannon()
+            }
+
+            onReleased: {
+                //console.log("--------onReleased");
+                //upDateCannon()
+                var currentTime = new Date().getTime()
+                var timeDiff = currentTime - lastTime
+                var touchReleaseTime = currentTime - touchStartTime
+                //*//console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
+
+                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && onTouchUpdatedCounter < 6) {
+                    if (playerRed.activatePowershot){
+                        icicle()
+                    }else{
+                        snowball()
+                    }
+                    playerRed.tankRed.tankHead.playing=true
+
+                    lastTime = currentTime
+
+                    //console.debug("Shoot Cannon")
+
+
+                    var speed = (playerRed.activateAccelerator) ? 500 : 250
+
+                    var rotation = playerRed.tankRed.tankBody.rotation+90
+
+                    var xDirection = Math.cos(rotation * Math.PI / 180.0) * speed
+                    var yDirection = Math.sin(rotation * Math.PI / 180.0) * speed
+
+                    var startX= (45*Math.cos((rotation)*Math.PI/180)) + playerRed.tankRed.x + playerRed.tankRed.width/2
+                    var startY= (45*Math.sin((rotation)*Math.PI/180)) + playerRed.tankRed.y + playerRed.tankRed.height/2
+
+                    // create and remove entities at runtime
+                    entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
+                                                                        "start" : Qt.point(startX, startY),
+                                                                        "velocity" : Qt.point(xDirection, yDirection),
+                                                                        "rotation" : playerRed.tankRed.tankBody.rotation + 180,
+                                                                        "bulletType" : playerRed.activatePowershot ? 1 : 0});
+                    console.debug("***** Bullet Angle: "  + (playerRed.tankRed.tankBody.rotation + 180))
+                }
+                pressBool= false
+                onTouchUpdatedCounter = 0
+            }
+
+            onEnabledChanged: {
+                if(rotateOnce){
+                    playerRed.tankRed.tankCannon.rotation = 90
+                    rotateOnce = false
+                }
+            }
         }
     }
 
@@ -146,9 +257,9 @@ Common.LevelBase {
         z: 2000
         radius: width / 2//GameInfo.radius
         opacity: GameInfo.pacity
-        color: GameInfo.easyMode? "grey" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
+        color: GameInfo.easyMode? "transparent" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
-        border.color: GameInfo.easyMode? "transparent" : GameInfo.red
+        border.color: GameInfo.easyMode? "turquoise" : GameInfo.red
 
         Image {
             source: "../../assets/img/final/Control.png"
@@ -291,8 +402,11 @@ Common.LevelBase {
                 var angle = calcAngle(newPosX, newPosY) - 90
 
                 if (newPosX!=0 && newPosY != 0){
+
                     playerRed.tankRed.tankBody.rotation = angle
                     playerRed.tankRed.circleCollider.rotation = angle
+
+                    if(GameInfo.easyMode)playerRed.tankRed.tankCannon.rotation = angle+90
                     //playerRed.tankRed.tankCannon.rotation = playerRed.tankRed.tankBody.rotation + playerRed.tankRed.cannonAngle + 90 // used for ControlType2
                 }
             }
@@ -312,7 +426,7 @@ Common.LevelBase {
         id: playerBulletControlAreaRed
 
         radius: GameInfo.radius
-        opacity: GameInfo.pacity
+        opacity: GameInfo.easyMode ? 0 : GameInfo.pacity
         color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.red
@@ -324,7 +438,7 @@ Common.LevelBase {
         z: 1000
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused ? false : true
+            enabled: GameInfo.gamePaused || GameInfo.easyMode ? false : true
             anchors.fill: parent
 
             property bool rotateOnce: true
@@ -369,9 +483,9 @@ Common.LevelBase {
 
                 if (pressBool && timeDiff > playerRed.minTimeDistanceBullet) {
                     if (playerRed.activatePowershot){
-                        icicleSound.play()
+                        icicle()
                     }else{
-                        snowballSound.play()
+                        snowball()
                     }
                     playerRed.tankRed.tankHead.playing=true
 
@@ -644,9 +758,9 @@ Common.LevelBase {
 
                 if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet) {
                     if (playerRed.activatePowershot){
-                        icicleSound.play()
+                        icicle()
                     }else{
-                        snowballSound.play()
+                        snowball()
                     }
 
                     playerBlue.tankBlue.tankHead.playing=true

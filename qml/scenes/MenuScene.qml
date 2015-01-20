@@ -86,7 +86,7 @@ SceneBase {
         id: menuButton1
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 360
+        anchors.topMargin: 430
         anchors.left: parent.left
         anchors.leftMargin: 385
         rotation: 352
@@ -97,16 +97,16 @@ SceneBase {
         color: "transparent"
         buttonText.color: "white"
         buttonText.opacity: 1//0.85
-        buttonText.font.pointSize: 47
+        buttonText.font.pointSize: 56
         buttonText.font.family: standardFont.name
     }
 
     MenuButton {
         z: 2
         anchors.top: parent.top
-        anchors.topMargin: 540
+        anchors.topMargin: 615
         anchors.left: parent.left
-        anchors.leftMargin: 368
+        anchors.leftMargin: 400
         rotation: 352
 
         text: "Credits"
@@ -115,7 +115,7 @@ SceneBase {
         color: "transparent"
         buttonText.color: "white"
         buttonText.opacity: 1//0.85
-        buttonText.font.pointSize: 47
+        buttonText.font.pointSize: 56
         buttonText.font.family: standardFont.name
     }
 

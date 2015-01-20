@@ -40,15 +40,15 @@ GameController {
         entityId: "tree1"
         id: tree1
         x: 40
-        y: scene.height / 3 * 2
+        y: scene.height / 3 * 2 + 10
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree2"
         id: tree2
-        x: 40 + tree2.treeBody.width
-        y: scene.height / 3 * 2
+        x: 50 + tree2.treeBody.width
+        y: scene.height / 3 * 2 - 15
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
@@ -56,14 +56,14 @@ GameController {
         entityId: "tree3"
         id: tree3
         x: 40 + tree3.treeBody.width * 2
-        y: scene.height / 3 * 2
+        y: scene.height / 3 * 2 + 25
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree4"
         id: tree4
-        x: 40 + tree4.treeBody.width * 3
+        x: 35 + tree4.treeBody.width * 3
         y: scene.height / 3 * 2
         treeBody.source: "../../assets/img/final/Tree.png"
     }
@@ -71,24 +71,24 @@ GameController {
     Tree {
         entityId: "tree5"
         id: tree5
-        x: 40 + tree5.treeBody.width * 4
-        y: scene.height / 3 * 2
+        x: 65 + tree5.treeBody.width * 4
+        y: scene.height / 3 * 2 + 30
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree6"
         id: tree6
-        x: 40 + tree6.treeBody.width * 5
-        y: scene.height / 3 * 2
+        x: 80 + tree6.treeBody.width * 5
+        y: scene.height / 3 * 2 - 10
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree7"
         id: tree7
-        x: 40 + tree7.treeBody.width * 6
-        y: scene.height / 3 * 2
+        x: 50 + tree7.treeBody.width * 6
+        y: scene.height / 3 * 2 + 15
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
@@ -99,15 +99,15 @@ GameController {
     Tree {
         entityId: "tree8"
         id: tree8
-        x: scene.width - tree8.treeBody.width
-        y: scene.height / 3
+        x: 10 + scene.width - tree8.treeBody.width
+        y: 30 + scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree9"
         id: tree9
-        x: scene.width - tree9.treeBody.width * 2
+        x: 15 + scene.width - tree9.treeBody.width * 2
         y: scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
@@ -116,31 +116,31 @@ GameController {
         entityId: "tree10"
         id: tree10
         x: scene.width - tree10.treeBody.width * 3
-        y: scene.height / 3
+        y: 10 + scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree11"
         id: tree11
-        x: scene.width - tree11.treeBody.width * 4
-        y: scene.height / 3
+        x: 10 + scene.width - tree11.treeBody.width * 4
+        y: 40 + scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree12"
         id: tree12
-        x: scene.width - tree12.treeBody.width * 5
-        y: scene.height / 3
+        x: -20 + scene.width - tree12.treeBody.width * 5
+        y: 25 + scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree13"
         id: tree13
-        x:scene.width - tree13.treeBody.width * 6
-        y: scene.height / 3
+        x: 20 + scene.width - tree13.treeBody.width * 6
+        y: 35 + scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
@@ -148,7 +148,7 @@ GameController {
         entityId: "tree14"
         id: tree14
         x: scene.width - tree14.treeBody.width * 7
-        y: scene.height / 3
+        y: 2 + scene.height / 3
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 

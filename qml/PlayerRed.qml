@@ -72,9 +72,17 @@ EntityBase {
     // gets played when tank shoots
     SoundEffectVPlay {
         volume: 0.3
-        id: screamSound
+        id: screamSound1
         // an ogg file is not playable on windows, because the extension is not supported!
         source: "../assets/snd/Injury1.wav"
+    }
+
+    // gets played when tank is hurt
+    SoundEffectVPlay {
+        volume: 0.3
+        id: screamSound2
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/Injury2.wav"
     }
 
     function onDamage() {
@@ -82,10 +90,12 @@ EntityBase {
     }
 
     function scream() {
-        var random = Math.floor(Math.random() * 3) + 1 //Sounds 1 - 3
-        var src = "../assets/snd/Injury" + random + ".wav"
-        screamSound.source = src
-        screamSound.play()
+        var random = Math.floor(Math.random() * 2) + 1 //Sounds 1 - 2
+        if (random == 1){
+            screamSound1.play()
+        }else{
+            screamSound2.play()
+        }
     }
 
     function onDamageWithBulletType(bulletType) {

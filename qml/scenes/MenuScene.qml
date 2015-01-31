@@ -28,10 +28,10 @@ SceneBase {
 */
     BackgroundMusic {
         loops: SoundEffect.Infinite
-        volume: 0.3
+        volume: 0.2
         id: ambienceMusic
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../../assets/snd/BG2.wav"
+        source: "../../assets/snd/BG.wav"
     }
 
     Timer {

@@ -13,13 +13,13 @@ SceneBase {
 
     // back button to leave scene
     MenuButton {
-        label.height: 50
-        label.width: 50
+        label.height: 60
+        label.width: 60
         label.source: "../../assets/img/final/Back.png"
         color: "transparent"
         z: 10
         anchors.right: parent.right
-        anchors.rightMargin: 15
+        anchors.rightMargin: 10
         anchors.verticalCenter: parent.verticalCenter
         onClicked: backPressed()
         buttonText.font.pointSize: 25

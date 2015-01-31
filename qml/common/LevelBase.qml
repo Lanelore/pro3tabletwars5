@@ -86,4 +86,44 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }
+
+
+    // place the 4 Borders around the playing field
+    Border {
+        id: borderLeft
+        width: 100
+        anchors {
+            right: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+    }
+
+    Border {
+        id: borderRight
+        width: 100
+        anchors {
+            left: parent.right
+            bottom: parent.bottom
+            top: parent.top
+        }
+    }
+
+    Border {
+        id: borderTop
+        height: 100
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom:parent.top
+        }
+    }
+
+    Border {
+        id: borderBottom
+        height: 100
+        width: parent.width
+        x: 0
+        y: parent.height //-height
+    }
 }

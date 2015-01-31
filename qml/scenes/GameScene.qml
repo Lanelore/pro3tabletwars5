@@ -33,8 +33,9 @@ SceneBase {
 
     // back button to leave scene
     MenuButton {
-        label.height: 50
-        label.width: 50
+        opacity: 1
+        label.height: 60
+        label.width: 60
         label.source: "../../assets/img/final/Back.png"
         color: "transparent"
 
@@ -43,7 +44,7 @@ SceneBase {
         //text: "Back"
         // anchor the button to the gameWindowAnchorItem to be on the edge of the screen on any device
         anchors.right: gameScene.right
-        anchors.rightMargin: 15
+        anchors.rightMargin: 10
         anchors.verticalCenter: parent.verticalCenter
         onClicked: {
             backPressed()
@@ -58,12 +59,23 @@ SceneBase {
         target: gameScene.activeLevel || null
         onReplay: {
             var tmpFileName = activeLevelFileName
-            activeLevelFileName = ""
+            //console.debug("### File: " + tmpFileName)
+
+            activeLevelFileName = "SelectLevelScene.qml"
             activeLevelFileName = tmpFileName
             GameInfo.gameOver = false
             GameInfo.gamePaused = false
+
+            window.state = "game"
+            GameInfo.powerUpCount=0;
+            var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield"];
+            entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
+            GameInfo.redOnLake = false;
+            GameInfo.blueOnLake = false;
         }
     }
+
+    onActiveLevelChanged: console.debug("### File: " + tmpFileName)
 
     // name of the current level
     Text {
@@ -109,7 +121,7 @@ SceneBase {
         font.bold: true
         text: countdown > 0 ? countdown : ""
         font.family: standardFont.name
-        opacity: 0.85
+        opacity: 1 //0.85
     }
 
     // if the countdown is greater than 0, this timer is triggered every second, decreasing the countdown (until it hits 0 again)

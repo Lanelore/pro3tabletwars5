@@ -11,9 +11,10 @@ EntityBase {
     property alias opponent: opponent
     property alias controller: twoAxisController
     property alias opponentBody: opponentBody
-   // property alias opponentCannon: opponentCannon
+    // property alias opponentCannon: opponentCannon
     property alias circleCollider: circleCollider
-    property alias shootSound: shootSound
+    property alias shootSound1: shootSound1
+    property alias shootSound2: shootSound2
     property bool targetTankRed: true
 
     // this is used as input for the BoxCollider force & torque properties
@@ -33,11 +34,28 @@ EntityBase {
     // gets played when opponent shoots
     SoundEffectVPlay {
         volume: 0.3
-        id: shootSound
+        id: shootSound1
         // an ogg file is not playable on windows, because the extension is not supported!
-        source: "../assets/snd/Snowman.wav"
+        source: "../assets/snd/Snowman1.wav"
     }
-/*
+
+    // gets played when opponent shoots
+    SoundEffectVPlay {
+        volume: 0.3
+        id: shootSound2
+        // an ogg file is not playable on windows, because the extension is not supported!
+        source: "../assets/snd/Snowman2.wav"
+    }
+
+    function shoot() {
+        var random = Math.floor(Math.random() * 2) + 1 //Sounds 1 - 2
+        if (random == 1){
+            shootSound1.play()
+        }else{
+            shootSound2.play()
+        }
+    }
+    /*
     Rectangle {
         id: opponentCannon
         x: opponentBody.x + opponentBody.width / 2
@@ -107,7 +125,7 @@ EntityBase {
             onTriggered: {
                 if (parent.opponentShooting) {
                     opponentBody.playing=true;
-                    shootSound.play();
+                    shoot();
                     var distanceRed = Math.sqrt(Math.pow(tankRed.x - opponent.x, 2) + Math.pow(tankRed.y - opponent.y, 2));
                     var distanceBlue = Math.sqrt(Math.pow(tankBlue.x - opponent.x, 2) + Math.pow(tankBlue.y - opponent.y, 2));
 
@@ -230,7 +248,7 @@ EntityBase {
                                         "y": singleBulletOpponent.y,
                                         "rotation": singleBulletOpponent.rotation
                                     }
-                        );
+                                    );
 
 
 

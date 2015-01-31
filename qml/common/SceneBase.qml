@@ -15,7 +15,7 @@ Scene {
 
     // signal indicating that back has been pressed
     signal backPressed
-    signal replay
+  //  signal replay
 
     // every change in opacity will be done with an animation
     Behavior on opacity {

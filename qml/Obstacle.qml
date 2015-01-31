@@ -12,8 +12,8 @@ EntityBase {
 
     Image {
         id: obstacleBody
-        width: 40
-        height: 40
+        width: 50
+        height: 50
         //rotation: 0
         anchors.centerIn: parent
     }

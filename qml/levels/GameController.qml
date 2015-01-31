@@ -23,7 +23,6 @@ Common.LevelBase {
     property alias tankRed: playerRed.tankRed
     property alias tankBlue: playerBlue.tankBlue
 
-
     //TODO
     focus: true
 
@@ -259,10 +258,10 @@ Common.LevelBase {
         opacity: GameInfo.pacity
         color: GameInfo.easyMode? "transparent" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
-        border.color: GameInfo.easyMode? "turquoise" : GameInfo.red
+        border.color: GameInfo.easyMode? "transparent" : GameInfo.red
 
         Image {
-            source: "../../assets/img/final/Control.png"
+            source: "../../assets/img/final/ControlNew.png"
             opacity: GameInfo.easyMode? 100: 0
             anchors.centerIn: parent
             width: parent.width

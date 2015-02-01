@@ -152,7 +152,7 @@ Common.LevelBase {
                 onTouchUpdatedCounter += 1
 
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
-                if (onTouchUpdatedCounter >= 6) { // change this number to '6' to only shoot when a Tap occured!
+                if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
                     var newX = redFieldPoint.x - playerMovementControlAreaRed.width/2
                     var newY = redFieldPoint.y - playerMovementControlAreaRed.height/2
 
@@ -192,7 +192,7 @@ Common.LevelBase {
                 var touchReleaseTime = currentTime - touchStartTime
                 //*//console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
-                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && onTouchUpdatedCounter < 6) {
+                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && onTouchUpdatedCounter < GameInfo.swipeTouchPointLimit) {
                     if (playerRed.activatePowershot){
                         icicle()
                     }else{
@@ -261,7 +261,7 @@ Common.LevelBase {
         border.color: GameInfo.easyMode? "transparent" : GameInfo.red
 
         Image {
-            source: "../../assets/img/final/ControlNew.png"
+            source: "../../assets/img/final/Control.png"
             opacity: GameInfo.easyMode? 100: 0
             anchors.centerIn: parent
             width: parent.width

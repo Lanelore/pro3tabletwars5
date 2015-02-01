@@ -52,4 +52,5 @@ Item {
 
     // Controller modes
     property bool easyMode: true
+    property int swipeTouchPointLimit: 10
 }

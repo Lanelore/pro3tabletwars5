@@ -6,153 +6,175 @@ import "../levels"
 GameController {
     id: scene
 
-    // iglu in upper right corner
+    // Place Iglu at top center
+    /*
     Iglu {
         igluCount: 2
         entityId: "iglu1"
         id: iglu1
-
-        x: scene.width - iglu1.igluBody.width / 2
-        y: iglu1.igluBody.height
+        x: scene.width / 2 + iglu1.igluBody.width / 2
+        y: iglu1.igluBody.height * 1.5
         z: 2
-
         igluBody.source: "../../assets/img/final/Iglu.png"
-        rotation: 225
+
+        rotation: 180
     }
 
-    // Iglu in lower left corner
+    // place iglu at bottom center
     Iglu {
         igluCount: 2
         entityId: "iglu2"
         id: iglu2
-
-        x: iglu2.igluBody.width / 2
-        y: scene.height - iglu2.igluBody.height
+        x: scene.width / 2 - iglu2.igluBody.width / 2
+        y: scene.height - iglu2.igluBody.height * 1.5
         z: 2
-
         igluBody.source: "../../assets/img/final/Iglu.png"
-        rotation: 45
+        rotation: 0
+    }*/
+
+
+    // Snowmen in upper left und lower right corner
+    Opponents {
+        id: opponentSnowman1
+        x: scene.width / 3
+        y: scene.height / 4
+
+        rotation: 0
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
     }
 
-    // Plant a row of trees at bottom
-    // from left to right
+    Opponents {
+        id: opponentSnowman2
+        x: scene.width / 3 * 2
+        y: scene.height / 4
+
+        rotation: 0
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
+    }
+
+    Opponents {
+        id: opponentSnowman3
+        x: scene.width / 3
+        y: scene.height / 4 * 2
+
+        rotation: 0
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
+    }
+
+    Opponents {
+        id: opponentSnowman4
+        x: scene.width / 3 * 2
+        y: scene.height / 4 * 2
+
+        rotation: 0
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
+    }
+
+    Opponents {
+        id: opponentSnowman5
+        x: scene.width / 3
+        y: scene.height / 4 * 3
+
+        rotation: 0
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
+    }
+
+    Opponents {
+        id: opponentSnowman6
+        x: scene.width / 3 * 2
+        y: scene.height / 4 * 3
+
+        rotation: 0
+        opponentBody.source: "../../assets/img/final/Snowman.gif"
+    }
+
+
+    // obstacles
+    Obstacle {
+        id: obstacle1
+        x: scene.width / 6
+        y: scene.height / 4
+
+        rotation: 0
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+    }
+
+    Obstacle {
+        id: obstacle2
+        x: scene.width / 6 * 5
+        y: scene.height / 4
+
+        rotation: 0
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+    }
+
+    Obstacle {
+        id: obstacle3
+        x: scene.width / 6
+        y: scene.height / 4 * 3
+
+        rotation: 0
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+    }
+
+    Obstacle {
+        id: obstacle4
+        x: scene.width / 6 * 5
+        y: scene.height / 4 * 3
+
+        rotation: 0
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
+    }
+
+
+    // Tree on the left side
     Tree {
         entityId: "tree1"
         id: tree1
-        x: 40
-        y: scene.height / 3 * 2 + 10
+        x: scene.width / 6
+        y: scene.height / 2
+
+        treeBody.width: 60
+        treeBody.height: 60
+        circleCollider.radius: 28
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
-    Tree {
-        entityId: "tree2"
-        id: tree2
-        x: 50 + tree2.treeBody.width
-        y: scene.height / 3 * 2 - 15
-        treeBody.source: "../../assets/img/final/Tree.png"
+    // Power up spawn right side
+    PowerUpSpawn {
+        entityId: "spawn1"
+        id: spawn1
+        x: scene.width / 6 * 5
+        y: scene.height / 2
+
+        spawnBody.width: 60
+        spawnBody.height: 60
+        circleCollider.radius: 28
+        minSpawnRadius: 50
+        spawnRadiusDelta: 0
+
+        spawnBody.source: "../../assets/img/final/PUSpawn.png"
     }
 
-    Tree {
-        entityId: "tree3"
-        id: tree3
-        x: 40 + tree3.treeBody.width * 2
-        y: scene.height / 3 * 2 + 25
-        treeBody.source: "../../assets/img/final/Tree.png"
+/*
+    // Obstacles in upper right and lower left corner (2 each)
+
+
+    Obstacle {
+        id: obstacle2
+        x: scene.width / 4 * 3
+        y: scene.height / 6 + 45
+
+        rotation: 0
+        obstacleBody.source: "../../assets/img/final/Obstacle.png"
     }
+*/
+/*
 
-    Tree {
-        entityId: "tree4"
-        id: tree4
-        x: 35 + tree4.treeBody.width * 3
-        y: scene.height / 3 * 2
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
+*/
+/*
 
-    Tree {
-        entityId: "tree5"
-        id: tree5
-        x: 65 + tree5.treeBody.width * 4
-        y: scene.height / 3 * 2 + 30
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree6"
-        id: tree6
-        x: 80 + tree6.treeBody.width * 5
-        y: scene.height / 3 * 2 - 10
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree7"
-        id: tree7
-        x: 50 + tree7.treeBody.width * 6
-        y: scene.height / 3 * 2 + 15
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-
-
-    // Plant a row of trees at top
-    // from right to left
-    Tree {
-        entityId: "tree8"
-        id: tree8
-        x: 10 + scene.width - tree8.treeBody.width
-        y: 30 + scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree9"
-        id: tree9
-        x: 15 + scene.width - tree9.treeBody.width * 2
-        y: scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree10"
-        id: tree10
-        x: scene.width - tree10.treeBody.width * 3
-        y: 10 + scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree11"
-        id: tree11
-        x: 10 + scene.width - tree11.treeBody.width * 4
-        y: 40 + scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree12"
-        id: tree12
-        x: -20 + scene.width - tree12.treeBody.width * 5
-        y: 25 + scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree13"
-        id: tree13
-        x: 20 + scene.width - tree13.treeBody.width * 6
-        y: 35 + scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-    Tree {
-        entityId: "tree14"
-        id: tree14
-        x: scene.width - tree14.treeBody.width * 7
-        y: 2 + scene.height / 3
-        treeBody.source: "../../assets/img/final/Tree.png"
-    }
-
-
+*/
 
 
     // place the 4 walls

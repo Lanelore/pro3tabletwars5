@@ -29,6 +29,7 @@ SceneBase {
         debugDrawVisible: false
         updatesPerSecondForPhysics: 10
         z: 1110
+
     }
 
     // back button to leave scene
@@ -55,9 +56,37 @@ SceneBase {
         buttonText.font.pointSize: 25
     }
 
+    /*
     Connections {
         target: gameScene.activeLevel || null
         onReplay: {
+            GameInfo.currentLevel = activeLevelFileName
+
+            activeLevelFileName = ""
+            activeLevelFileName = "Level_02.qml"
+            //activeLevelFileName = GameInfo.currentLevel
+
+
+            GameInfo.currentLevel = activeLevelFileName
+            backPressed()
+
+            activeLevelFileName = ""
+            GameInfo.gameOver = false
+            GameInfo.gamePaused = false
+
+
+            gameScene.setLevel(selectedLevel)
+            window.state = "menu"
+            window.state = "game"
+
+
+            //levelPressed(tmp)
+
+
+            window.state = "menu"
+            window.state = "game"
+
+
             var tmpFileName = activeLevelFileName
             //console.debug("### File: " + tmpFileName)
 
@@ -72,10 +101,11 @@ SceneBase {
             entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
             GameInfo.redOnLake = false;
             GameInfo.blueOnLake = false;
+
         }
     }
+*/
 
-    onActiveLevelChanged: console.debug("### File: " + tmpFileName)
 
     // name of the current level
     Text {

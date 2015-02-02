@@ -126,7 +126,9 @@ EntityBase {
             damage = damage / 100.0 * (100 - GameInfo.shieldDamageReduction)
         }
 
+        if(!GameInfo.gameOver){
         life = life - damage;
+        }
         activateHitShield = true
 
 

@@ -7,7 +7,7 @@ Item {
     width: 768
     height: 1024
 
-    signal replay
+    //signal replay
     //signal result
     //signal gameOver
     signal damage
@@ -68,23 +68,33 @@ Item {
             font.pointSize: 13
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 35
+            anchors.bottomMargin: 40
 
             horizontalAlignment:  Text.AlignHCenter
             font.family: standardFont.name
         }
 
-        AudioButton {
-            source: "../../assets/img/final/Play.png"
-            onClicked: {
-                replay()
+
+
+
+            AudioButton {
+                source: "../../assets/img/final/Play2.png"
+                onClicked: {
+                    backPressed()
+                    activeLevelFileName = ""
+                    GameInfo.gameOver = false
+                    GameInfo.gamePaused = false
+                }
+                width: 50
+                height: 50
+
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: height/2*(-1)
+                anchors.horizontalCenter: parent.horizontalCenter
             }
-            width: 80
-            height: 80
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: -50
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+
+
+
     }
 
 

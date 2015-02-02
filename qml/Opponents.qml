@@ -29,6 +29,17 @@ EntityBase {
         height: 55
         rotation: 180
         anchors.centerIn: parent
+        z: 2
+    }
+
+    Image {
+        id: shadow
+        width: 40
+        height: 55
+        rotation: 180
+        anchors.centerIn: parent
+        source: "../assets/img/final/Shadow.png"
+        z: 1
     }
 
     // gets played when opponent shoots

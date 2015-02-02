@@ -9,6 +9,7 @@ SceneBase {
     // signal indicating that a level has been selected
     signal levelPressed(string selectedLevel)
 
+
     // background
     Image {
         anchors.fill: parent
@@ -21,6 +22,8 @@ SceneBase {
         entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
         GameInfo.redOnLake = false;
         GameInfo.blueOnLake = false;
+
+        GameInfo.currentLevel = selectedLevel
     }
 
     /*

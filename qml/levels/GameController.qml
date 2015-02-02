@@ -415,7 +415,7 @@ Common.LevelBase {
         height: 180
         x: 50
         y: 50
-        z: 2000
+        z: 5000
         radius: width / 2//GameInfo.radius
         opacity: GameInfo.pacity
         color: GameInfo.easyMode? "transparent" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
@@ -428,8 +428,8 @@ Common.LevelBase {
             anchors.centerIn: parent
             width: parent.width
             height: parent.height
-        }*/
-
+        }
+*/
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused ? false : true
             anchors.fill: parent
@@ -493,6 +493,12 @@ Common.LevelBase {
                     }else{
                         playerMovementControlAreaRed.y += diffY
                     }
+
+
+
+
+
+
                 }
 
                 newPosY = newPosY * -1

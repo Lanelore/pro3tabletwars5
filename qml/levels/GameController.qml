@@ -249,8 +249,8 @@ Common.LevelBase {
                 newY = Math.max(0, newY);
                 newY = Math.min(scene.height / 2 - playerMovementImageRed.height, newY);
 
-                //playerMovementImageRed.x = newX;
-                //playerMovementImageRed.y = newY;
+                playerMovementImageRed.x = newX;
+                playerMovementImageRed.y = newY;
 
                 didRegisterReferencePoint = true;
             }
@@ -797,8 +797,8 @@ Common.LevelBase {
             ]
 
             onUpdated: {
-                playerRed.tankRed.circleCollider.linearDamping=0
-                playerRed.tankRed.tankBody.playing=true
+                playerBlue.tankBlue.circleCollider.linearDamping=0
+                playerBlue.tankBlue.tankBody.playing=true
 
                 onTouchUpdatedCounter += 1
 

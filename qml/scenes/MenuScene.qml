@@ -163,6 +163,7 @@ SceneBase {
                 settings.soundEnabled ^= true
             }
         }
+        /*
         AudioButton {
             source: "../../assets/img/final/Settings.png"
             active: !GameInfo.easyMode
@@ -173,5 +174,6 @@ SceneBase {
             width: 80
             height: 80
         }
+        */
     }
 }

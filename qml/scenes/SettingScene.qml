@@ -1,6 +1,7 @@
 import VPlay 2.0
 import QtQuick 2.0
 import "../common"
+import ".."
 
 SceneBase {
     id:settingScene
@@ -35,14 +36,38 @@ SceneBase {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 */
-    // credits
+
     Text {
         font.family: standardFont.name
         font.pointSize: 40
-        text: "Settings"
+        text: "Advanced Controls"
         color: "black"
-        anchors.left: parent.left
-        anchors.leftMargin: 40
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: parent.height/4
+    }
+
+    Text {
+        font.family: standardFont.name
+        font.pointSize: 15
+        text: "Extra Controls to aim at your target"
+        color: "black"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: parent.height/3 + 50
+    }
+
+    AudioButton {
+        source: active? "../../assets/img/final/On.png" : "../../assets/img/final/Off.png"
+        active: !GameInfo.easyMode
+        opacity: active? 0.5 : 1
+        onClicked: {
+            GameInfo.easyMode ^= true
+        }
+        width: 100
+        height: 80
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: parent.height/2
     }
 }

@@ -9,7 +9,7 @@ SceneBase {
     // background
     Image {
         anchors.fill: parent
-        source: "../../assets/img/final/BG.png"
+        source: "../../assets/img/final/Credits.png" //BG
     }
 
     // back button to leave scene
@@ -25,7 +25,7 @@ SceneBase {
         onClicked: backPressed()
         buttonText.font.pointSize: 25
     }
-/*
+    /*
     Text {
         font.family: standardFont.name
         font.pointSize: 170
@@ -40,34 +40,39 @@ SceneBase {
     Text {
         font.family: standardFont.name
         font.pointSize: 40
-        text: "Advanced Controls"
+        text: "Advanced\nControls"
         color: "black"
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 30
         anchors.top: parent.top
-        anchors.topMargin: parent.height/4
+        anchors.topMargin: -10
+        lineHeight: 0.5
     }
 
     Text {
         font.family: standardFont.name
         font.pointSize: 15
-        text: "Extra Controls to aim at your target"
+        text: "Additional controls to aim\nat your target"
         color: "black"
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 30
         anchors.top: parent.top
-        anchors.topMargin: parent.height/3 + 50
+        anchors.topMargin: 170
+        lineHeight: 0.8
     }
 
     AudioButton {
         source: active? "../../assets/img/final/On.png" : "../../assets/img/final/Off.png"
         active: !GameInfo.easyMode
-        opacity: active? 0.5 : 1
+        opacity: active? 1 : 0.5
         onClicked: {
             GameInfo.easyMode ^= true
         }
         width: 100
         height: 80
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: 30
         anchors.top: parent.top
-        anchors.topMargin: parent.height/2
+        anchors.topMargin: 275
     }
 }

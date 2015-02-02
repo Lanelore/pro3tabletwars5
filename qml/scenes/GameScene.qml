@@ -29,6 +29,7 @@ SceneBase {
         debugDrawVisible: false
         updatesPerSecondForPhysics: 10
         z: 1110
+
     }
 
     // back button to leave scene
@@ -55,13 +56,17 @@ SceneBase {
         buttonText.font.pointSize: 25
     }
 
+    /*
     Connections {
         target: gameScene.activeLevel || null
         onReplay: {
-            //var tmp = activeLevel
+            GameInfo.currentLevel = activeLevelFileName
+
+            activeLevelFileName = ""
+            activeLevelFileName = "Level_02.qml"
+            //activeLevelFileName = GameInfo.currentLevel
 
 
-/*
             GameInfo.currentLevel = activeLevelFileName
             backPressed()
 
@@ -74,7 +79,7 @@ SceneBase {
             window.state = "menu"
             window.state = "game"
 
-*/
+
             //levelPressed(tmp)
 
 
@@ -99,8 +104,8 @@ SceneBase {
 
         }
     }
+*/
 
-    onActiveLevelChanged: console.debug("### File: " + tmpFileName)
 
     // name of the current level
     Text {

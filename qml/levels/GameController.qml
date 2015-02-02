@@ -266,6 +266,7 @@ Common.LevelBase {
             anchors.centerIn: parent
             width: parent.width
             height: parent.height
+            z: 5000
         }
 
         MultiPointTouchArea {

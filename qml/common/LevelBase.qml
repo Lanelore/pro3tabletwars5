@@ -7,7 +7,7 @@ Item {
     width: 768
     height: 1024
 
-    signal replay
+    //signal replay
     //signal result
     //signal gameOver
     signal damage
@@ -77,13 +77,17 @@ Item {
         AudioButton {
             source: "../../assets/img/final/Play.png"
             onClicked: {
-                replay()
+                backPressed()
+                activeLevelFileName = ""
+                GameInfo.gameOver = false
+                GameInfo.gamePaused = false
             }
-            width: 80
-            height: 80
+            width: 50
+            height: 50
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: -50
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 15
+            anchors.right: parent.right
+            anchors.rightMargin: 15
         }
     }
 

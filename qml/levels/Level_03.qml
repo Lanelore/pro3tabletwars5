@@ -50,8 +50,8 @@ GameController {
         playerRed: parent.playerRed
         playerBlue: parent.playerBlue
     }
-*/
 
+*/
     Iglu {
         igluCount: 3
         entityId: "iglu1"
@@ -113,6 +113,7 @@ GameController {
         rotation: 0
         obstacleBody.source: "../../assets/img/final/Obstacle.png"
     }
+
 
     Ball {
         id: ball

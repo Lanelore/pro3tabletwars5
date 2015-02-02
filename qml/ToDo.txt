@@ -14,6 +14,12 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+wichtige offene Punkte 02.02.2015
+---------------------------------
+     * Tutorial Level + zusätzliche Level (Reihenfolge!)
+     * Controls (Easy und Expert für beide Player)
+     * Credits (v-Play, Qt, ...)
+
 offene Punkte aus Besprechung mit PAG am 13.01.2015
 ---------------------------------------------------
      * Unsterblichkeitsdauer nach einem Treffer sollte auf 2-3 Sekunden verlängert werden, damit Player Zeit zum ausweichen hat.

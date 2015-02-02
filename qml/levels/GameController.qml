@@ -119,33 +119,38 @@ Common.LevelBase {
         y: 0
         z: 1000
 
+        Image {
+            id: playerMovementImage
+            source: "../../assets/img/final/Control.png"
+            opacity: GameInfo.easyMode? 100: 0
+            x: 50
+            y: 100
+            width: 180
+            height: 180
+        }
+
 
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused||(GameInfo.easyMode==false) ? false : true
             anchors.fill: parent
 
-            property bool pressBool: false // becomes true when a touch-cycle starts
+            property int referencePointX: 0
+            property int referencePointY: 0
+            property bool didRegisterReferencePoint: false;
             property bool rotateOnce: true
             property real lastTime: 0
             property real touchStartTime: 0
             property int onTouchUpdatedCounter: 0
             property variant playerTwoAxisController: playerRed.tankRed.getComponent("TwoAxisController")
+            property real oldPosX: 0.0
+            property real oldPosY: 0.0
+            property real newPosX: 0.0
+            property real newPosY: 0.0
+
 
             touchPoints: [
                 TouchPoint {id: redFieldPoint}
             ]
-
-            /*
-            onUpdated: {
-                console.log("--------onTouchUpdated");
-                onTouchUpdatedCounter += 1
-
-                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
-                if (onTouchUpdatedCounter >= GameInfo.onTouchUpdateCounterThreshold) { // change this number to '6' to only shoot when a Tap occured!
-                    upDateCannon()
-                }
-            }
-            */
 
             onUpdated: {
                 console.log("--------onTouchUpdated");
@@ -153,46 +158,208 @@ Common.LevelBase {
 
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
                 if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
-                    var newX = redFieldPoint.x - playerMovementControlAreaRed.width/2
-                    var newY = redFieldPoint.y - playerMovementControlAreaRed.height/2
 
-                    playerMovementControlAreaRed.x = newX
-                    playerMovementControlAreaRed.y = newY
+                    // if no referencePoint is loaded yet, get one!
+                    if (didRegisterReferencePoint == false) {
+                        // save new reference point
+                        referencePointX = redFieldPoint.x;
+                        referencePointY = redFieldPoint.y;
 
-                    if(newX <= 0){
-                        playerMovementControlAreaRed.x = 0
-                    }else if(newX >= (scene.width - playerMovementControlAreaRed.width)){
-                        playerMovementControlAreaRed.x = scene.width - playerMovementControlAreaRed.width
-                    }else{
-                        playerMovementControlAreaRed.x = newX
+                        updatePlayerMovementImagePosition()
                     }
 
-                    if(newY <= 0){
-                        playerMovementControlAreaRed.y = 0
-                    }else if(newY >= (scene.height/2 - playerMovementControlAreaRed.height)){
-                        playerMovementControlAreaRed.y = scene.height/2 - playerMovementControlAreaRed.height
-                    }else{
-                        playerMovementControlAreaRed.y = newY
+                    // if touch is outside of playerMovementImage update the position of the playerMovementImage and the referencePoint!
+                    if (redFieldPoint.x < playerMovementImage.x ||
+                            redFieldPoint.x > playerMovementImage.x + playerMovementImage.width) {
+
+                        // touch happened outside of playerMovementImage in horizontal way
+                        var diff = redFieldPoint.x - referencePointX;
+                        if (diff < 0) {
+                            diff = diff + playerMovementImage.width / 2;
+                            referencePointX = referencePointX + diff;
+                        } else {
+                            diff = diff - playerMovementImage.width / 2;
+                            referencePointX = referencePointX + diff;
+                        }
                     }
+
+                    if (redFieldPoint.y < playerMovementImage.y ||
+                            redFieldPoint.y > playerMovementImage.y + playerMovementImage.height) {
+
+                        // touch happened outside of playerMovementImage in vertical way
+                        var diff = redFieldPoint.y - referencePointY;
+                        if (diff < 0) {
+                            diff = diff + playerMovementImage.height / 2;
+                            referencePointY = referencePointY + diff;
+                        } else {
+                            diff = diff - playerMovementImage.height / 2;
+                            referencePointY = referencePointY + diff;
+                        }
+                    }
+
+                    updatePlayerMovementImagePosition()
+
+
+                    // now do the actual control of the character
+                    playerRed.tankRed.circleCollider.linearDamping=0
+                    playerRed.tankRed.tankBody.playing=true
+
+
+                    newPosX = ((redFieldPoint.x - referencePointX + playerMovementImage.width / 2) / (playerMovementImage.width / 2) - 1)
+                    newPosY = ((redFieldPoint.y - referencePointY + playerMovementImage.height / 2) / (playerMovementImage.height / 2) - 1)
+                    console.log("newPosX flo: " + newPosX);
+                    var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
+
+                    newPosY = newPosY * -1
+
+                    if (newPosX > 1) newPosX = 1
+                    if (newPosY > 1) newPosY = 1
+                    if (newPosX < -1) newPosX = -1
+                    if (newPosY < -1) newPosY = -1
+
+                    // if it is on the lake calculate it in a special way!
+                    if(GameInfo.redOnLake){
+                        console.log("X old: " + oldPosX + " | new: " + newPosX)
+                        console.log("Y old: " + oldPosY + " | new: " + newPosY)
+                        newPosX = oldPosX+(newPosX*0.03)
+                        newPosY = oldPosY+(newPosY*0.03)
+
+                        if (newPosX > 1) newPosX = 1
+                        if (newPosY > 1) newPosY = 1
+                        if (newPosX < -1) newPosX = -1
+                        if (newPosY < -1) newPosY = -1
+                    }
+
+                    // If the player is not touching the control area, slowly stop the body!
+                    if(playerRed.tankRed.tankBody.playing==false) damping()
+
+                    // update the movement
+                    updateMovement()
+                }
+            }
+
+            function updatePlayerMovementImagePosition() {
+                // move image to reference point
+                var newX = referencePointX - playerMovementImage.width / 2;
+                var newY = referencePointY - playerMovementImage.height / 2;
+
+                newX = Math.max(0, newX);
+                newX = Math.min(scene.width - playerMovementImage.width, newX);
+
+                newY = Math.max(0, newY);
+                newY = Math.min(scene.height / 2 - playerMovementImage.height, newY);
+
+                playerMovementImage.x = newX;
+                playerMovementImage.y = newY;
+
+                didRegisterReferencePoint = true;
+            }
+
+            // slows down the character when releasing the finger from tablet
+            function damping(){
+                if(GameInfo.redOnLake==false){
+                    playerRed.tankRed.circleCollider.linearDamping=GameInfo.damping
+                }
+            }
+
+            // updates the speed/direction of the character
+            function updateMovement(){
+                // store the x and y values before they'll be altered
+                oldPosX=newPosX
+                oldPosY=newPosY
+
+                // Adjust the speed
+                newPosX = newPosX * GameInfo.maximumPlayerVelocity
+                newPosY = newPosY * GameInfo.maximumPlayerVelocity
+
+                /* normalise the speed! when driving diagonally the x and y speed is both 1
+                    when driving horizontally only either x or y is 1, which results in slower horizontal/vercial speed than diagonal speed
+                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) */
+
+                // calculate the distance from the center ( = speed)
+                var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
+                var maxVelocity = GameInfo.maximumPlayerVelocity
+                if (playerRed.activateAccelerator){
+                    maxVelocity*= GameInfo.speed
+                    newPosX *= GameInfo.speed
+                    newPosY *= GameInfo.speed
+                }
+                if (velocity > maxVelocity) {
+                    // velocity is too high! shrink it down
+                    var shrinkFactor = maxVelocity / velocity
+                    newPosX = newPosX * shrinkFactor
+                    newPosY = newPosY * shrinkFactor
+                }
+
+                // now update the twoAxisController with the calculated values
+                playerTwoAxisController.xAxis = newPosX
+                playerTwoAxisController.yAxis = newPosY
+
+                var angle = calcAngle(newPosX, newPosY) - 90
+
+                if (newPosX!=0 && newPosY != 0){
+
+                    playerRed.tankRed.tankBody.rotation = angle
+                    playerRed.tankRed.circleCollider.rotation = angle
+
+                    if(GameInfo.easyMode)playerRed.tankRed.tankCannon.rotation = angle+90
+                    //playerRed.tankRed.tankCannon.rotation = playerRed.tankRed.tankBody.rotation + playerRed.tankRed.cannonAngle + 90 // used for ControlType2
                 }
             }
 
             onPressed: {
-                //*//console.log("--------onPressed");
-                pressBool= true
                 touchStartTime = new Date().getTime()
-                //upDateCannon()
+                didRegisterReferencePoint = false;
             }
 
             onReleased: {
-                //console.log("--------onReleased");
-                //upDateCannon()
+                // slow down character till it stops
+                damping()
+                onTouchUpdatedCounter = 0
+            }
+
+            onEnabledChanged: {
+                if(rotateOnce){
+                    playerRed.tankRed.tankCannon.rotation = 90
+                    rotateOnce = false
+                }
+            }
+        }
+    }
+
+    // ---------------------------------
+    // Fire Button Player
+    // ---------------------------------
+    Rectangle {
+        id: fireButtonPlayerRed
+        radius: GameInfo.radius
+        opacity: GameInfo.easyMode ? GameInfo.pacity : 0
+        color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
+        border.width: GameInfo.border
+        border.color: GameInfo.red
+
+        width: GameInfo.controlType1Width
+        height: GameInfo.controlType1Height
+        x: scene.width - fireButtonPlayerRed.width - 50
+        y: 50
+        z: 1000
+
+
+        MultiPointTouchArea {
+            enabled: GameInfo.gamePaused || GameInfo.easyMode ? true : false
+            anchors.fill: parent
+
+            touchPoints: [
+                TouchPoint {id: fireTouchPoint1}
+            ]
+
+            property real lastTime: 0
+
+            onPressed: {
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
-                var touchReleaseTime = currentTime - touchStartTime
-                //*//console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
-                if (pressBool && timeDiff > playerRed.minTimeDistanceBullet && onTouchUpdatedCounter < GameInfo.swipeTouchPointLimit) {
+                if (timeDiff > playerRed.minTimeDistanceBullet) {
                     if (playerRed.activatePowershot){
                         icicle()
                     }else{
@@ -201,9 +368,6 @@ Common.LevelBase {
                     playerRed.tankRed.tankHead.playing=true
 
                     lastTime = currentTime
-
-                    //console.debug("Shoot Cannon")
-
 
                     var speed = (playerRed.activateAccelerator) ? 500 : 250
 
@@ -223,18 +387,16 @@ Common.LevelBase {
                                                                         "bulletType" : playerRed.activatePowershot ? 1 : 0});
                     console.debug("***** Bullet Angle: "  + (playerRed.tankRed.tankBody.rotation + 180))
                 }
-                pressBool= false
-                onTouchUpdatedCounter = 0
             }
 
-            onEnabledChanged: {
-                if(rotateOnce){
-                    playerRed.tankRed.tankCannon.rotation = 90
-                    rotateOnce = false
-                }
-            }
+            onTouchUpdated: {}
+
+            onReleased: {}
+
+            onCanceled: {}
         }
     }
+
 
 
     // ---------------------------------------------------
@@ -259,14 +421,14 @@ Common.LevelBase {
         color: GameInfo.easyMode? "transparent" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.easyMode? "transparent" : GameInfo.red
-
+/*
         Image {
             source: "../../assets/img/final/Control.png"
             opacity: GameInfo.easyMode? 100: 0
             anchors.centerIn: parent
             width: parent.width
             height: parent.height
-        }
+        }*/
 
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused ? false : true
@@ -411,6 +573,7 @@ Common.LevelBase {
             }
         }
     }
+
 
 
 
@@ -610,9 +773,10 @@ Common.LevelBase {
                 playerBlue.tankBlue.circleCollider.linearDamping=0
                 playerBlue.tankBlue.tankBody.playing=true
 
+                console.log("PointBluex: " + pointCtrlBlue.x);
                 newPosX = (pointCtrlBlue.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlBlue.y / (parent.height / 2) - 1)
-
+                console.log("newPosX blue:" + newPosX);
                 newPosY = newPosY * -1
 
                 if (newPosX > 1) newPosX = 1

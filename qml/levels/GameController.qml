@@ -151,6 +151,9 @@ Common.LevelBase {
             ]
 
             onUpdated: {
+                playerRed.tankRed.circleCollider.linearDamping=0
+                playerRed.tankRed.tankBody.playing=true
+
                 console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 
@@ -310,9 +313,14 @@ Common.LevelBase {
             }
 
             onReleased: {
+                // reset touchUpdateCounter
+                onTouchUpdatedCounter = 0
+
+                // set playing to false
+                playerRed.tankRed.tankBody.playing=false
+
                 // slow down character till it stops
                 damping()
-                onTouchUpdatedCounter = 0
             }
 
             onEnabledChanged: {
@@ -403,17 +411,16 @@ Common.LevelBase {
         }
     }
 
-
-/*
-    // ---------------------------------------------------
-    // Controller tankRed
-    // ---------------------------------------------------
     onRedOffLake: {
         if(GameInfo.redOnLake==false && playerRed.tankRed.tankBody.playing==false){
             playerRed.tankRed.circleCollider.linearDamping=GameInfo.damping
         }
     }
 
+/*
+    // ---------------------------------------------------
+    // Controller tankRed
+    // ---------------------------------------------------
     Rectangle {
         // Object properties
         id: playerMovementControlAreaRed
@@ -790,7 +797,9 @@ Common.LevelBase {
             ]
 
             onUpdated: {
-                console.log("--------onTouchUpdated");
+                playerRed.tankRed.circleCollider.linearDamping=0
+                playerRed.tankRed.tankBody.playing=true
+
                 onTouchUpdatedCounter += 1
 
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
@@ -950,9 +959,14 @@ Common.LevelBase {
             }
 
             onReleased: {
+                // reset touchUpdateCounter
+                onTouchUpdatedCounter = 0
+
+                // set playing to false
+                playerBlue.tankBlue.tankBody.playing=false
+
                 // slow down character till it stops
                 damping()
-                onTouchUpdatedCounter = 0
             }
 
             onEnabledChanged: {
@@ -1048,11 +1062,6 @@ Common.LevelBase {
     }
 
 
-
-    // ---------------------------------------------------
-    // Controller tankBlue
-    // ---------------------------------------------------
-    /*
     onBlueOffLake: {
         if(GameInfo.blueOnLake==false && playerBlue.tankBlue.tankBody.playing==false){
             playerBlue.tankBlue.circleCollider.linearDamping=GameInfo.damping
@@ -1060,6 +1069,12 @@ Common.LevelBase {
             playerBlue.tankBlue.circleCollider.linearDamping=0
         }
     }
+
+    // ---------------------------------------------------
+    // Controller tankBlue
+    // ---------------------------------------------------
+    /*
+
 
     Rectangle {
         // Object properties

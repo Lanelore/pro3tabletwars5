@@ -6,6 +6,7 @@ import "."
 EntityBase {
     id: powLifeUp
     entityType: "powLifeUp"
+    entityId: "powLifeUp"
 
     property var tankRed
     property var tankBlue

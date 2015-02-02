@@ -40,7 +40,7 @@ GameController {
         playerRed: parent.playerRed
         playerBlue: parent.playerBlue
     }
-*/
+
     PowerUpLifeUp {
         id: powLifeUp
         x: scene.width / 10
@@ -50,8 +50,7 @@ GameController {
         playerRed: parent.playerRed
         playerBlue: parent.playerBlue
     }
-
-
+*/
 
     Iglu {
         igluCount: 3

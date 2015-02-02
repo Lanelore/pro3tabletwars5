@@ -5,6 +5,7 @@ import "."
 EntityBase {
     id: powPowershot
     entityType: "powPowershot"
+    entityId: "powPowershot"
     z: 1
 
     property var tankRed

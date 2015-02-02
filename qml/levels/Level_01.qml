@@ -65,16 +65,6 @@ GameController {
         y: scene.height / 2 + 19
         treeBody.source: "../../assets/img/final/Tree.png"
     }
-/*
-    Splat {
-        entityId: "splat"
-        id: splat
-        x: scene.width  / 2
-        y: scene.height / 2
-    }
-*/
-
-
 
     // place the 4 walls
     Wall {
@@ -123,5 +113,45 @@ GameController {
         y: parent.height-height
         image.source: "../../assets/img/final/Wall.png"
         z:1
+    }
+
+    PowerUpAccelerator {
+        id: powAccelerator
+        x: scene.width / 3 - width / 2
+        y: scene.height / 3 - height / 2
+        tankRed: parent.tankRed
+        tankBlue: parent.tankBlue
+        playerRed: parent.playerRed
+        playerBlue: parent.playerBlue
+    }
+
+    PowerUpLifeUp {
+        id: powLifeUp
+        x: scene.width/3*2 - width/2
+        y: scene.height/3 - height/2
+        tankRed: parent.tankRed
+        tankBlue: parent.tankBlue
+        playerRed: parent.playerRed
+        playerBlue: parent.playerBlue
+    }
+
+    PowerUpPowershot {
+        id: poPowershot
+        x: scene.width/3 - width/2
+        y: scene.height/3*2 - height/2
+        tankRed: parent.tankRed
+        tankBlue: parent.tankBlue
+        playerRed: parent.playerRed
+        playerBlue: parent.playerBlue
+    }
+
+    PowerUpShield {
+        id: powShield
+        x: scene.width/3*2 - width/2
+        y: scene.height/3*2 - height/2
+        tankRed: parent.tankRed
+        tankBlue: parent.tankBlue
+        playerRed: parent.playerRed
+        playerBlue: parent.playerBlue
     }
 }

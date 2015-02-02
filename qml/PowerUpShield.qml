@@ -5,6 +5,7 @@ import "."
 EntityBase {
     id: powShield
     entityType: "powShield"
+    entityId: "powShield"
     z: 1
 
     property var tankRed

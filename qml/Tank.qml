@@ -76,17 +76,7 @@ EntityBase {
   //      rotation: GameInfo.easyMode ? tankBody.rotation : ""
 
         color: "transparent"
-        /*
-        Image {
-            id: tankHead
-            width: 40
-            height: 40
-            //transformOrigin: Item.Right
-            //rotation: 0
-            anchors.centerIn: tankCannon
-            //x: -tankHead.width
-        }
-*/
+
         AnimatedImage {
             id: tankHead
             width: 40
@@ -96,10 +86,7 @@ EntityBase {
             anchors.centerIn: tankCannon
             //x: -tankHead.width
             playing: false
-
-  //                  rotation: tankBody.rotation
         }
-
     }
 
     CircleCollider {

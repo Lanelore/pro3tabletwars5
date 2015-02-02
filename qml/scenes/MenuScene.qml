@@ -88,10 +88,8 @@ SceneBase {
     MenuButton {
         id: menuButton1
         z: 2
-        anchors.top: parent.top
-        anchors.topMargin: 430
-        anchors.left: parent.left
-        anchors.leftMargin: 385
+        x: menuScene.width / 2 * 1.1
+        y: menuScene.height / 2
         rotation: 352
 
         text: "Play"
@@ -106,10 +104,8 @@ SceneBase {
 
     MenuButton {
         z: 2
-        anchors.top: parent.top
-        anchors.topMargin: 615
-        anchors.left: parent.left
-        anchors.leftMargin: 400
+        x: menuScene.width / 2 * 1.1
+        y: menuScene.height / 3 * 2
         rotation: 352
 
         text: "Settings"
@@ -124,10 +120,8 @@ SceneBase {
 
     MenuButton {
         z: 2
-        anchors.top: parent.top
-        anchors.topMargin: 815
-        anchors.left: parent.left
-        anchors.leftMargin: 410
+        x: menuScene.width / 2 * 1.1
+        y: menuScene.height / 6 * 5
         rotation: 352
 
         text: "Credits"

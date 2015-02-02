@@ -23,8 +23,8 @@ GameWindow {
     // the content of the logical scene size (480x320 for landscape mode by default) gets scaled to the window size based on the scaleMode
     // you can set this size to any resolution you would like your project to start with, most of the times the one of your main target device
     // this resolution is for iPad
-    height: 800
-    width: 600
+    height: 1024
+    width: 768
 
     id: window
 

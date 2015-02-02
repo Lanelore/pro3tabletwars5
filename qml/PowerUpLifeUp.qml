@@ -7,6 +7,8 @@ EntityBase {
     id: powLifeUp
     entityType: "powLifeUp"
     entityId: "powLifeUp"
+    z: 1
+
 
     property var tankRed
     property var tankBlue
@@ -23,7 +25,7 @@ EntityBase {
         width: parent.width
         height: parent.height
         z: 1
-        source: "../assets/img/final/PULifeUP.gif"
+        source: "../assets/img/final/powerlife.gif"
         anchors.centerIn: parent
         playing: true
     }

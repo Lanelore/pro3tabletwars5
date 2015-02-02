@@ -114,6 +114,16 @@ GameController {
         z:1
     }
 
+    PowerUpLifeUp {
+        id: powLifeUp
+        x: scene.width / 3 * 2
+        y: scene.height / 3
+        tankRed: parent.tankRed
+        tankBlue: parent.tankBlue
+        playerRed: parent.playerRed
+        playerBlue: parent.playerBlue
+    }
+
     PowerUpAccelerator {
         id: powAccelerator
         x: scene.width / 3 - width / 2
@@ -124,15 +134,7 @@ GameController {
         playerBlue: parent.playerBlue
     }
 
-    PowerUpLifeUp {
-        id: powLifeUp
-        x: scene.width/3*2 - width/2
-        y: scene.height/3 - height/2
-        tankRed: parent.tankRed
-        tankBlue: parent.tankBlue
-        playerRed: parent.playerRed
-        playerBlue: parent.playerBlue
-    }
+
 
     PowerUpPowershot {
         id: poPowershot

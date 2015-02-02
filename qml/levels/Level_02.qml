@@ -6,169 +6,152 @@ import "../levels"
 GameController {
     id: scene
 
-    //property alias opponentSnowman: opponentSnowman
-    //property alias powShield: powShield
-    //property alias powAccelerator: powAccelerator
-
-    // Place 4 iglus in each corner
+    // iglu in upper right corner
     Iglu {
-        igluCount: 4
+        igluCount: 2
         entityId: "iglu1"
         id: iglu1
-        x: 160
-        y:  60
+
+        x: scene.width - iglu1.igluBody.width / 2
+        y: iglu1.igluBody.height
         z: 2
-        igluBody.source: "../../assets/img/final/Iglu.png"
 
-        rotation: 135
-    }
-
-
-    Iglu {
-        igluCount: 4
-        entityId: "iglu2"
-        id: iglu2
-        x: scene.width - 60
-        y: 160
-        z: 2
         igluBody.source: "../../assets/img/final/Iglu.png"
         rotation: 225
     }
 
+    // Iglu in lower left corner
     Iglu {
-        igluCount: 4
-        entityId: "iglu3"
-        id: iglu3
-        x: 60
+        igluCount: 2
+        entityId: "iglu2"
+        id: iglu2
+
+        x: iglu2.igluBody.width / 2
+        y: scene.height - iglu2.igluBody.height
         z: 2
-        y: scene.height - 160
+
+        igluBody.source: "../../assets/img/final/Iglu.png"
         rotation: 45
-        igluBody.source: "../../assets/img/final/Iglu.png"
     }
 
-    Iglu {
-        igluCount: 4
-        entityId: "iglu4"
-        id: iglu4
-        x: scene.width - 160
-        y: scene.height - 60
-        z:2
-        rotation: 315
-        igluBody.source: "../../assets/img/final/Iglu.png"
-    }
-
-
-    // Place the Lake in the middle
-    Lake {
-        id: lake
-        x: scene.width / 2 - lake.width / 2 - 20
-        y: scene.height / 2 - lake.height / 2 + 30
-
-        rotation: 0
-        lakeBody.source: "../../assets/img/final/Lake.png"
-    }
-
-
-    // Snowmen in upper left und lower right corner
-    Opponents {
-        id: opponentSnowman1
-        x: scene.width / 4 * 3
-        y: scene.height / 3 * 2
-
-        rotation: 0
-        opponentBody.source: "../../assets/img/final/Snowman.gif"
-    }
-
-    Opponents {
-        id: opponentSnowman2
-        x: scene.width / 4
-        y: scene.height / 3
-
-        rotation: 0
-        opponentBody.source: "../../assets/img/final/Snowman.gif"
-    }
-
-
-    // Obstacles in upper right and lower left corner (2 each)
-    Obstacle {
-        id: obstacle1
-        x: scene.width / 4 * 3 - 45
-        y: scene.height / 6
-
-        rotation: 0
-        obstacleBody.source: "../../assets/img/final/Obstacle.png"
-    }
-
-    Obstacle {
-        id: obstacle2
-        x: scene.width / 4 * 3
-        y: scene.height / 6 + 45
-
-        rotation: 0
-        obstacleBody.source: "../../assets/img/final/Obstacle.png"
-          }
-
-    Obstacle {
-        id: obstacle3
-        x: scene.width / 4 + 45
-        y: scene.height / 6 * 5
-
-        rotation: 0
-        obstacleBody.source: "../../assets/img/final/Obstacle.png"
-           }
-
-    Obstacle {
-        id: obstalce4
-        x: scene.width / 4
-        y: scene.height / 6 * 5 - 45
-
-        rotation: 0
-        obstacleBody.source: "../../assets/img/final/Obstacle.png"
-       }
-
-
-
-/*
-    Ball {
-        id: ball
-        x: scene.width / 4
-        y: scene.height / 4
-
-        rotation: 0
-        ballBody.source: "../../assets/img/final/SnowballBig.png"
-    }
-*/
-
-
-    // Trees: two on the left side of like, one on right side
+    // Plant a row of trees at bottom
+    // from left to right
     Tree {
         entityId: "tree1"
         id: tree1
-        x: scene.width / 2 - lake.width / 3
-        y: scene.height / 2
-
+        x: 40
+        y: scene.height / 3 * 2 + 10
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
     Tree {
         entityId: "tree2"
         id: tree2
-        x: scene.width / 2 - lake.width / 3 - 65
-        y: scene.height / 2
+        x: 50 + tree2.treeBody.width
+        y: scene.height / 3 * 2 - 15
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
 
+    Tree {
+        entityId: "tree3"
+        id: tree3
+        x: 40 + tree3.treeBody.width * 2
+        y: scene.height / 3 * 2 + 25
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree4"
+        id: tree4
+        x: 35 + tree4.treeBody.width * 3
+        y: scene.height / 3 * 2
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree5"
+        id: tree5
+        x: 65 + tree5.treeBody.width * 4
+        y: scene.height / 3 * 2 + 30
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree6"
+        id: tree6
+        x: 80 + tree6.treeBody.width * 5
+        y: scene.height / 3 * 2 - 10
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree7"
+        id: tree7
+        x: 50 + tree7.treeBody.width * 6
+        y: scene.height / 3 * 2 + 15
         treeBody.source: "../../assets/img/final/Tree.png"
     }
 
 
-    // Power up spawn right of the lake
-    PowerUpSpawn {
-        entityId: "spawn1"
-        id: spawn1
-        x: scene.width / 2 + lake.width / 2
-        y: scene.height / 2
 
-        spawnBody.source: "../../assets/img/final/PUSpawn.png"
+    // Plant a row of trees at top
+    // from right to left
+    Tree {
+        entityId: "tree8"
+        id: tree8
+        x: 10 + scene.width - tree8.treeBody.width
+        y: 30 + scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
     }
+
+    Tree {
+        entityId: "tree9"
+        id: tree9
+        x: 15 + scene.width - tree9.treeBody.width * 2
+        y: scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree10"
+        id: tree10
+        x: scene.width - tree10.treeBody.width * 3
+        y: 10 + scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree11"
+        id: tree11
+        x: 10 + scene.width - tree11.treeBody.width * 4
+        y: 40 + scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree12"
+        id: tree12
+        x: -20 + scene.width - tree12.treeBody.width * 5
+        y: 25 + scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree13"
+        id: tree13
+        x: 20 + scene.width - tree13.treeBody.width * 6
+        y: 35 + scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
+    Tree {
+        entityId: "tree14"
+        id: tree14
+        x: scene.width - tree14.treeBody.width * 7
+        y: 2 + scene.height / 3
+        treeBody.source: "../../assets/img/final/Tree.png"
+    }
+
 
 
 

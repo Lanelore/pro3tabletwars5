@@ -17,41 +17,41 @@ Soll innerhalb eines Matches nur ein Level spielbar sein?
 wichtige offene Punkte 02.02.2015
 ---------------------------------
      * Tutorial Level + zusätzliche Level (Reihenfolge!)
-     * Controls (Easy und Expert für beide Player)
-     * Credits (v-Play, Qt, ...)
+     * Controls (Easy und Expert für beide Player)(Achtung: IcicleSounds)
+OK   * Credits (v-Play, Qt, ...)
 
 offene Punkte aus Besprechung mit PAG am 13.01.2015
 ---------------------------------------------------
-     * Unsterblichkeitsdauer nach einem Treffer sollte auf 2-3 Sekunden verlängert werden, damit Player Zeit zum ausweichen hat.
-     * Steuerung sollte innerhalb der eigenen Displayhälfte möglich sein, anstatt nur im Steuerkreis rechts unten
+OK   * Unsterblichkeitsdauer nach einem Treffer sollte auf 2-3 Sekunden verlängert werden, damit Player Zeit zum ausweichen hat.
+OK   * Steuerung sollte innerhalb der eigenen Displayhälfte möglich sein, anstatt nur im Steuerkreis rechts unten
      * Schuss-Steuerung soll zwischen Expert- (mitdrehbar) und Easy-Mode (Schuss nur in Blickrichtung möglich) umschaltbar sein.
      * eigenen Sound reingeben, wenn 2 Schneebälle sich treffen
      * Wenn Player mehrmals hintereinander getroffen wird, sollte der Sound leicht variieren (random Auswahl aus mehreren Dateien)
-     * Schlagschatten für Bäume, Iglus, ... (entweder überall oder nirgendwo)
+OK   * Schlagschatten für Bäume, Iglus, ... (entweder überall oder nirgendwo)
      * Strichstärke Powerups, Player, Bäume, ... vereinheitlichen
-     * Energie sollte bei Treffern schneller zu Ende gehen = Tod mit 6 oder 7 Treffern anstatt wie bisher mit 10
-     * neue Grafik wenn Schneeball irgendwo auftrifft
+OK   * Energie sollte bei Treffern schneller zu Ende gehen = Tod mit 6 oder 7 Treffern anstatt wie bisher mit 10
+OK   * neue Grafik wenn Schneeball irgendwo auftrifft
      * Game Over Fenster im Querformat anzeigen
 
 ältere offene Punkte:
 ---------------------
-     * neue BG Musik (Wav)
-     * Schneeballsounds 1-3 (Wav)
-     * Beide Player sterben kurz hintereinander - beide erhalten einen Punkt!?
+OK   * neue BG Musik (Wav)
+OK   * Schneeballsounds 1-3 (Wav)
+OK   * Beide Player sterben kurz hintereinander - beide erhalten einen Punkt!?
      * Wall/Iglu/Back-Button z-Order spinnt noch! (oft bei Level 2 wenn Rot in Stacheln fährt)
-     * GameOver Message in der LevelBase aufhübschen
-     * Replay Button nach GameOver! (mit Level Loader?)
-     * Sounds unterschiedlich laut - Teleport + Gewinner Sound
+OK   * GameOver Message in der LevelBase aufhübschen
+OK   * Replay Button nach GameOver! (mit Level Loader?)
+OK   * Sounds unterschiedlich laut - Teleport + Gewinner Sound
 OK   * Blau gewinnt immer?!
      * z-Order der Iglus
 OK   * Spawnmaximum verändern - 10 ist zu viel!
-     * Blinklicht für Iglus
+OK   * Blinklicht für Iglus
 OK   * Titel: "Durdles" als Schriftzug oder Grafik
 OK   * Spawnintervall + Radius der Items anpassen - langsamer spawnen?
      * nach Iglu: Character in richtige Richtung drehen
 OK   * Lebensberechnung: Zahlen rausnehmen
 OK   * Steuerung auf onReleased
-     * 3... 2... 1... runterzählen und dann Start (Interval?)
+OK   * 3... 2... 1... runterzählen und dann Start (Interval?)
      * Level Designs!
 OK   * Back-Buttons vereinheitlichen? (alle Buttons nach rechts in die Mitte)
 OK   * GameOverScreen in der LevelBase als Rechteck einfügen

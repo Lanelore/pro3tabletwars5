@@ -6,8 +6,6 @@ import "../levels"
 GameController {
     id: scene
 
-
-
     // Plant a little forest in the middle
     // from left to right
     Tree {
@@ -16,6 +14,7 @@ GameController {
         x: tree5.treeBody.width - 18
         y: scene.height / 2 - 17
         treeBody.source: "../../assets/img/final/Tree.png"
+        onEnabledChanged: GameInfo.testLevel = true
     }
 
     Tree {

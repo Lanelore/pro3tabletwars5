@@ -54,5 +54,7 @@ Item {
     property bool easyMode: true
     property int swipeTouchPointLimit: 10
 
-    property string currentLevel: ""
+    //property string currentLevel: ""
+
+    property bool testLevel: false          // if the test level is selected, show the control graphic
 }

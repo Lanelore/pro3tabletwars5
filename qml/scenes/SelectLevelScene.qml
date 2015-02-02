@@ -22,8 +22,7 @@ SceneBase {
         entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
         GameInfo.redOnLake = false;
         GameInfo.blueOnLake = false;
-
-        GameInfo.currentLevel = selectedLevel
+        GameInfo.testLevel = false;
     }
 
     /*

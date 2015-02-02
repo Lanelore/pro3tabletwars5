@@ -16,12 +16,14 @@ Soll innerhalb eines Matches nur ein Level spielbar sein?
 
 wichtige offene Punkte 02.02.2015
 ---------------------------------
-     * Tutorial Level + zusätzliche Level (Reihenfolge!)
+OK   * Tutorial Level + zusätzliche Level (Reihenfolge!)
      * Controls (Easy und Expert für beide Player)(Achtung: IcicleSounds)
 OK   * Credits (v-Play, Qt, ...)
      * Steuerung abrunden (Circle)
-     * Kopf/Steuerung von Blau zu Beginn drehen
-     * Rot startet mit Playing?
+OK   * Kopf/Steuerung von Blau zu Beginn drehen
+OK   * Rot startet mit Playing?
+     * Schriftgrößen + Position
+OK   * Level 1 mit Fadenkreuz, danach nicht mehr!
 
 offene Punkte aus Besprechung mit PAG am 13.01.2015
 ---------------------------------------------------

@@ -120,7 +120,7 @@ Common.LevelBase {
         Image {
             id: playerMovementImageRed
             source: "../../assets/img/final/Control.png"
-            opacity: 100
+            opacity: GameInfo.testLevel ? 100 : 0
             x: scene.width - playerMovementImageRed.width - 50
             y: 50
             width: 180
@@ -766,7 +766,7 @@ Common.LevelBase {
         Image {
             id: playerMovementImageBlue
             source: "../../assets/img/final/Control.png"
-            opacity: 100
+            opacity: GameInfo.testLevel ? 100 : 0
             x: 50
             y: blueField.height - playerMovementImageBlue.height - 50
             width: 180

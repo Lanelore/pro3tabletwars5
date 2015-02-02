@@ -108,8 +108,8 @@ Common.LevelBase {
         radius: GameInfo.radius
         opacity: GameInfo.pacity
         color: "transparent"
-        border.width: GameInfo.border
-        border.color: GameInfo.red
+        //border.width: GameInfo.border
+        //border.color: GameInfo.red
 
         width: scene.width
         height: scene.height/2
@@ -342,7 +342,7 @@ Common.LevelBase {
         z: 1000
 
         Image {
-            id: fireImage
+            id: fireImageRed
             source: GameInfo.easyMode? "../../assets/img/final/FireEasy.png" : "../../assets/img/final/FireHard.png"
             anchors.centerIn: parent
             width: parent.width
@@ -747,8 +747,8 @@ Common.LevelBase {
         radius: GameInfo.radius
         opacity: GameInfo.pacity
         color: "transparent"
-        border.width: GameInfo.border
-        border.color: GameInfo.blue
+        //border.width: GameInfo.border
+        //border.color: GameInfo.blue
 
         width: scene.width
         height: scene.height/2
@@ -972,10 +972,10 @@ Common.LevelBase {
     Rectangle {
         id: fireButtonPlayerBlue
         radius: GameInfo.radius
-        opacity: GameInfo.easyMode ? GameInfo.pacity : 0
-        color: Qt.lighter(GameInfo.blue, GameInfo.lighterColor)
-        border.width: GameInfo.border
-        border.color: GameInfo.blue
+        opacity: GameInfo.pacity
+        color: "transparent" // Qt.lighter(GameInfo.red, GameInfo.lighterColor)
+        //border.width: GameInfo.border
+        //border.color: GameInfo.blue
 
 
         width: GameInfo.controlType1Width
@@ -984,6 +984,16 @@ Common.LevelBase {
         y: scene.height - fireButtonPlayerBlue.height - 50
         z: 1000
 
+
+
+        Image {
+            id: fireImageBlue
+            source: GameInfo.easyMode? "../../assets/img/final/FireEasy.png" : "../../assets/img/final/FireHard.png"
+            anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
+            anchors.fill: parent
+        }
 
         MultiPointTouchArea {
             enabled: GameInfo.gamePaused || GameInfo.easyMode ? true : false

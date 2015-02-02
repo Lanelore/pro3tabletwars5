@@ -249,8 +249,8 @@ Common.LevelBase {
                 newY = Math.max(0, newY);
                 newY = Math.min(scene.height / 2 - playerMovementImageRed.height, newY);
 
-                playerMovementImageRed.x = newX;
-                playerMovementImageRed.y = newY;
+                //playerMovementImageRed.x = newX;
+                //playerMovementImageRed.y = newY;
 
                 didRegisterReferencePoint = true;
             }
@@ -607,7 +607,7 @@ Common.LevelBase {
         id: playerBulletControlAreaRed
 
         radius: GameInfo.radius
-        opacity: GameInfo.easyMode ? 0 : GameInfo.pacity
+        opacity: 0
         color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.red
@@ -1216,7 +1216,7 @@ Common.LevelBase {
         id: playerBulletControlAreaBlue
 
         radius: GameInfo.radius
-        opacity: GameInfo.easyMode ? 0 : GameInfo.pacity
+        opacity: 0
         color: Qt.lighter(GameInfo.blue, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.blue

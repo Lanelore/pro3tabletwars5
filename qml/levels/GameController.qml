@@ -7,8 +7,8 @@ Common.LevelBase {
     id: scene
     state: "0"
 
-    property alias playerMovementControlAreaRed: playerMovementControlAreaRed
-    property alias playerMovementControlAreaBlue: playerMovementControlAreaBlue
+    //property alias playerMovementControlAreaRed: playerMovementControlAreaRed
+    //property alias playerMovementControlAreaBlue: playerMovementControlAreaBlue
 
     property alias redField: redField
 
@@ -108,7 +108,7 @@ Common.LevelBase {
         // Object properties
         id: redField
         radius: GameInfo.radius
-        opacity: GameInfo.easyMode? GameInfo.pacity : 0
+        opacity: GameInfo.pacity
         color: "transparent"
         border.width: GameInfo.border
         border.color: GameInfo.red
@@ -120,18 +120,18 @@ Common.LevelBase {
         z: 1000
 
         Image {
-            id: playerMovementImage
+            id: playerMovementImageRed
             source: "../../assets/img/final/Control.png"
-            opacity: GameInfo.easyMode? 100: 0
-            x: 50
-            y: 100
+            opacity: 100
+            x: scene.width - playerMovementImageRed.width - 50
+            y: 50
             width: 180
             height: 180
         }
 
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused||(GameInfo.easyMode==false) ? false : true
+            enabled: GameInfo.gamePaused ? false : true
             anchors.fill: parent
 
             property int referencePointX: 0
@@ -169,30 +169,30 @@ Common.LevelBase {
                     }
 
                     // if touch is outside of playerMovementImage update the position of the playerMovementImage and the referencePoint!
-                    if (redFieldPoint.x < playerMovementImage.x ||
-                            redFieldPoint.x > playerMovementImage.x + playerMovementImage.width) {
+                    if (redFieldPoint.x < playerMovementImageRed.x ||
+                            redFieldPoint.x > playerMovementImageRed.x + playerMovementImageRed.width) {
 
                         // touch happened outside of playerMovementImage in horizontal way
                         var diff = redFieldPoint.x - referencePointX;
                         if (diff < 0) {
-                            diff = diff + playerMovementImage.width / 2;
+                            diff = diff + playerMovementImageRed.width / 2;
                             referencePointX = referencePointX + diff;
                         } else {
-                            diff = diff - playerMovementImage.width / 2;
+                            diff = diff - playerMovementImageRed.width / 2;
                             referencePointX = referencePointX + diff;
                         }
                     }
 
-                    if (redFieldPoint.y < playerMovementImage.y ||
-                            redFieldPoint.y > playerMovementImage.y + playerMovementImage.height) {
+                    if (redFieldPoint.y < playerMovementImageRed.y ||
+                            redFieldPoint.y > playerMovementImageRed.y + playerMovementImageRed.height) {
 
                         // touch happened outside of playerMovementImage in vertical way
                         var diff = redFieldPoint.y - referencePointY;
                         if (diff < 0) {
-                            diff = diff + playerMovementImage.height / 2;
+                            diff = diff + playerMovementImageRed.height / 2;
                             referencePointY = referencePointY + diff;
                         } else {
-                            diff = diff - playerMovementImage.height / 2;
+                            diff = diff - playerMovementImageRed.height / 2;
                             referencePointY = referencePointY + diff;
                         }
                     }
@@ -205,9 +205,8 @@ Common.LevelBase {
                     playerRed.tankRed.tankBody.playing=true
 
 
-                    newPosX = ((redFieldPoint.x - referencePointX + playerMovementImage.width / 2) / (playerMovementImage.width / 2) - 1)
-                    newPosY = ((redFieldPoint.y - referencePointY + playerMovementImage.height / 2) / (playerMovementImage.height / 2) - 1)
-                    console.log("newPosX flo: " + newPosX);
+                    newPosX = ((redFieldPoint.x - referencePointX + playerMovementImageRed.width / 2) / (playerMovementImageRed.width / 2) - 1)
+                    newPosY = ((redFieldPoint.y - referencePointY + playerMovementImageRed.height / 2) / (playerMovementImageRed.height / 2) - 1)
                     var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 
                     newPosY = newPosY * -1
@@ -240,17 +239,17 @@ Common.LevelBase {
 
             function updatePlayerMovementImagePosition() {
                 // move image to reference point
-                var newX = referencePointX - playerMovementImage.width / 2;
-                var newY = referencePointY - playerMovementImage.height / 2;
+                var newX = referencePointX - playerMovementImageRed.width / 2;
+                var newY = referencePointY - playerMovementImageRed.height / 2;
 
                 newX = Math.max(0, newX);
-                newX = Math.min(scene.width - playerMovementImage.width, newX);
+                newX = Math.min(scene.width - playerMovementImageRed.width, newX);
 
                 newY = Math.max(0, newY);
-                newY = Math.min(scene.height / 2 - playerMovementImage.height, newY);
+                newY = Math.min(scene.height / 2 - playerMovementImageRed.height, newY);
 
-                playerMovementImage.x = newX;
-                playerMovementImage.y = newY;
+                playerMovementImageRed.x = newX;
+                playerMovementImageRed.y = newY;
 
                 didRegisterReferencePoint = true;
             }
@@ -328,7 +327,7 @@ Common.LevelBase {
     }
 
     // ---------------------------------
-    // Fire Button Player
+    // Fire Button Player Red
     // ---------------------------------
     Rectangle {
         id: fireButtonPlayerRed
@@ -340,17 +339,22 @@ Common.LevelBase {
 
         width: GameInfo.controlType1Width
         height: GameInfo.controlType1Height
-        x: scene.width - fireButtonPlayerRed.width - 50
+        x: 50
         y: 50
         z: 1000
 
+        Image {
+            anchors.fill: parent
+
+        }
+
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused || GameInfo.easyMode ? true : false
+            enabled: (GameInfo.gamePaused == false) && GameInfo.easyMode ? true : false
             anchors.fill: parent
 
             touchPoints: [
-                TouchPoint {id: fireTouchPoint1}
+                TouchPoint {id: fireTouchPointRed}
             ]
 
             property real lastTime: 0
@@ -398,7 +402,7 @@ Common.LevelBase {
     }
 
 
-
+/*
     // ---------------------------------------------------
     // Controller tankRed
     // ---------------------------------------------------
@@ -417,11 +421,11 @@ Common.LevelBase {
         y: 50
         z: 5000
         radius: width / 2//GameInfo.radius
-        opacity: GameInfo.pacity
+        opacity: GameInfo.easyMode ? 0 : GameInfo.pacity
         color: GameInfo.easyMode? "transparent" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.easyMode? "transparent" : GameInfo.red
-/*
+*//*
         Image {
             source: "../../assets/img/final/Control.png"
             opacity: GameInfo.easyMode? 100: 0
@@ -429,9 +433,9 @@ Common.LevelBase {
             width: parent.width
             height: parent.height
         }
-*/
+*//*
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused ? false : true
+            enabled: GameInfo.gamePaused || GameInfo.easyMode ? false : true
             anchors.fill: parent
             property variant playerTwoAxisController: playerRed.tankRed.getComponent("TwoAxisController")     // Touch Methods
             property real newPosX: 0.0
@@ -543,9 +547,9 @@ Common.LevelBase {
                 newPosX = newPosX * GameInfo.maximumPlayerVelocity
                 newPosY = newPosY * GameInfo.maximumPlayerVelocity
 
-                /* normalise the speed! when driving diagonally the x and y speed is both 1
+                *//* normalise the speed! when driving diagonally the x and y speed is both 1
                     when driving horizontally only either x or y is 1, which results in slower horizontal/vercial speed than diagonal speed
-                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) */
+                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) *//*
 
                 // calculate the distance from the center ( = speed)
                 var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
@@ -580,7 +584,7 @@ Common.LevelBase {
         }
     }
 
-
+*/
 
 
 
@@ -601,12 +605,12 @@ Common.LevelBase {
 
         width: GameInfo.controlType1Width
         height: GameInfo.controlType1Height
-        x: scene.width - GameInfo.controlType1Width - 50
+        x: 50
         y: 50
         z: 1000
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused || GameInfo.easyMode ? false : true
+            enabled: GameInfo.gamePaused || (GameInfo.easyMode) ? false : true
             anchors.fill: parent
 
             property bool rotateOnce: true
@@ -720,9 +724,323 @@ Common.LevelBase {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+    // ------------------------------------
+    // Blue Field
+    // ------------------------------------
+    Rectangle {
+        // Object properties
+        id: blueField
+        radius: GameInfo.radius
+        opacity: GameInfo.pacity
+        color: "transparent"
+        border.width: GameInfo.border
+        border.color: GameInfo.blue
+
+        width: scene.width
+        height: scene.height/2
+        x: 0
+        y: scene.height/2
+        z: 1000
+
+        Image {
+            id: playerMovementImageBlue
+            source: "../../assets/img/final/Control.png"
+            opacity: 100
+            x: 50
+            y: blueField.height - playerMovementImageBlue.height - 50
+            width: 180
+            height: 180
+        }
+
+
+        MultiPointTouchArea {
+            enabled: GameInfo.gamePaused ? false : true
+            anchors.fill: parent
+
+            property int referencePointX: 0
+            property int referencePointY: 0
+            property bool didRegisterReferencePoint: false;
+            property bool rotateOnce: true
+            property real lastTime: 0
+            property real touchStartTime: 0
+            property int onTouchUpdatedCounter: 0
+            property variant playerTwoAxisController: playerBlue.tankBlue.getComponent("TwoAxisController")
+            property real oldPosX: 0.0
+            property real oldPosY: 0.0
+            property real newPosX: 0.0
+            property real newPosY: 0.0
+
+
+            touchPoints: [
+                TouchPoint {id: blueFieldPoint}
+            ]
+
+            onUpdated: {
+                console.log("--------onTouchUpdated");
+                onTouchUpdatedCounter += 1
+
+                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
+                if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
+
+                    // if no referencePoint is loaded yet, get one!
+                    if (didRegisterReferencePoint == false) {
+                        // save new reference point
+                        referencePointX = blueFieldPoint.x;
+                        referencePointY = blueFieldPoint.y;
+
+                        updatePlayerMovementImagePosition()
+                    }
+
+                    // if touch is outside of playerMovementImage update the position of the playerMovementImage and the referencePoint!
+                    if (blueFieldPoint.x < playerMovementImageBlue.x ||
+                            blueFieldPoint.x > playerMovementImageBlue.x + playerMovementImageBlue.width) {
+
+                        // touch happened outside of playerMovementImage in horizontal way
+                        var diff = blueFieldPoint.x - referencePointX;
+                        if (diff < 0) {
+                            diff = diff + playerMovementImageBlue.width / 2;
+                            referencePointX = referencePointX + diff;
+                        } else {
+                            diff = diff - playerMovementImageBlue.width / 2;
+                            referencePointX = referencePointX + diff;
+                        }
+                    }
+
+                    if (blueFieldPoint.y < playerMovementImageBlue.y ||
+                            blueFieldPoint.y > playerMovementImageBlue.y + playerMovementImageBlue.height) {
+
+                        // touch happened outside of playerMovementImage in vertical way
+                        var diff = blueFieldPoint.y - referencePointY;
+                        if (diff < 0) {
+                            diff = diff + playerMovementImageBlue.height / 2;
+                            referencePointY = referencePointY + diff;
+                        } else {
+                            diff = diff - playerMovementImageBlue.height / 2;
+                            referencePointY = referencePointY + diff;
+                        }
+                    }
+
+                    updatePlayerMovementImagePosition()
+
+
+                    // now do the actual control of the character
+                    playerBlue.tankBlue.circleCollider.linearDamping=0
+                    playerBlue.tankBlue.tankBody.playing=true
+
+
+                    newPosX = ((blueFieldPoint.x - referencePointX + playerMovementImageBlue.width / 2) / (playerMovementImageBlue.width / 2) - 1)
+                    newPosY = ((blueFieldPoint.y - referencePointY + playerMovementImageBlue.height / 2) / (playerMovementImageBlue.height / 2) - 1)
+                    console.log("newPosX flo: " + newPosX);
+                    var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
+
+                    newPosY = newPosY * -1
+
+                    if (newPosX > 1) newPosX = 1
+                    if (newPosY > 1) newPosY = 1
+                    if (newPosX < -1) newPosX = -1
+                    if (newPosY < -1) newPosY = -1
+
+                    // if it is on the lake calculate it in a special way!
+                    if(GameInfo.blueOnLake){
+                        console.log("X old: " + oldPosX + " | new: " + newPosX)
+                        console.log("Y old: " + oldPosY + " | new: " + newPosY)
+                        newPosX = oldPosX+(newPosX*0.03)
+                        newPosY = oldPosY+(newPosY*0.03)
+
+                        if (newPosX > 1) newPosX = 1
+                        if (newPosY > 1) newPosY = 1
+                        if (newPosX < -1) newPosX = -1
+                        if (newPosY < -1) newPosY = -1
+                    }
+
+                    // If the player is not touching the control area, slowly stop the body!
+                    if(playerBlue.tankBlue.tankBody.playing==false) damping()
+
+                    // update the movement
+                    updateMovement()
+                }
+            }
+
+            function updatePlayerMovementImagePosition() {
+                // move image to reference point
+                var newX = referencePointX - playerMovementImageBlue.width / 2;
+                var newY = referencePointY - playerMovementImageBlue.height / 2;
+
+                newX = Math.max(0, newX);
+                newX = Math.min(scene.width - playerMovementImageBlue.width, newX);
+
+                newY = Math.max(0, newY);
+                newY = Math.min(scene.height / 2 - playerMovementImageBlue.height, newY);
+
+                playerMovementImageBlue.x = newX;
+                playerMovementImageBlue.y = newY;
+
+                didRegisterReferencePoint = true;
+            }
+
+            // slows down the character when releasing the finger from tablet
+            function damping(){
+                if(GameInfo.blueOnLake==false){
+                    playerBlue.tankBlue.circleCollider.linearDamping=GameInfo.damping
+                }
+            }
+
+            // updates the speed/direction of the character
+            function updateMovement(){
+                // store the x and y values before they'll be altered
+                oldPosX=newPosX
+                oldPosY=newPosY
+
+                // Adjust the speed
+                newPosX = newPosX * GameInfo.maximumPlayerVelocity
+                newPosY = newPosY * GameInfo.maximumPlayerVelocity
+
+                /* normalise the speed! when driving diagonally the x and y speed is both 1
+                    when driving horizontally only either x or y is 1, which results in slower horizontal/vercial speed than diagonal speed
+                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) */
+
+                // calculate the distance from the center ( = speed)
+                var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
+                var maxVelocity = GameInfo.maximumPlayerVelocity
+                if (playerBlue.activateAccelerator){
+                    maxVelocity*= GameInfo.speed
+                    newPosX *= GameInfo.speed
+                    newPosY *= GameInfo.speed
+                }
+                if (velocity > maxVelocity) {
+                    // velocity is too high! shrink it down
+                    var shrinkFactor = maxVelocity / velocity
+                    newPosX = newPosX * shrinkFactor
+                    newPosY = newPosY * shrinkFactor
+                }
+
+                // now update the twoAxisController with the calculated values
+                playerTwoAxisController.xAxis = newPosX
+                playerTwoAxisController.yAxis = newPosY
+
+                var angle = calcAngle(newPosX, newPosY) - 90
+
+                if (newPosX!=0 && newPosY != 0){
+
+                    playerBlue.tankBlue.tankBody.rotation = angle
+                    playerBlue.tankBlue.circleCollider.rotation = angle
+
+                    if(GameInfo.easyMode)playerBlue.tankBlue.tankCannon.rotation = angle+90
+                    //playerRed.tankRed.tankCannon.rotation = playerRed.tankRed.tankBody.rotation + playerRed.tankRed.cannonAngle + 90 // used for ControlType2
+                }
+            }
+
+            onPressed: {
+                touchStartTime = new Date().getTime()
+                didRegisterReferencePoint = false;
+            }
+
+            onReleased: {
+                // slow down character till it stops
+                damping()
+                onTouchUpdatedCounter = 0
+            }
+
+            onEnabledChanged: {
+                if(rotateOnce){
+                    playerBlue.tankBlue.tankCannon.rotation = 90
+                    rotateOnce = false
+                }
+            }
+        }
+    }
+
+
+
+    // ---------------------------------
+    // Fire Button Player Blue
+    // ---------------------------------
+    Rectangle {
+        id: fireButtonPlayerBlue
+        radius: GameInfo.radius
+        opacity: GameInfo.easyMode ? GameInfo.pacity : 0
+        color: Qt.lighter(GameInfo.blue, GameInfo.lighterColor)
+        border.width: GameInfo.border
+        border.color: GameInfo.blue
+
+
+        width: GameInfo.controlType1Width
+        height: GameInfo.controlType1Height
+        x: scene.width - fireButtonPlayerBlue.width - 50
+        y: scene.height - fireButtonPlayerBlue.height - 50
+        z: 1000
+
+
+        MultiPointTouchArea {
+            enabled: GameInfo.gamePaused || GameInfo.easyMode ? true : false
+            anchors.fill: parent
+
+            touchPoints: [
+                TouchPoint {id: fireTouchPointBlue}
+            ]
+
+            property real lastTime: 0
+
+            onPressed: {
+                var currentTime = new Date().getTime()
+                var timeDiff = currentTime - lastTime
+
+                if (timeDiff > playerBlue.minTimeDistanceBullet) {
+                    if (playerBlue.activatePowershot){
+                        icicle()
+                    }else{
+                        snowball()
+                    }
+                    playerBlue.tankBlue.tankHead.playing=true
+
+                    lastTime = currentTime
+
+                    var speed = (playerBlue.activateAccelerator) ? 500 : 250
+
+                    var rotation = playerBlue.tankBlue.tankBody.rotation+90
+
+                    var xDirection = Math.cos(rotation * Math.PI / 180.0) * speed
+                    var yDirection = Math.sin(rotation * Math.PI / 180.0) * speed
+
+                    var startX= (45*Math.cos((rotation)*Math.PI/180)) + playerBlue.tankBlue.x + playerBlue.tankBlue.width/2
+                    var startY= (45*Math.sin((rotation)*Math.PI/180)) + playerBlue.tankBlue.y + playerBlue.tankBlue.height/2
+
+                    // create and remove entities at runtime
+                    entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
+                                                                        "start" : Qt.point(startX, startY),
+                                                                        "velocity" : Qt.point(xDirection, yDirection),
+                                                                        "rotation" : playerBlue.tankBlue.tankBody.rotation + 180,
+                                                                        "bulletType" : playerBlue.activatePowershot ? 1 : 0});
+                    console.debug("***** Bullet Angle: "  + (playerBlue.tankBlue.tankBody.rotation + 180))
+                }
+            }
+
+            onTouchUpdated: {}
+
+            onReleased: {}
+
+            onCanceled: {}
+        }
+    }
+
+
+
     // ---------------------------------------------------
     // Controller tankBlue
     // ---------------------------------------------------
+    /*
     onBlueOffLake: {
         if(GameInfo.blueOnLake==false && playerBlue.tankBlue.tankBody.playing==false){
             playerBlue.tankBlue.circleCollider.linearDamping=GameInfo.damping
@@ -741,13 +1059,13 @@ Common.LevelBase {
         z: 1000
 
         radius: width / 2 //GameInfo.radius
-        opacity: GameInfo.pacity
+        opacity: GameInfo.easyMode ? 0 : GameInfo.pacity
         color: Qt.lighter(GameInfo.blue, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.blue
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused ? false : true
+            enabled: GameInfo.gamePaused || (GameInfo.easyMode) ? false : true
             anchors.fill: parent
             property variant playerTwoAxisController: playerBlue.tankBlue.getComponent("TwoAxisController")     // Touch Methods
             property real newPosX: 0.0
@@ -825,9 +1143,9 @@ Common.LevelBase {
                 newPosX = newPosX * GameInfo.maximumPlayerVelocity
                 newPosY = newPosY * GameInfo.maximumPlayerVelocity
 
-                /* normalise the speed! when driving diagonally the x and y speed is both 1
+                *//* normalise the speed! when driving diagonally the x and y speed is both 1
                     when driving horizontally only either x or y is 1, which results in slower horizontal/vercial speed than diagonal speed
-                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) */
+                    so shrink x and y about the same ratio down so that their maximum speed will be 1 (or whatever specified) *//*
 
                 // Calculate the distance from the center ( = speed)
                 var velocity = Math.sqrt(newPosX * newPosX + newPosY * newPosY)
@@ -861,7 +1179,7 @@ Common.LevelBase {
             }
         }
     }
-
+*/
 
     // ---------------------------------------------------
     // Controller blueTankCannon
@@ -871,19 +1189,19 @@ Common.LevelBase {
         id: playerBulletControlAreaBlue
 
         radius: GameInfo.radius
-        opacity: GameInfo.pacity
+        opacity: GameInfo.easyMode ? 0 : GameInfo.pacity
         color: Qt.lighter(GameInfo.blue, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.blue
 
         width: GameInfo.controlType1Width
         height: GameInfo.controlType1Height
-        x: 50
+        x: scene.width - playerBulletControlAreaBlue.width - 50
         y: scene.height - GameInfo.controlType1Height - 50
         z: 1000
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused ? false : true
+            enabled: GameInfo.gamePaused || GameInfo.easyMode ? false : true
             anchors.fill: parent
 
             property bool rotateOnce: true

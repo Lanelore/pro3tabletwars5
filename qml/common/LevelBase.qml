@@ -68,27 +68,33 @@ Item {
             font.pointSize: 13
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 35
+            anchors.bottomMargin: 40
 
             horizontalAlignment:  Text.AlignHCenter
             font.family: standardFont.name
         }
 
-        AudioButton {
-            source: "../../assets/img/final/Play.png"
-            onClicked: {
-                backPressed()
-                activeLevelFileName = ""
-                GameInfo.gameOver = false
-                GameInfo.gamePaused = false
+
+
+
+            AudioButton {
+                source: "../../assets/img/final/Play2.png"
+                onClicked: {
+                    backPressed()
+                    activeLevelFileName = ""
+                    GameInfo.gameOver = false
+                    GameInfo.gamePaused = false
+                }
+                width: 50
+                height: 50
+
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: height/2*(-1)
+                anchors.horizontalCenter: parent.horizontalCenter
             }
-            width: 50
-            height: 50
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 15
-            anchors.right: parent.right
-            anchors.rightMargin: 15
-        }
+
+
+
     }
 
 

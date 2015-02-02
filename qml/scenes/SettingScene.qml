@@ -64,12 +64,12 @@ SceneBase {
     AudioButton {
         source: active? "../../assets/img/final/On.png" : "../../assets/img/final/Off.png"
         active: !GameInfo.easyMode
-        opacity: active? 1 : 0.5
+        opacity: 1
         onClicked: {
             GameInfo.easyMode ^= true
         }
-        width: 100
-        height: 80
+        width: 150
+        height: 110
         anchors.left: parent.left
         anchors.leftMargin: 30
         anchors.top: parent.top

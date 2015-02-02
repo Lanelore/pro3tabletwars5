@@ -7,7 +7,6 @@ import ".."
 
 SceneBase {
     id:creditsScene
-    property double tmpWidth: 0.7
 
     // background
     Image {

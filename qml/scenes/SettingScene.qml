@@ -62,14 +62,14 @@ SceneBase {
     }
 
     AudioButton {
-        source: active? "../../assets/img/final/SwitchLeft.png" : "../../assets/img/final/SwitchRight.png"
+        source: active? "../../assets/img/final/SwitchRight.png" : "../../assets/img/final/SwitchLeft.png"
         active: !GameInfo.easyMode
         opacity: 1
         onClicked: {
             GameInfo.easyMode ^= true
         }
-        width: 200
-        height: 110
+        width: 180
+        height: 80
         anchors.left: parent.left
         anchors.leftMargin: 30
         anchors.top: parent.top

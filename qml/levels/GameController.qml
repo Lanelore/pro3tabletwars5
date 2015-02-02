@@ -331,6 +331,12 @@ Common.LevelBase {
                     }else{
                         playerMovementControlAreaRed.y += diffY
                     }
+
+
+
+
+
+
                 }
 
                 newPosY = newPosY * -1

@@ -58,6 +58,30 @@ SceneBase {
     Connections {
         target: gameScene.activeLevel || null
         onReplay: {
+            //var tmp = activeLevel
+
+
+/*
+            GameInfo.currentLevel = activeLevelFileName
+            backPressed()
+
+            activeLevelFileName = ""
+            GameInfo.gameOver = false
+            GameInfo.gamePaused = false
+
+
+            gameScene.setLevel(selectedLevel)
+            window.state = "menu"
+            window.state = "game"
+
+*/
+            //levelPressed(tmp)
+
+
+            window.state = "menu"
+            window.state = "game"
+
+
             var tmpFileName = activeLevelFileName
             //console.debug("### File: " + tmpFileName)
 
@@ -72,6 +96,7 @@ SceneBase {
             entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
             GameInfo.redOnLake = false;
             GameInfo.blueOnLake = false;
+
         }
     }
 

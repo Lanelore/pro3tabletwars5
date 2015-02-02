@@ -11,6 +11,9 @@ SceneBase {
     signal selectLevelPressed
     // signal indicating that the creditsScene should be displayed
     signal creditsPressed
+    // signal indicating that the settingScene should be displayed
+    signal settingsPressed
+
     property alias ambienceMusic: ambienceMusic
 /*
     Text {
@@ -109,6 +112,24 @@ SceneBase {
         anchors.leftMargin: 400
         rotation: 352
 
+        text: "Settings"
+        onClicked: settingsPressed()
+        //label.source: "../../assets/img/Board.png"
+        color: "transparent"
+        buttonText.color: "white"
+        buttonText.opacity: 1//0.85
+        buttonText.font.pointSize: 56
+        buttonText.font.family: standardFont.name
+    }
+
+    MenuButton {
+        z: 2
+        anchors.top: parent.top
+        anchors.topMargin: 815
+        anchors.left: parent.left
+        anchors.leftMargin: 410
+        rotation: 352
+
         text: "Credits"
         onClicked: creditsPressed()
         //label.source: "../../assets/img/Board.png"
@@ -118,6 +139,7 @@ SceneBase {
         buttonText.font.pointSize: 56
         buttonText.font.family: standardFont.name
     }
+
 
     Row {
         anchors.left: parent.left

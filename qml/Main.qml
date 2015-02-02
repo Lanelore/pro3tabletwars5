@@ -56,6 +56,7 @@ GameWindow {
         // listen to the button signals of the scene and change the state according to it
         onSelectLevelPressed: window.state = "selectLevel"
         onCreditsPressed: window.state = "credits"
+        onSettingsPressed: window.state = "settings"
         //onGameOver: window.state = "gameOver"
 
         // the menu scene is our start scene, so if back is pressed there we ask the user if he wants to quit the application
@@ -89,6 +90,14 @@ GameWindow {
     CreditsScene {
         id: creditsScene
         onBackPressed: window.state = "menu"
+
+    }
+
+    // credits scene
+    SettingScene {
+        id: settingScene
+        onBackPressed: window.state = "menu"
+
     }
 /*
     // gameOver scene
@@ -97,10 +106,14 @@ GameWindow {
         onBackPressed: window.state = "selectLevel"
     }
 */
+
+
+
     // game scene to play a level
     GameScene {
         id: gameScene
         onBackPressed: window.state = "selectLevel"
+
     }
 /*
     Connections {
@@ -136,6 +149,11 @@ GameWindow {
             PropertyChanges {target: window; activeScene: gameOverScene}
         },
         */
+        State {
+            name: "settings"
+            PropertyChanges {target: settingScene; opacity: 1}
+            PropertyChanges {target: window; activeScene: settingScene}
+        },
         State {
             name: "game"
             PropertyChanges {target: gameScene; opacity: 1}

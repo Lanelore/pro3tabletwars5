@@ -19,6 +19,9 @@ wichtige offene Punkte 02.02.2015
      * Tutorial Level + zusätzliche Level (Reihenfolge!)
      * Controls (Easy und Expert für beide Player)(Achtung: IcicleSounds)
 OK   * Credits (v-Play, Qt, ...)
+     * Steuerung abrunden (Circle)
+     * Kopf/Steuerung von Blau zu Beginn drehen
+     * Rot startet mit Playing?
 
 offene Punkte aus Besprechung mit PAG am 13.01.2015
 ---------------------------------------------------

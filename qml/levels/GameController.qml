@@ -971,6 +971,7 @@ Common.LevelBase {
 
             onEnabledChanged: {
                 if(rotateOnce){
+                    playerBlue.tankBlue.tankBody.rotation = 180
                     playerBlue.tankBlue.tankCannon.rotation = 90
                     rotateOnce = false
                 }

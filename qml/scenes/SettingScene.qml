@@ -75,4 +75,40 @@ SceneBase {
         anchors.top: parent.top
         anchors.topMargin: 275
     }
+
+    Row {
+        anchors.right: parent.right
+        anchors.rightMargin: 12
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 15
+        spacing: 10
+        AudioButton {
+            source: "../../assets/img/final/Music.png"
+            active: !settings.musicEnabled
+            opacity: active? 0.5 : 1
+            onClicked: {
+                settings.musicEnabled ^= true
+            }
+        }
+        AudioButton {
+            source: "../../assets/img/final/Sound.png"
+            active: !settings.soundEnabled
+            opacity: active? 0.5 : 1
+            onClicked: {
+                settings.soundEnabled ^= true
+            }
+        }
+        /*
+        AudioButton {
+            source: "../../assets/img/final/Settings.png"
+            active: !GameInfo.easyMode
+            opacity: active? 0.5 : 1
+            onClicked: {
+                GameInfo.easyMode ^= true
+            }
+            width: 80
+            height: 80
+        }
+        */
+    }
 }

@@ -5,7 +5,7 @@ import "."
 EntityBase {
     id: powAccelerator
     entityType: "powAccelerator"
-    entityId: "powAccelerator"
+   // entityId: "powAccelerator"
     z: 1
 
     property var tankRed
@@ -46,7 +46,6 @@ EntityBase {
         }
     }
 */
-
 
     BoxCollider {
         id: boxCollider

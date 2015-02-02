@@ -74,29 +74,22 @@ Item {
             font.family: standardFont.name
         }
 
-
-
-
-            AudioButton {
-                source: "../../assets/img/final/Play2.png"
-                onClicked: {
-                    backPressed()
-                    activeLevelFileName = ""
-                    GameInfo.gameOver = false
-                    GameInfo.gamePaused = false
-                }
-                width: 50
-                height: 50
-
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: height/2*(-1)
-                anchors.horizontalCenter: parent.horizontalCenter
+        AudioButton {
+            source: "../../assets/img/final/Play2.png"
+            onClicked: {
+                backPressed()
+                activeLevelFileName = ""
+                GameInfo.gameOver = false
+                GameInfo.gamePaused = false
             }
+            width: 50
+            height: 50
 
-
-
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: height/2*(-1)
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
     }
-
 
     // place the 4 Borders around the playing field
     Border {

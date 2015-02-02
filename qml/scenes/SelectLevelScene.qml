@@ -18,8 +18,10 @@ SceneBase {
 
     onLevelPressed: {
         GameInfo.powerUpCount=0;
-        var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield"];
+
+        var toRemoveEntityTypes = ["powAccelerator", "powLifeUp", "powPowershot", "powShield", "singleBullet", "singleBulletOpponent"];
         entityManager.removeEntitiesByFilter(toRemoveEntityTypes);
+
         GameInfo.redOnLake = false;
         GameInfo.blueOnLake = false;
         GameInfo.testLevel = false;

@@ -2,11 +2,11 @@ import QtQuick 2.0
 import VPlay 2.0
 import "."
 
-
 EntityBase {
     id: powLifeUp
     entityType: "powLifeUp"
-    entityId: "powLifeUp"
+   // entityId: "powLifeUp"
+    z: 1
 
     property var tankRed
     property var tankBlue

@@ -5,7 +5,7 @@ import "."
 EntityBase {
     id: powPowershot
     entityType: "powPowershot"
-    entityId: "powPowershot"
+  //  entityId: "powPowershot"
     z: 1
 
     property var tankRed
@@ -54,8 +54,6 @@ EntityBase {
 
         fixture.onBeginContact: {
             var collidedEntity = other.parent.parent.parent;
-
-            //console.log("onBeginContact: " + collidedEntity.entityId)
 
             if(tankRed.entityId === collidedEntity.entityId){
                 tankRed.plingSound.play();

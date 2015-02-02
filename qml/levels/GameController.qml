@@ -80,8 +80,6 @@ Common.LevelBase {
         if (random==1) snowballSound1.play()
         if (random==2) snowballSound2.play()
         if (random==3) snowballSound3.play()
-
-        //snowballSound1.play()
     }
 
     function icicle() {
@@ -333,16 +331,24 @@ Common.LevelBase {
     Rectangle {
         id: fireButtonPlayerRed
         radius: GameInfo.radius
-        opacity: GameInfo.easyMode ? GameInfo.pacity : 0
-        color: Qt.lighter(GameInfo.red, GameInfo.lighterColor)
-        border.width: GameInfo.border
-        border.color: GameInfo.red
+        opacity: GameInfo.pacity
+        color: "transparent" // Qt.lighter(GameInfo.red, GameInfo.lighterColor)
+        //border.width: GameInfo.border
+        //border.color: GameInfo.red
 
         width: GameInfo.controlType1Width
         height: GameInfo.controlType1Height
         x: scene.width - fireButtonPlayerRed.width - 50
         y: 50
         z: 1000
+
+        Image {
+            id: fireImage
+            source: GameInfo.easyMode? "../../assets/img/final/FireEasy.png" : "../../assets/img/final/FireHard.png"
+            anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
+        }
 
 
         MultiPointTouchArea {
@@ -421,7 +427,7 @@ Common.LevelBase {
         color: GameInfo.easyMode? "transparent" : Qt.lighter(GameInfo.red, GameInfo.lighterColor)
         border.width: GameInfo.border
         border.color: GameInfo.easyMode? "transparent" : GameInfo.red
-/*
+        /*
         Image {
             source: "../../assets/img/final/Control.png"
             opacity: GameInfo.easyMode? 100: 0

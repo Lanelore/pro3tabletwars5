@@ -24,6 +24,7 @@ OK   * Kopf/Steuerung von Blau zu Beginn drehen
 OK   * Rot startet mit Playing?
      * Schriftgrößen + Position
 OK   * Level 1 mit Fadenkreuz, danach nicht mehr!
+OK   * Doppelte entities zerstören
 
 offene Punkte aus Besprechung mit PAG am 13.01.2015
 ---------------------------------------------------

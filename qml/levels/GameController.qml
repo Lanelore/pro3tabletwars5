@@ -157,6 +157,10 @@ Common.LevelBase {
                 console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 
+                newPosX = ((redFieldPoint.x - referencePointX + playerMovementImageRed.width / 2) / (playerMovementImageRed.width / 2) - 1)
+                newPosY = ((redFieldPoint.y - referencePointY + playerMovementImageRed.height / 2) / (playerMovementImageRed.height / 2) - 1)
+                var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
+
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
                 if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
 
@@ -169,6 +173,43 @@ Common.LevelBase {
                         updatePlayerMovementImagePosition()
                     }
 
+                    if (distance >1) {
+                        //angle is used to find a reference point at the border of the circular pad
+                        var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI) -180
+                        angle = angle * (-1)
+                        angle -= 90
+
+                        console.debug("üüüü Angle: " + angle)
+
+                        //find a new reference point at the border of the circular pad
+                        var newX= (playerMovementImageRed.width/2) * Math.cos((angle)*Math.PI/180) + referencePointX
+                        var newY= (playerMovementImageRed.height/2) * Math.sin((angle)*Math.PI/180) + referencePointY
+
+                        //calculate the difference between the border reference point and the point outside of the pad
+                        var diffX = redFieldPoint.x - newX
+                        var diffY = redFieldPoint.y - newY
+
+                        //tester.x=referencePointX
+                        //tester.y=referencePointY
+
+                        //translate the pad in the new direction within the half of the field
+                        if((referencePointX + diffX) <= playerMovementImageRed.width / 2){
+                            referencePointX = playerMovementImageRed.width / 2
+                        }else if((referencePointX + diffX) >= (scene.width - playerMovementImageRed.width/2)){
+                            referencePointX = scene.width - playerMovementImageRed.width/2
+                        }else{
+                            referencePointX += diffX
+                        }
+
+                        if((referencePointY + diffY) <= playerMovementImageRed.height / 2){
+                            referencePointY = playerMovementImageRed.height / 2
+                        }else if((referencePointY + diffY) >= (scene.height/2 - playerMovementImageRed.height/2)){
+                            referencePointY = scene.height/2 - playerMovementImageRed.height/2
+                        }else{
+                            referencePointY += diffY
+                        }
+
+                        /*
                     // if touch is outside of playerMovementImage update the position of the playerMovementImage and the referencePoint!
                     if (redFieldPoint.x < playerMovementImageRed.x ||
                             redFieldPoint.x > playerMovementImageRed.x + playerMovementImageRed.width) {
@@ -197,6 +238,8 @@ Common.LevelBase {
                             referencePointY = referencePointY + diff;
                         }
                     }
+*/
+                    }
 
                     updatePlayerMovementImagePosition()
 
@@ -204,12 +247,12 @@ Common.LevelBase {
                     // now do the actual control of the character
                     playerRed.tankRed.circleCollider.linearDamping=0
                     playerRed.tankRed.tankBody.playing=true
-
+                    /*
 
                     newPosX = ((redFieldPoint.x - referencePointX + playerMovementImageRed.width / 2) / (playerMovementImageRed.width / 2) - 1)
                     newPosY = ((redFieldPoint.y - referencePointY + playerMovementImageRed.height / 2) / (playerMovementImageRed.height / 2) - 1)
                     var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
-
+*/
                     newPosY = newPosY * -1
 
                     if (newPosX > 1) newPosX = 1
@@ -417,7 +460,7 @@ Common.LevelBase {
         }
     }
 
-/*
+    /*
     // ---------------------------------------------------
     // Controller tankRed
     // ---------------------------------------------------
@@ -802,6 +845,11 @@ Common.LevelBase {
 
                 onTouchUpdatedCounter += 1
 
+                newPosX = ((blueFieldPoint.x - referencePointX + playerMovementImageBlue.width / 2) / (playerMovementImageBlue.width / 2) - 1)
+                newPosY = ((blueFieldPoint.y - referencePointY + playerMovementImageBlue.height / 2) / (playerMovementImageBlue.height / 2) - 1)
+                var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
+
+
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
                 if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
 
@@ -814,6 +862,45 @@ Common.LevelBase {
                         updatePlayerMovementImagePosition()
                     }
 
+                    if (distance >1) {
+                        //angle is used to find a reference point at the border of the circular pad
+                        var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI) -180
+                        angle = angle * (-1)
+                        angle -= 90
+
+                        console.debug("üüüü Angle: " + angle)
+
+                        //find a new reference point at the border of the circular pad
+                        var newX= (playerMovementImageBlue.width/2) * Math.cos((angle)*Math.PI/180) + referencePointX
+                        var newY= (playerMovementImageBlue.height/2) * Math.sin((angle)*Math.PI/180) + referencePointY
+
+                        //calculate the difference between the border reference point and the point outside of the pad
+                        var diffX = blueFieldPoint.x - newX
+                        var diffY = blueFieldPoint.y - newY
+
+                        //translate the pad in the new direction within the half of the field
+
+                        console.debug("Referenz: " + (referencePointY + diffY) + " | Vergleich: " + (playerMovementImageBlue.height / 2))
+
+                        if((referencePointX + diffX) <= (playerMovementImageBlue.width / 2)){
+                            referencePointX = playerMovementImageBlue.width / 2
+                        }else if((referencePointX + diffX) >= (scene.width - playerMovementImageBlue.width/2)){
+                            referencePointX = scene.width - playerMovementImageBlue.width/2
+                        }else{
+                            referencePointX += diffX
+                        }
+
+                        if((referencePointY + diffY) <= playerMovementImageBlue.height / 2){
+                            referencePointY = playerMovementImageBlue.height / 2
+                        }else if((referencePointY + diffY) >= (scene.height/2 - playerMovementImageBlue.height/2)){
+                            referencePointY = scene.height/2 - playerMovementImageBlue.height/2
+                        }else{
+                            referencePointY += diffY
+                        }
+                    }
+
+
+                    /*
                     // if touch is outside of playerMovementImage update the position of the playerMovementImage and the referencePoint!
                     if (blueFieldPoint.x < playerMovementImageBlue.x ||
                             blueFieldPoint.x > playerMovementImageBlue.x + playerMovementImageBlue.width) {
@@ -843,6 +930,8 @@ Common.LevelBase {
                         }
                     }
 
+                    */
+
                     updatePlayerMovementImagePosition()
 
 
@@ -850,12 +939,12 @@ Common.LevelBase {
                     playerBlue.tankBlue.circleCollider.linearDamping=0
                     playerBlue.tankBlue.tankBody.playing=true
 
-
+                    /*
                     newPosX = ((blueFieldPoint.x - referencePointX + playerMovementImageBlue.width / 2) / (playerMovementImageBlue.width / 2) - 1)
                     newPosY = ((blueFieldPoint.y - referencePointY + playerMovementImageBlue.height / 2) / (playerMovementImageBlue.height / 2) - 1)
                     console.log("newPosX flo: " + newPosX);
                     var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
-
+*/
                     newPosY = newPosY * -1
 
                     if (newPosX > 1) newPosX = 1
@@ -1011,7 +1100,8 @@ Common.LevelBase {
         }
 
         MultiPointTouchArea {
-            enabled: GameInfo.gamePaused || GameInfo.easyMode ? true : false
+            //enabled: GameInfo.gamePaused || GameInfo.easyMode ? true : false
+            enabled: (GameInfo.gamePaused == false) && GameInfo.easyMode ? true : false
             anchors.fill: parent
 
             touchPoints: [

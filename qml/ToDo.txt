@@ -14,6 +14,15 @@ Matches angezeigt werden oder werden die Gesamtsiege im GameOverscreen mitgezeig
 Wie kann man aktiv ein Match beenden (zB durch Weg zum Hauptmenü)?
 Soll innerhalb eines Matches nur ein Level spielbar sein?
 
+Offene Punkte nach der Präsentation
+-----------------------------------
+     * Das Spiel beenden/pausieren, wenn mit der Handytaste zurück geklickt wird.
+     * Der PowerUpTimer soll neu gestartet werden, wenn der User das selbe PUps noch einmal sammelt (momentan werden einfach ignoriert, wenn er das selbe gerade trägt).
+       Es soll daher "aufgefrischt" werden.
+OK   * TouchPads disablen, wenn das Spiel pausiert ist
+OK   * Steuerung auf Kreis beschränken (statt Viereck)
+
+
 wichtige offene Punkte 02.02.2015
 ---------------------------------
 OK   * Tutorial Level + zusätzliche Level (Reihenfolge!)

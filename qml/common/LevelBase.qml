@@ -57,7 +57,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: 30
-            font.pointSize: 18
+            font.pixelSize: 20
             font.family: standardFont.name
         }
 
@@ -65,7 +65,7 @@ Item {
         Text {
             id: textStatistic
             text: "Blue: " + GameInfo.blueVictory + "<br>Red: " + GameInfo.redVictory
-            font.pointSize: 18
+            font.pixelSize: 20
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 40

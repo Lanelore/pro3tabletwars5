@@ -23,7 +23,6 @@ SceneBase {
         anchors.rightMargin: 10
         anchors.verticalCenter: parent.verticalCenter
         onClicked: backPressed()
-        buttonText.font.pointSize: 25
     }
     /*
     Text {
@@ -39,26 +38,50 @@ SceneBase {
 
     Text {
         font.family: standardFont.name
-        font.pointSize: 40
-        text: "Advanced\nControls"
+        font.pixelSize: 70
+        text: "Settings"
         color: "black"
         anchors.left: parent.left
         anchors.leftMargin: 30
         anchors.top: parent.top
-        anchors.topMargin: -10
-        lineHeight: 0.5
+        anchors.topMargin: 40
+        //lineHeight: 0.5
     }
 
     Text {
         font.family: standardFont.name
-        font.pointSize: 15
-        text: "Additional controls to aim\nat your target"
+        font.pixelSize: 40
+        text: "Shoot-Control"
         color: "black"
         anchors.left: parent.left
-        anchors.leftMargin: 30
+        anchors.leftMargin: 50
         anchors.top: parent.top
         anchors.topMargin: 170
-        lineHeight: 0.8
+        //lineHeight: 0.8
+    }
+
+    Text {
+        font.family: standardFont.name
+        font.pixelSize: 40
+        text: "Background music"
+        color: "black"
+        anchors.left: parent.left
+        anchors.leftMargin: 50
+        anchors.top: parent.top
+        anchors.topMargin: 270
+        //lineHeight: 0.8
+    }
+
+    Text {
+        font.family: standardFont.name
+        font.pixelSize: 40
+        text: "Sound effects"
+        color: "black"
+        anchors.left: parent.left
+        anchors.leftMargin: 50
+        anchors.top: parent.top
+        anchors.topMargin: 370
+        //lineHeight: 0.8
     }
 
     AudioButton {
@@ -70,10 +93,10 @@ SceneBase {
         }
         width: 180
         height: 80
-        anchors.left: parent.left
-        anchors.leftMargin: 30
+        anchors.right: parent.right
+        anchors.rightMargin: 50
         anchors.top: parent.top
-        anchors.topMargin: 275
+        anchors.topMargin: 150
     }
 
     Row {

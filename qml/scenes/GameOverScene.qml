@@ -31,7 +31,7 @@ SceneBase {
         onClicked: {
             backPressed()
         }
-        buttonText.font.pointSize: 25
+        buttonText.font.pixelSize: 25
     }
 
     // game over
@@ -40,14 +40,14 @@ SceneBase {
         text: "The winner of the round is <b>" + winner + "</b>"
         color: GameInfo.winnerRed ? GameInfo.red : GameInfo.blue
         anchors.centerIn: parent
-        font.pointSize: 15
+        font.pixelSize: 15
     }
 
     // statistic
     Text {
         id: textStatistic
         text: "<b>Statistic</b><br>Blue: " + GameInfo.blueVictory + "<br>Red: " + GameInfo.redVictory
-        font.pointSize: 13
+        font.pixelSize: 13
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: gameOverScene.height/2-120

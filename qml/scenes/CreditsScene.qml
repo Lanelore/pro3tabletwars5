@@ -43,13 +43,13 @@ SceneBase {
 
     Text {
         font.family: standardFont.name
-        font.pointSize: 20
+        font.pixelSize: 40
         text: "Christian Enengl\nBirgit Fritz\nFlorian Peinsold\nBianca Zankl"
         color: "black"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.topMargin: 60
-        lineHeight: 1.1
+        lineHeight: 1.4
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }

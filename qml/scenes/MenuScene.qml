@@ -98,7 +98,7 @@ SceneBase {
         color: "transparent"
         buttonText.color: "white"
         buttonText.opacity: 1//0.85
-        buttonText.font.pointSize: 56
+        buttonText.font.pixelSize: 56
         buttonText.font.family: standardFont.name
     }
 
@@ -114,7 +114,7 @@ SceneBase {
         color: "transparent"
         buttonText.color: "white"
         buttonText.opacity: 1//0.85
-        buttonText.font.pointSize: 56
+        buttonText.font.pixelSize: 56
         buttonText.font.family: standardFont.name
     }
 
@@ -130,7 +130,7 @@ SceneBase {
         color: "transparent"
         buttonText.color: "white"
         buttonText.opacity: 1//0.85
-        buttonText.font.pointSize: 56
+        buttonText.font.pixelSize: 56
         buttonText.font.family: standardFont.name
     }
 }

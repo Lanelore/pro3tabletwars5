@@ -109,6 +109,7 @@ SceneBase {
                         anchors.horizontalCenter: parent.horizontalCenter
                         buttonText.color: "#54A4BF"
                         buttonText.font.family: standardFont.name
+                        buttonText.font.pixelSize: 40
                         onClicked: {
                             levelPressed("Level_01.qml")
                         }
@@ -146,6 +147,7 @@ SceneBase {
                         anchors.horizontalCenter: parent.horizontalCenter
                         buttonText.color: "#54A4BF"
                         buttonText.font.family: standardFont.name
+                        buttonText.font.pixelSize: 40
                         onClicked: {
                             levelPressed("Level_02.qml")
                         }
@@ -183,6 +185,7 @@ SceneBase {
                         anchors.horizontalCenter: parent.horizontalCenter
                         buttonText.color: "#54A4BF"
                         buttonText.font.family: standardFont.name
+                        buttonText.font.pixelSize: 40
                         onClicked: {
                             levelPressed("Level_03.qml")
                         }
@@ -221,6 +224,7 @@ SceneBase {
                         anchors.horizontalCenter: parent.horizontalCenter
                         buttonText.color: "#54A4BF"
                         buttonText.font.family: standardFont.name
+                        buttonText.font.pixelSize: 40
                         onClicked: {
                             levelPressed("Level_04.qml")
                         }
@@ -258,6 +262,7 @@ SceneBase {
                         anchors.horizontalCenter: parent.horizontalCenter
                         buttonText.color: "#54A4BF"
                         buttonText.font.family: standardFont.name
+                        buttonText.font.pixelSize: 40
                         onClicked: {
                             levelPressed("Level_05.qml")
                         }

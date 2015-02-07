@@ -79,16 +79,12 @@ SceneBase {
             window.state = "menu"
             window.state = "game"
 
-
             //levelPressed(tmp)
-
 
             window.state = "menu"
             window.state = "game"
 
-
             var tmpFileName = activeLevelFileName
-            //console.debug("### File: " + tmpFileName)
 
             activeLevelFileName = "SelectLevelScene.qml"
             activeLevelFileName = tmpFileName

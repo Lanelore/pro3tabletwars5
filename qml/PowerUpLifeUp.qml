@@ -57,8 +57,6 @@ EntityBase {
         fixture.onBeginContact: {
             var collidedEntity = other.parent.parent.parent;
 
-            //console.log("onBeginContact: " + collidedEntity.entityId)
-
             if(tankRed.entityId === collidedEntity.entityId){
                 tankRed.glitter.playing=true;
                 tankRed.plingSound.play();

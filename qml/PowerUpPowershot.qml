@@ -58,11 +58,13 @@ EntityBase {
             if(tankRed.entityId === collidedEntity.entityId){
                 tankRed.plingSound.play();
                 playerRed.activatePowershot = true
+                playerRed.activePowershotCounter = 0
                 powPowershot.destroy()
                 GameInfo.powerUpCount-=1
             } else if(tankBlue.entityId === collidedEntity.entityId){
                 tankBlue.plingSound.play();
                 playerBlue.activatePowershot = true
+                playerBlue.activePowershotCounter = 0
                 powPowershot.destroy()
                 GameInfo.powerUpCount-=1
             }

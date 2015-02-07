@@ -9,23 +9,12 @@ EntityBase {
     id: singleBullet
     entityType: "singleBullet"
 
-/*
-    Rectangle {
-        width: 10
-        height: 10
-        //anchors.fill: parent
-        color: "#000000"
-    }
-*/
-
     Image {
         width: 15
         height: 28
         //anchors.fill: parent
         source: bulletType ?"../assets/img/final/Icicle.png" :  "../assets/img/final/Snowball.png"
     }
-
-    onEntityCreated: console.debug("***** Bullet Entity Angle: " + rotation)
 
     property point start
     property point velocity
@@ -55,20 +44,13 @@ EntityBase {
             var body = other.parent;
             var component = other.parent.parent;
 
-            console.log("body.entityId: " + component.entityId);
-            console.log("component.entityId: " + component.entityId);
-            console.log("component.parent.entityId: " + component.parent.entityId); // tank_1
-            console.log("Component.parent.parent.entityId: " + component.parent.parent.entityId); // playerRed / playerBlue
-
             var otherEntity = component.parent;
             var otherEntityId = component.parent.entityId;
             var otherEntityParent = otherEntity.parent;
 
             // destroy the bullet if it collided with anything but lake or powerup
             if (otherEntityId.substring(0, 3) !== "lak" && otherEntityId.substring(0, 3) !== "pow") {
-                console.log("bullet collides with: " + otherEntityId);
                 singleBullet.destroy();
-
 
                 entityManager.createEntityFromUrlWithProperties(
                             Qt.resolvedUrl("Splat.qml"), {
@@ -78,8 +60,6 @@ EntityBase {
                                 "rotation": singleBullet.rotation
                             }
                 );
-
-
 
                 // check if it hit a player
                 if (otherEntityId.substring(0, 4) === "tank") {

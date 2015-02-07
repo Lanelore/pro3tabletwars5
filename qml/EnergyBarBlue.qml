@@ -38,6 +38,5 @@ EntityBase {
                     GradientStop { position: 1.0; color: barColor }
                 }
         }
-        onEnabledChanged: console.debug("Energie: " + energy)
     }
 }

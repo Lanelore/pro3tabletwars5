@@ -66,7 +66,6 @@ EntityBase {
             limit = Math.ceil(Math.random() * (timeSpan)+timeMin);
 
             if(GameInfo.powerUpCount<GameInfo.maxPowerUpsOnField){
-                console.debug("Limit: " + limit + " | Counter: " + GameInfo.powerUpCount)
                 spawnRandomItem()
             }
         }
@@ -81,8 +80,6 @@ EntityBase {
 
         var startX= (radius*Math.cos((randomAngle)*Math.PI/180)) + powerUpSpawn.x
         var startY= (radius*Math.sin((randomAngle)*Math.PI/180)) + powerUpSpawn.y
-
-        console.debug("Item: " + randomItem)
 
         var url
         if(randomItem==1){url = "PowerUpAccelerator.qml"}

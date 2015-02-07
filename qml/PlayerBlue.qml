@@ -52,15 +52,12 @@ EntityBase {
             if (activateShield) {tankBlue.shield.opacity=1}
             if (activateShield==false) {tankBlue.shield.opacity=0}
 
-            //console.log ("activateShield: " + activateShield + " / " + activeShieldCounter)
             if (activateShield) { activeShieldCounter++; }
             if (activeShieldCounter === 80) { activateShield = false; activeShieldCounter = 0; }
 
-            //console.log ("activateAccelerator: " + activateAccelerator + " / " + activeAcceleratorCounter)
             if (activateAccelerator) { activeAcceleratorCounter++; minTimeDistanceBullet = 20; tankBlue.fire.opacity=1}
             if (activeAcceleratorCounter === 80) { activateAccelerator = false; activeAcceleratorCounter = 0; minTimeDistanceBullet = stdTimeDistanceBetweenBullets; tankBlue.fire.opacity=0}
 
-            //console.log ("activatePowershot: " + activatePowershot + " / " + activePowershotCounter)
             if (activatePowershot) { activePowershotCounter++ }
             if (activePowershotCounter === 80) { activatePowershot = false; activePowershotCounter = 0; }
 

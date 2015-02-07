@@ -16,8 +16,9 @@ Soll innerhalb eines Matches nur ein Level spielbar sein?
 
 Offene Punkte nach der Präsentation
 -----------------------------------
+     * Console.debug + Console.log -Messages löschen!
      * Das Spiel beenden/pausieren, wenn mit der Handytaste zurück geklickt wird.
-     * Der PowerUpTimer soll neu gestartet werden, wenn der User das selbe PUps noch einmal sammelt (momentan werden einfach ignoriert, wenn er das selbe gerade trägt).
+OK   * Der PowerUpTimer soll neu gestartet werden, wenn der User das selbe PUps noch einmal sammelt (momentan werden einfach ignoriert, wenn er das selbe gerade trägt).
        Es soll daher "aufgefrischt" werden.
 OK   * TouchPads disablen, wenn das Spiel pausiert ist
 OK   * Steuerung auf Kreis beschränken (statt Viereck)
@@ -26,9 +27,9 @@ OK   * Steuerung auf Kreis beschränken (statt Viereck)
 wichtige offene Punkte 02.02.2015
 ---------------------------------
 OK   * Tutorial Level + zusätzliche Level (Reihenfolge!)
-     * Controls (Easy und Expert für beide Player)(Achtung: IcicleSounds)
+OK   * Controls (Easy und Expert für beide Player)(Achtung: IcicleSounds)
 OK   * Credits (v-Play, Qt, ...)
-     * Steuerung abrunden (Circle)
+OK   * Steuerung abrunden (Circle)
 OK   * Kopf/Steuerung von Blau zu Beginn drehen
 OK   * Rot startet mit Playing?
      * Schriftgrößen + Position
@@ -39,9 +40,9 @@ offene Punkte aus Besprechung mit PAG am 13.01.2015
 ---------------------------------------------------
 OK   * Unsterblichkeitsdauer nach einem Treffer sollte auf 2-3 Sekunden verlängert werden, damit Player Zeit zum ausweichen hat.
 OK   * Steuerung sollte innerhalb der eigenen Displayhälfte möglich sein, anstatt nur im Steuerkreis rechts unten
-     * Schuss-Steuerung soll zwischen Expert- (mitdrehbar) und Easy-Mode (Schuss nur in Blickrichtung möglich) umschaltbar sein.
+OK   * Schuss-Steuerung soll zwischen Expert- (mitdrehbar) und Easy-Mode (Schuss nur in Blickrichtung möglich) umschaltbar sein.
      * eigenen Sound reingeben, wenn 2 Schneebälle sich treffen
-     * Wenn Player mehrmals hintereinander getroffen wird, sollte der Sound leicht variieren (random Auswahl aus mehreren Dateien)
+OK   * Wenn Player mehrmals hintereinander getroffen wird, sollte der Sound leicht variieren (random Auswahl aus mehreren Dateien)
 OK   * Schlagschatten für Bäume, Iglus, ... (entweder überall oder nirgendwo)
      * Strichstärke Powerups, Player, Bäume, ... vereinheitlichen
 OK   * Energie sollte bei Treffern schneller zu Ende gehen = Tod mit 6 oder 7 Treffern anstatt wie bisher mit 10

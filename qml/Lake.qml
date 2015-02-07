@@ -47,29 +47,16 @@ EntityBase {
 
 
         fixture.onBeginContact: {
-
             // handle the collision and make the image semi-transparent
-
             var collidedEntity = other.parent.parent.parent;
-            console.log("object collides with lake:" + collidedEntity.entityId)
 
             if(tankRed.entityId === collidedEntity.entityId){
-                //tankRed.opacity = 0.5
-                console.log("tankRed is inside the lake, joystick = " ) //+ playerMovementControlAreaRed)
-                //playerMovementControlAreaRed.enabled=false;
-                //redOnLake()
                 GameInfo.redOnLake=true
             }
 
             if(tankBlue.entityId === collidedEntity.entityId){
-                //tankBlue.opacity = 0.5
-                console.log("tankRed is inside the lake, joystick = " )//+ playerMovementControlAreaBlue)
-                //playerMovementControlAreaBlue.enabled=false;
-                //blueOnLake()
                 GameInfo.blueOnLake=true
             }
-
-            console.log("contact!")
         }
 
         fixture.onEndContact: {
@@ -77,27 +64,16 @@ EntityBase {
 
             var collidedColliderComponent = other.parent.parent;
             var collidedEntity = collidedColliderComponent.parent;
-            console.log(collidedEntity.entityId)
 
             if(tankRed.entityId ===collidedEntity.entityId){
-                //tankRed.opacity = 1
-                console.log("tankRed is outside the lake!")
-                //playerMovementControlAreaRed.enabled=true;
-                //redOffLake();
                 GameInfo.redOnLake=false
                 redOffLake()
             }
 
             if(tankBlue.entityId ===collidedEntity.entityId){
-                //tankBlue.opacity = 1
-                console.log("tankBlue is outside the lake!")
-                //playerMovementControlAreaBlue.enabled=true;
-                //blueOffLake()
                 GameInfo.blueOnLake=false
                 blueOffLake()
             }
-
-            console.log("contact!")
         }
     }
 }

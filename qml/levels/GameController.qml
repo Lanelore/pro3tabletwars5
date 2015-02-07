@@ -154,7 +154,6 @@ Common.LevelBase {
                 playerRed.tankRed.circleCollider.linearDamping=0
                 playerRed.tankRed.tankBody.playing=true
 
-                console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 
                 newPosX = ((redFieldPoint.x - referencePointX + playerMovementImageRed.width / 2) / (playerMovementImageRed.width / 2) - 1)
@@ -178,8 +177,6 @@ Common.LevelBase {
                         var angle = (Math.atan2(newPosX, newPosY) * 180 / Math.PI) -180
                         angle = angle * (-1)
                         angle -= 90
-
-                        console.debug("üüüü Angle: " + angle)
 
                         //find a new reference point at the border of the circular pad
                         var newX= (playerMovementImageRed.width/2) * Math.cos((angle)*Math.PI/180) + referencePointX
@@ -262,8 +259,6 @@ Common.LevelBase {
 
                     // if it is on the lake calculate it in a special way!
                     if(GameInfo.redOnLake){
-                        console.log("X old: " + oldPosX + " | new: " + newPosX)
-                        console.log("Y old: " + oldPosY + " | new: " + newPosY)
                         newPosX = oldPosX+(newPosX*0.03)
                         newPosY = oldPosY+(newPosY*0.03)
 
@@ -442,7 +437,6 @@ Common.LevelBase {
                                                                         "velocity" : Qt.point(xDirection, yDirection),
                                                                         "rotation" : playerRed.tankRed.tankBody.rotation + 180,
                                                                         "bulletType" : playerRed.activatePowershot ? 1 : 0});
-                    console.debug("***** Bullet Angle: "  + (playerRed.tankRed.tankBody.rotation + 180))
                 }
             }
 
@@ -566,8 +560,6 @@ Common.LevelBase {
 
                 // if it is on the lake calculate it in a special way!
                 if(GameInfo.redOnLake){
-                    console.log("X old: " + oldPosX + " | new: " + newPosX)
-                    console.log("Y old: " + oldPosY + " | new: " + newPosY)
                     newPosX = oldPosX+(newPosX*0.03)
                     newPosY = oldPosY+(newPosY*0.03)
 
@@ -678,7 +670,6 @@ Common.LevelBase {
 
             /*
             onUpdated: {
-                console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
@@ -691,19 +682,15 @@ Common.LevelBase {
             onTouchUpdated: upDateCannon()
 
             onPressed: {
-                //*//console.log("--------onPressed");
                 pressBool= true
-                //*//touchStartTime = new Date().getTime()
                 upDateCannon()
             }
 
             onReleased: {
-                //console.log("--------onReleased");
                 upDateCannon()
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
                 //*//var touchReleaseTime = currentTime - touchStartTime
-                //*//console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerRed.minTimeDistanceBullet) {
                     if (playerRed.activatePowershot){
@@ -714,9 +701,6 @@ Common.LevelBase {
                     playerRed.tankRed.tankHead.playing=true
 
                     lastTime = currentTime
-
-                    //console.debug("Shoot Cannon")
-
 
                     var speed = (playerRed.activateAccelerator) ? 500 : 250
 
@@ -732,7 +716,6 @@ Common.LevelBase {
                                                                         "velocity" : Qt.point(xDirection, yDirection),
                                                                         "rotation" : playerRed.tankRed.tankCannon.rotation + 90,
                                                                         "bulletType" : playerRed.activatePowershot ? 1 : 0});
-                    console.debug("***** Bullet Angle: "  + (playerRed.tankRed.tankCannon.rotation + 90))
                 }
                 pressBool= false
                 //*//onTouchUpdatedCounter = 0
@@ -740,7 +723,6 @@ Common.LevelBase {
 
             function upDateCannon(){
                 // point1.x range: 0 - playerBulletControlAreaRed.width
-                //console.log("touchpoint.x: " + point1.x)
 
                 // ControlType2
                 /*
@@ -749,7 +731,6 @@ Common.LevelBase {
                 var angle = b / m * (-1)
                 angle = Math.max(angle, -GameInfo.controlType2AngleRange)
                 angle = Math.min(angle, GameInfo.controlType2AngleRange)
-                console.log("b: " + b + ", m: " + m + ", angle: " + angle)
                 playerRed.tankRed.cannonAngle = angle
                 playerRed.tankRed.tankCannon.rotation = playerRed.tankRed.tankBody.rotation + playerRed.tankRed.cannonAngle + 90
                 */
@@ -771,17 +752,6 @@ Common.LevelBase {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -868,8 +838,6 @@ Common.LevelBase {
                         angle = angle * (-1)
                         angle -= 90
 
-                        console.debug("üüüü Angle: " + angle)
-
                         //find a new reference point at the border of the circular pad
                         var newX= (playerMovementImageBlue.width/2) * Math.cos((angle)*Math.PI/180) + referencePointX
                         var newY= (playerMovementImageBlue.height/2) * Math.sin((angle)*Math.PI/180) + referencePointY
@@ -879,9 +847,6 @@ Common.LevelBase {
                         var diffY = blueFieldPoint.y - newY
 
                         //translate the pad in the new direction within the half of the field
-
-                        console.debug("Referenz: " + (referencePointY + diffY) + " | Vergleich: " + (playerMovementImageBlue.height / 2))
-
                         if((referencePointX + diffX) <= (playerMovementImageBlue.width / 2)){
                             referencePointX = playerMovementImageBlue.width / 2
                         }else if((referencePointX + diffX) >= (scene.width - playerMovementImageBlue.width/2)){
@@ -942,7 +907,6 @@ Common.LevelBase {
                     /*
                     newPosX = ((blueFieldPoint.x - referencePointX + playerMovementImageBlue.width / 2) / (playerMovementImageBlue.width / 2) - 1)
                     newPosY = ((blueFieldPoint.y - referencePointY + playerMovementImageBlue.height / 2) / (playerMovementImageBlue.height / 2) - 1)
-                    console.log("newPosX flo: " + newPosX);
                     var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 */
                     newPosY = newPosY * -1
@@ -954,8 +918,6 @@ Common.LevelBase {
 
                     // if it is on the lake calculate it in a special way!
                     if(GameInfo.blueOnLake){
-                        console.log("X old: " + oldPosX + " | new: " + newPosX)
-                        console.log("Y old: " + oldPosY + " | new: " + newPosY)
                         newPosX = oldPosX+(newPosX*0.03)
                         newPosY = oldPosY+(newPosY*0.03)
 
@@ -1140,7 +1102,6 @@ Common.LevelBase {
                                                                         "velocity" : Qt.point(xDirection, yDirection),
                                                                         "rotation" : playerBlue.tankBlue.tankBody.rotation + 180,
                                                                         "bulletType" : playerBlue.activatePowershot ? 1 : 0});
-                    console.debug("***** Bullet Angle: "  + (playerBlue.tankBlue.tankBody.rotation + 180))
                 }
             }
 
@@ -1215,10 +1176,8 @@ Common.LevelBase {
                 playerBlue.tankBlue.circleCollider.linearDamping=0
                 playerBlue.tankBlue.tankBody.playing=true
 
-                console.log("PointBluex: " + pointCtrlBlue.x);
                 newPosX = (pointCtrlBlue.x / (parent.width / 2) - 1)
                 newPosY = (pointCtrlBlue.y / (parent.height / 2) - 1)
-                console.log("newPosX blue:" + newPosX);
                 newPosY = newPosY * -1
 
                 if (newPosX > 1) newPosX = 1
@@ -1228,8 +1187,6 @@ Common.LevelBase {
 
                 // if it is on the lake calculate it in a special way!
                 if(GameInfo.blueOnLake){
-                    console.log("X old: " + oldPosX + " | new: " + newPosX)
-                    console.log("Y old: " + oldPosY + " | new: " + newPosY)
                     newPosX = oldPosX+(newPosX*0.03)
                     newPosY = oldPosY+(newPosY*0.03)
 
@@ -1335,7 +1292,6 @@ Common.LevelBase {
 
             /*
             onUpdated: {
-                console.log("--------onTouchUpdated");
                 onTouchUpdatedCounter += 1
 
                 // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
@@ -1347,7 +1303,6 @@ Common.LevelBase {
             onTouchUpdated: upDateCannon()
 
             onPressed: {
-                //*//console.log("--------onPressed");
                 pressBool= true
                 //*//touchStartTime = new Date().getTime()
                 upDateCannon()
@@ -1355,11 +1310,9 @@ Common.LevelBase {
 
             onReleased: {
                 upDateCannon()
-                //console.log("---------onReleased")
                 var currentTime = new Date().getTime()
                 var timeDiff = currentTime - lastTime
                 //var touchReleaseTime = currentTime - touchStartTime
-                //console.log("---------timeDiff: " + timeDiff + ", touchReleaseTime: " + touchReleaseTime + ", minTimeDistanceBullet: " + playerRed.minTimeDistanceBullet);
 
                 if (pressBool && timeDiff > playerBlue.minTimeDistanceBullet) {
                     if (playerRed.activatePowershot){
@@ -1372,8 +1325,6 @@ Common.LevelBase {
 
                     lastTime = currentTime
 
-                    //console.debug("Shoot Cannon")
-
                     var speed = (playerBlue.activateAccelerator) ? 500 : 250
 
                     var xDirection = Math.cos(playerBlue.tankBlue.tankCannon.rotation * Math.PI / 180.0) * speed
@@ -1383,7 +1334,6 @@ Common.LevelBase {
                     var startY= (45*Math.sin((playerBlue.tankBlue.tankCannon.rotation)*Math.PI/180)) + playerBlue.tankBlue.y + playerBlue.tankBlue.height / 2
 
                     // create and remove entities at runtime
-                    //*//console.log("activatepowershot: " + playerBlue.activatePowershot)
                     entityManager.createEntityFromUrlWithProperties(Qt.resolvedUrl("../Bullet.qml"), {
                                                                         "start" : Qt.point(startX, startY),
                                                                         "velocity" : Qt.point(xDirection, yDirection),
@@ -1396,7 +1346,6 @@ Common.LevelBase {
 
             function upDateCannon(){
                 // point1.x range: 0 - playerBulletControlAreaRed.width
-                //*//console.log("touchpoint.x: " + point2.x)
 
                 // ControlType2
                 /*
@@ -1405,7 +1354,6 @@ Common.LevelBase {
                 var angle = b / m
                 angle = Math.max(angle, -GameInfo.controlType2AngleRange)
                 angle = Math.min(angle, GameInfo.controlType2AngleRange)
-                console.log("b: " + b + ", m: " + m + ", angle: " + angle)
                 playerBlue.tankBlue.cannonAngle = angle
                 playerBlue.tankBlue.tankCannon.rotation = playerBlue.tankBlue.tankBody.rotation + playerBlue.tankBlue.cannonAngle + 90
                 */
@@ -1495,7 +1443,6 @@ Common.LevelBase {
 */
 
     function calcAngle(touchX, touchY) {
-        //console.log("calcAngle: " + (-180 / Math.PI * Math.atan2(touchY, touchX)))
         return -180 / Math.PI * Math.atan2(touchY, touchX)
     }
 
@@ -1659,7 +1606,6 @@ Common.LevelBase {
 //        property var playerTwoAxisController: tankBlue.getComponent("TwoAxisController")
 
 //        onControllerXPositionChanged: {
-//            console.debug("controllerXPosition-Blue = " + controllerXPosition)
 //            playerTwoAxisController.xAxis = controllerXPosition
 //            var angle = calcAngle(controllerXPosition, controllerYPosition)
 //            if (controllerXPosition!=0 && controllerYPosition != 0){
@@ -1669,7 +1615,6 @@ Common.LevelBase {
 //        }
 
 //        onControllerYPositionChanged: {
-//            console.debug("controllerYPosition-Blue = " + controllerYPosition)
 //            playerTwoAxisController.yAxis = controllerYPosition
 //            var angle = calcAngle(controllerXPosition, controllerYPosition)
 //            if (controllerXPosition!=0 && controllerYPosition != 0){

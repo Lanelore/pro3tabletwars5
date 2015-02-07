@@ -248,9 +248,7 @@ EntityBase {
 
                     // destroy the bullet if it collided with anything but lake or powerup
                     if (otherEntityId.substring(0, 3) !== "lak" && otherEntityId.substring(0, 3) !== "pow" && otherEntityId.substring(0, 3) !== "opp") {
-                        console.log("bullet collides with: " + otherEntityId);
                         singleBulletOpponent.destroy();
-
 
                         entityManager.createEntityFromUrlWithProperties(
                                     Qt.resolvedUrl("Splat.qml"), {
@@ -260,8 +258,6 @@ EntityBase {
                                         "rotation": singleBulletOpponent.rotation
                                     }
                                     );
-
-
 
                         // check if it hit a player
                         if (otherEntityId.substring(0, 4) === "tank") {
@@ -292,7 +288,6 @@ EntityBase {
         }
     }
     function calcAngle(touchX, touchY) {
-        //console.log("calcAngle: " + (-180 / Math.PI * Math.atan2(touchY, touchX)))
         return -180 / Math.PI * Math.atan2(touchY, touchX)
     }
 }

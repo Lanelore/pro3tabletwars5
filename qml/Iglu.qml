@@ -154,7 +154,6 @@ EntityBase {
 
         onTriggered:{
             if(glowCounter % 2 == 0){
-                console.debug("######### IgluTimer")
                 igluBody.source= "../assets/img/final/IgluLight.png"
             }else{
                 igluBody.source= "../assets/img/final/Iglu.png"
@@ -183,8 +182,6 @@ EntityBase {
             if (collidedEntity.entityId == tankRed.entityId || collidedEntity.entityId == tankBlue.entityId) {
                 teleportSound.play()
 
-                console.log("fixture.parent.parent.parent.x: " + fixture.parent.parent.parent.x)
-                console.log("fixture.x: " + fixture.x)
                 collidedEntity.x = fixture.parent.parent.parent.x + 100
                 collidedEntity.y = fixture.parent.parent.parent.y + 100
 

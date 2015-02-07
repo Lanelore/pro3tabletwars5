@@ -144,7 +144,7 @@ GameController {
         playerBlue: parent.playerBlue
     }
 
-    PowerUpPowershot {
+    PowerUpShield {
         id: powShield
         x: scene.width/3*2 - width/2
         y: scene.height/3*2 - height/2

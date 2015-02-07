@@ -9,7 +9,7 @@ SceneBase {
     // background
     Image {
         anchors.fill: parent
-        source: "../../assets/img/final/Credits.png" //BG
+        source: "../../assets/img/final/Credits2.png" //BG
     }
 
     // back button to leave scene
@@ -85,7 +85,7 @@ SceneBase {
     }
 
     AudioButton {
-        source: active? "../../assets/img/final/SwitchRight.png" : "../../assets/img/final/SwitchLeft.png"
+        source: active ? "../../assets/img/final/Switch_Hard.png" : "../../assets/img/final/Switch_Easy.png"
         active: !GameInfo.easyMode
         opacity: 1
         onClicked: {
@@ -99,6 +99,38 @@ SceneBase {
         anchors.topMargin: 150
     }
 
+    AudioButton {
+        anchors.right: parent.right
+        anchors.rightMargin: 50
+        anchors.top: parent.top
+        anchors.topMargin: 250
+        width: 180
+        height: 80
+
+        source: active ? "../../assets/img/final/Switch_On.png" : "../../assets/img/final/Switch_Off.png"
+        active: ! settings.musicEnabled
+        opacity: 1
+        onClicked:  {
+            settings.musicEnabled ^= true
+        }
+    }
+
+    AudioButton {
+        anchors.right: parent.right
+        anchors.rightMargin: 50
+        anchors.top: parent.top
+        anchors.topMargin: 350
+        width: 180
+        height: 80
+
+        source: active ? "../../assets/img/final/Switch_On.png" : "../../assets/img/final/Switch_Off.png"
+        active: ! settings.soundEnabled
+        opacity: 1
+        onClicked: {
+            settings.soundEnabled ^= true
+        }
+    }
+/*
     Row {
         anchors.right: parent.right
         anchors.rightMargin: 12
@@ -121,7 +153,7 @@ SceneBase {
                 settings.soundEnabled ^= true
             }
         }
-        /*
+        *//*
         AudioButton {
             source: "../../assets/img/final/Settings.png"
             active: !GameInfo.easyMode
@@ -131,7 +163,8 @@ SceneBase {
             }
             width: 80
             height: 80
-        }
-        */
+        }*//*
+
     }
+    */
 }

@@ -160,16 +160,21 @@ Common.LevelBase {
                 newPosY = ((redFieldPoint.y - referencePointY + playerMovementImageRed.height / 2) / (playerMovementImageRed.height / 2) - 1)
                 var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 
-                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
-                if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
-
                     // if no referencePoint is loaded yet, get one!
                     if (didRegisterReferencePoint == false) {
                         // save new reference point
                         referencePointX = redFieldPoint.x;
                         referencePointY = redFieldPoint.y;
 
+                        // check if this reference point is within the playerMovementImage, if so then use the center of the playermovementimage as the new reference point
+                        if (referencePointX >= playerMovementImageRed.x && referencePointX <= playerMovementImageRed.x + playerMovementImageRed.width &&
+                            referencePointY >= playerMovementImageRed.y && referencePointY <= playerMovementImageRed.y + playerMovementImageRed.height) {
+                            referencePointX = playerMovementImageRed.x + playerMovementImageRed.width / 2
+                            referencePointY = playerMovementImageRed.y + playerMovementImageRed.height / 2
+                        }
+
                         updatePlayerMovementImagePosition()
+                        return;
                     }
 
                     if (distance >1) {
@@ -273,7 +278,7 @@ Common.LevelBase {
 
                     // update the movement
                     updateMovement()
-                }
+
             }
 
             function updatePlayerMovementImagePosition() {
@@ -820,16 +825,21 @@ Common.LevelBase {
                 var distance = Math.sqrt((newPosX*newPosX) + (newPosY*newPosY)) //distance from center of the circle - radius
 
 
-                // only update the cannon when the user really swiped, a single touch shouldn't update the cannon angle
-                if (onTouchUpdatedCounter >= GameInfo.swipeTouchPointLimit) { // change this number to '6' to only shoot when a Tap occured!
-
                     // if no referencePoint is loaded yet, get one!
                     if (didRegisterReferencePoint == false) {
                         // save new reference point
                         referencePointX = blueFieldPoint.x;
                         referencePointY = blueFieldPoint.y;
 
+                        // check if this reference point is within the playerMovementImage, if so then use the center of the playermovementimage as the new reference point
+                        if (referencePointX >= playerMovementImageBlue.x && referencePointX <= playerMovementImageBlue.x + playerMovementImageBlue.width &&
+                            referencePointY >= playerMovementImageBlue.y && referencePointY <= playerMovementImageBlue.y + playerMovementImageBlue.height) {
+                            referencePointX = playerMovementImageBlue.x + playerMovementImageBlue.width / 2
+                            referencePointY = playerMovementImageBlue.y + playerMovementImageBlue.height / 2
+                        }
+
                         updatePlayerMovementImagePosition()
+                        return;
                     }
 
                     if (distance >1) {
@@ -932,7 +942,7 @@ Common.LevelBase {
 
                     // update the movement
                     updateMovement()
-                }
+
             }
 
             function updatePlayerMovementImagePosition() {

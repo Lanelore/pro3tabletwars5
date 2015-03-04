@@ -107,7 +107,7 @@ SceneBase {
         width: 180
         height: 80
 
-        source: active ? "../../assets/img/final/Switch_On.png" : "../../assets/img/final/Switch_Off.png"
+        source: active ? "../../assets/img/final/Switch_Off.png" : "../../assets/img/final/Switch_On.png"
         active: ! settings.musicEnabled
         opacity: 1
         onClicked:  {
@@ -123,7 +123,7 @@ SceneBase {
         width: 180
         height: 80
 
-        source: active ? "../../assets/img/final/Switch_On.png" : "../../assets/img/final/Switch_Off.png"
+        source: active ? "../../assets/img/final/Switch_Off.png" : "../../assets/img/final/Switch_On.png"
         active: ! settings.soundEnabled
         opacity: 1
         onClicked: {

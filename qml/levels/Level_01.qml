@@ -6,6 +6,12 @@ import "../levels"
 GameController {
     id: scene
 
+    Image {
+        id: background
+        anchors.fill: parent
+        source: "../../assets/img/final/BG_Level01.png"
+    }
+
     // Plant a little forest in the middle
     // from left to right
     Tree {

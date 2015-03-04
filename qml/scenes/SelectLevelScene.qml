@@ -13,7 +13,7 @@ SceneBase {
     // background
     Image {
         anchors.fill: parent
-        source: "../../assets/img/final/BG.png"
+        source: "../../assets/img/final/BG_LevelSelection.png"
     }
 
     onLevelPressed: {

@@ -32,7 +32,9 @@ EntityBase {
         source: "../assets/snd/Winner.wav"
     }
 
-    Tank {
+    Tank {        
+        property bool currentlyBeaming: false
+
         id: tankRed
         x: scene.width / 2
         y: 100 + height/2
@@ -97,6 +99,10 @@ EntityBase {
 
     function onDamageWithBulletType(bulletType) {
         if (activateHitShield) {
+            return
+        }
+
+        if (tankRed.currentlyBeaming) {
             return
         }
 

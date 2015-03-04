@@ -33,6 +33,8 @@ EntityBase {
     }
 
     Tank {
+        property bool currentlyBeaming: false
+
         id: tankBlue
         x: scene.width / 2
         y: scene.height - 100 - height/2
@@ -97,6 +99,10 @@ EntityBase {
 
     function onDamageWithBulletType(bulletType) {
         if (activateHitShield) {
+            return
+        }
+
+        if (tankBlue.currentlyBeaming) {
             return
         }
 

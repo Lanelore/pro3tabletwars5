@@ -120,6 +120,7 @@ EntityBase {
             //destIglu.teleportGlow.playing = false
             //destIglu.opacity = 1.0
             teleportedPlayer.opacity = 1.0
+            teleportedPlayer.currentlyBeaming = false
         }
     }
 
@@ -141,6 +142,7 @@ EntityBase {
 
             //destIglu.teleportGlow.playing = false
             teleportedPlayer.opacity = 1.0
+            teleportedPlayer.currentlyBeaming = false
         }
     }
 
@@ -207,6 +209,7 @@ EntityBase {
 
                 if (collidedEntity.entityId === tankRed.entityId) {
                     // Player Red
+                    collidedEntity.currentlyBeaming = true
                     teleportTimerPlayerRed.destinationX = destinationX
                     teleportTimerPlayerRed.destinationY = destinationY
                     teleportTimerPlayerRed.destIglu = destinationIglu
@@ -214,6 +217,7 @@ EntityBase {
                     teleportTimerPlayerRed.start()
                 } else {
                     // Player Iglu
+                    collidedEntity.currentlyBeaming = true
                     teleportTimerPlayerBlue.destinationX = destinationX
                     teleportTimerPlayerBlue.destinationY = destinationY
                     teleportTimerPlayerBlue.destIglu = destinationIglu
